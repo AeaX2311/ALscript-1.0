@@ -1,0 +1,7 @@
+D:\Documents\Programacion\C#\ALscript-1.0\ALscript\bin\Debug\ALscript.exe.config
+D:\Documents\Programacion\C#\ALscript-1.0\ALscript\bin\Debug\ALscript.exe
+D:\Documents\Programacion\C#\ALscript-1.0\ALscript\bin\Debug\ALscript.pdb
+D:\Documents\Programacion\C#\ALscript-1.0\ALscript\obj\Debug\ALscript.csproj.AssemblyReference.cache
+D:\Documents\Programacion\C#\ALscript-1.0\ALscript\obj\Debug\ALscript.csproj.CoreCompileInputs.cache
+D:\Documents\Programacion\C#\ALscript-1.0\ALscript\obj\Debug\ALscript.exe
+D:\Documents\Programacion\C#\ALscript-1.0\ALscript\obj\Debug\ALscript.pdb
