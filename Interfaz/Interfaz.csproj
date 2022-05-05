@@ -47,11 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="Error.cs" />
-=======
     <Compile Include="Connection\MatrizConnection.cs" />
->>>>>>> 215fa41141f3fd6348d915a95d549f3040c49e97
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
