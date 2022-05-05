@@ -30,9 +30,11 @@ namespace Interfaz {
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ClientSize = new System.Drawing.Size(1420, 839);
             this.Name = "Form1";
-            this.Text = "ALscript Interfaz";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Compilador ALscript";
             this.ResumeLayout(false);
 
         }
