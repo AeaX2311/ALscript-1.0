@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 namespace Interfaz.Connection {
@@ -12,7 +13,7 @@ namespace Interfaz.Connection {
         /// Connection String, since we have three different developers, we gotta change this string
         /// whenever necessary.
         /// </summary>
-        private string CONNECTION_STRING_NAME = "Server=localhost;Database=alscript;User Id=alan;Password=alan12345;Trusted_Connection=true";
+        private string CONNECTION_STRING_NAME = "default";
         
         /// <summary>
         /// SqlConnection object to connect at database
@@ -25,7 +26,7 @@ namespace Interfaz.Connection {
         private static MatrizConnection _instance = null;
 
 
-        private MatrizConnection() {
+        public MatrizConnection() {
             try {
                 CONNECTION_STRING_NAME =  ConfigurationManager.ConnectionStrings["dev"].ConnectionString;
             } catch(Exception) {
