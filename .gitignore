@@ -23,9 +23,9 @@ _UpgradeReport_Files/
 ###############
 # Directories #
 ###############
-bin/
-obj/
-TestResults/
+Interfaz/bin/
+Interfaz/obj/
+Interfaz/TestResults/
 ###################
 # Web publish log #
 ###################
