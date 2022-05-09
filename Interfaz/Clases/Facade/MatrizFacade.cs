@@ -5,18 +5,25 @@ using System.Linq;
 
 namespace Interfaz.Facade {
     class MatrizFacade {
+        #region Componentes primordiales
         private MatrizConnection mc = new MatrizConnection();
-
         private string compilacion;
         private const char FDC = ' ';
         private const char FDL = '\n';
-        private int numeroDeLinea;
         private List<Error> errores;
         private List<Identificador> identificadores;
-        private bool agregueIdentificador;
-        private int contadorLetras;
+        #endregion
+
+        #region Banderas y auxiliares
         private string mayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        private bool aux = false;
+        private int numeroDeLinea;
+        private int contadorLetras;
+        private bool agregueIdentificador;
+        private bool agregueFDC = false;
+        private bool generaError = false; //FALTA UTILIZAAAAAAAAAAAAAAAAR
+        //CHECAR COMENTARIOS Y CADENAX
+        #endregion
+
 
         public MatrizFacade() {
             compilacion = "";
@@ -25,6 +32,11 @@ namespace Interfaz.Facade {
             identificadores = new List<Identificador>();
         }       
 
+        /// <summary>
+        /// Metodo principal / Compilacion del codigo ALscript
+        /// </summary>
+        /// <param name="codificacion">El codigo que se desea compilar</param>
+        /// <returns>Codigo compilado y sus detalles</returns>
         public Compilado compilarCodigo(string codificacion) {
             do {
                 agregueIdentificador = false;
@@ -35,10 +47,9 @@ namespace Interfaz.Facade {
                     ////Se agrega el nombre del identificador
                 if(agregueIdentificador) identificadores.Last().Nombre = codificacion.Substring(0, contadorLetras);
 
-                ////Elimina la parte inicial de la codificacion, parte que ya fue evaluada
-                if(aux) contadorLetras--;
-                codificacion = codificacion.Substring(contadorLetras + 1);
-                //codificacion = null;
+                    ////Elimina la parte inicial de la codificacion, parte que ya fue evaluada
+                codificacion = codificacion.Substring(contadorLetras + (agregueFDC ? 0 : 1));
+
             } while(!string.IsNullOrWhiteSpace(codificacion));
 
             if(string.IsNullOrEmpty(compilacion)) {
@@ -61,8 +72,7 @@ namespace Interfaz.Facade {
             try {
                 isFDC = esFDC(codigo[contadorLetras]);
             } catch { //Se salio del rango, es el final del codigo
-                aux = true;
-                //codificacion += FDC;
+                agregueFDC = true;
                 return recorrerPalabra(codigo + FDC, contadorLetras, 241, true);
             }
 
@@ -111,6 +121,7 @@ namespace Interfaz.Facade {
                 identificadores.Add(new Identificador("", null));
             } else if(resultado.Equals("ERROR")) {
                 errores.Add(new Error(token, numeroDeLinea)); //Guarda el error
+                generaError = true; //Realiza las instrucciones necesarias para evitar errores duplicados
             }
 
             compilacion += token; //Guarda el token

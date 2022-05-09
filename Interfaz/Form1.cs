@@ -1,14 +1,8 @@
 ﻿using Interfaz.Clases;
-using Interfaz.Connection;
 using Interfaz.Facade;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Interfaz {
@@ -25,21 +19,12 @@ namespace Interfaz {
             txtCompilacion.Font = txtCompilacion.Font;
             txtCompilacion.Select();
             AddLineNumbersCompilacion();
-
-
-            dgvIdentificadores.Rows.Add("1", "1");
-            dgvIdentificadores.Rows.Add("1", "1");
-            dgvIdentificadores.Rows.Add("1", "1");
-
-            dgvErrores.Rows.Add("1", "1","hola");
-            dgvErrores.Rows.Add("1", "1", "hola");
-            dgvErrores.Rows.Add("1", "1", "hola");
         }
 
-        #region Acciones/Eventos
+        #region Acciones Click
         private void btnLimpiar_Click(object sender, EventArgs e) {
             txtCodificacion.Text = txtCompilacion.Text = "";
-            txtCodificacion.Enabled = txtCompilacion.Enabled = true;
+            txtCodificacion.ReadOnly = false;
             dgvIdentificadores.Rows.Clear();
             dgvErrores.Rows.Clear();
         }
@@ -55,11 +40,9 @@ namespace Interfaz {
             else
                 MessageBox.Show("Programa compilado correctamente.", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            txtCodificacion.Enabled = txtCompilacion.Enabled = false;
+            txtCodificacion.ReadOnly = true;
         }
-        #endregion
-
-        
+        #endregion        
 
         #region Metodos
 

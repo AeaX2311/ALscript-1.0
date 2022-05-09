@@ -19,8 +19,8 @@ GO
 	-- Auxiliares
 	UPDATE
 		matriz
-		set [c.] = 222
-	where Estado =139
+		set [c=] = 186
+	where Estado =184
 
 	UPDATE
 		matriz
