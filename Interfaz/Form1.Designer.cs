@@ -37,7 +37,6 @@ namespace Interfaz {
             this.btnCompilar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtNumeracionCompilacion = new System.Windows.Forms.RichTextBox();
             this.txtCompilacion = new System.Windows.Forms.RichTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvIdentificadores = new System.Windows.Forms.DataGridView();
@@ -45,12 +44,13 @@ namespace Interfaz {
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvErrores = new System.Windows.Forms.DataGridView();
-            this.TokenError = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnGuardarArchivoToken = new System.Windows.Forms.Button();
             this.btnGuardarCodigo = new System.Windows.Forms.Button();
             this.btnCargarCodigo = new System.Windows.Forms.Button();
+            this.txtNumeracionCompilacion = new System.Windows.Forms.RichTextBox();
+            this.TokenError = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -69,14 +69,17 @@ namespace Interfaz {
             this.groupBox1.Size = new System.Drawing.Size(554, 678);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Codificacion";
+            this.groupBox1.Text = "Codificación";
             // 
             // txtNumeracionCodificacion
             // 
             this.txtNumeracionCodificacion.BackColor = System.Drawing.Color.LightGray;
             this.txtNumeracionCodificacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNumeracionCodificacion.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumeracionCodificacion.ForeColor = System.Drawing.Color.RoyalBlue;
             this.txtNumeracionCodificacion.Location = new System.Drawing.Point(6, 28);
             this.txtNumeracionCodificacion.Name = "txtNumeracionCodificacion";
+            this.txtNumeracionCodificacion.ReadOnly = true;
             this.txtNumeracionCodificacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.txtNumeracionCodificacion.Size = new System.Drawing.Size(50, 644);
             this.txtNumeracionCodificacion.TabIndex = 1000;
@@ -93,8 +96,9 @@ namespace Interfaz {
             this.txtCodificacion.Location = new System.Drawing.Point(41, 28);
             this.txtCodificacion.Name = "txtCodificacion";
             this.txtCodificacion.Size = new System.Drawing.Size(507, 644);
-            this.txtCodificacion.TabIndex = 0;
+            this.txtCodificacion.TabIndex = 1;
             this.txtCodificacion.Text = "";
+            this.txtCodificacion.WordWrap = false;
             this.txtCodificacion.SelectionChanged += new System.EventHandler(this.txtCodificacion_SelectionChanged);
             this.txtCodificacion.VScroll += new System.EventHandler(this.txtCodificacion_VScroll);
             this.txtCodificacion.FontChanged += new System.EventHandler(this.txtCodificacion_FontChanged);
@@ -108,7 +112,7 @@ namespace Interfaz {
             this.btnCompilar.Location = new System.Drawing.Point(572, 296);
             this.btnCompilar.Name = "btnCompilar";
             this.btnCompilar.Size = new System.Drawing.Size(106, 54);
-            this.btnCompilar.TabIndex = 1;
+            this.btnCompilar.TabIndex = 2;
             this.btnCompilar.Text = "Compilar";
             this.btnCompilar.UseVisualStyleBackColor = false;
             this.btnCompilar.Click += new System.EventHandler(this.btnCompilar_Click);
@@ -121,7 +125,7 @@ namespace Interfaz {
             this.btnLimpiar.Location = new System.Drawing.Point(572, 356);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(106, 54);
-            this.btnLimpiar.TabIndex = 2;
+            this.btnLimpiar.TabIndex = 3;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = false;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
@@ -134,34 +138,23 @@ namespace Interfaz {
             this.groupBox2.Location = new System.Drawing.Point(684, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(554, 678);
-            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Compilacion";
-            // 
-            // txtNumeracionCompilacion
-            // 
-            this.txtNumeracionCompilacion.BackColor = System.Drawing.Color.LightGray;
-            this.txtNumeracionCompilacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtNumeracionCompilacion.Location = new System.Drawing.Point(6, 28);
-            this.txtNumeracionCompilacion.Name = "txtNumeracionCompilacion";
-            this.txtNumeracionCompilacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.txtNumeracionCompilacion.Size = new System.Drawing.Size(50, 644);
-            this.txtNumeracionCompilacion.TabIndex = 1001;
-            this.txtNumeracionCompilacion.Text = "";
-            this.txtNumeracionCompilacion.FontChanged += new System.EventHandler(this.txtNumeracionCompilacion_FontChanged);
-            this.txtNumeracionCompilacion.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txtNumeracionCompilacion_MouseDown);
+            this.groupBox2.Text = "Compilación";
             // 
             // txtCompilacion
             // 
             this.txtCompilacion.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtCompilacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCompilacion.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCompilacion.ForeColor = System.Drawing.Color.Black;
             this.txtCompilacion.Location = new System.Drawing.Point(41, 28);
             this.txtCompilacion.Name = "txtCompilacion";
             this.txtCompilacion.ReadOnly = true;
             this.txtCompilacion.Size = new System.Drawing.Size(507, 644);
-            this.txtCompilacion.TabIndex = 3;
+            this.txtCompilacion.TabIndex = 9;
             this.txtCompilacion.Text = "";
+            this.txtCompilacion.WordWrap = false;
             this.txtCompilacion.SelectionChanged += new System.EventHandler(this.txtCompilacion_SelectionChanged);
             this.txtCompilacion.VScroll += new System.EventHandler(this.txtCompilacion_VScroll);
             this.txtCompilacion.FontChanged += new System.EventHandler(this.txtCompilacion_FontChanged);
@@ -174,7 +167,7 @@ namespace Interfaz {
             this.groupBox3.Location = new System.Drawing.Point(12, 761);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(611, 219);
-            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tabla de identificadores";
             // 
@@ -185,11 +178,11 @@ namespace Interfaz {
             this.dgvIdentificadores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvIdentificadores.BackgroundColor = System.Drawing.Color.White;
             this.dgvIdentificadores.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvIdentificadores.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvIdentificadores.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dgvIdentificadores.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(151)))), ((int)(((byte)(184)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(151)))), ((int)(((byte)(184)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -221,7 +214,7 @@ namespace Interfaz {
             this.dgvIdentificadores.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvIdentificadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvIdentificadores.Size = new System.Drawing.Size(599, 185);
-            this.dgvIdentificadores.TabIndex = 0;
+            this.dgvIdentificadores.TabIndex = 8;
             // 
             // IDIdentificador
             // 
@@ -242,7 +235,7 @@ namespace Interfaz {
             this.groupBox4.Location = new System.Drawing.Point(632, 761);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(609, 219);
-            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabIndex = 9;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Tabla de Errores";
             // 
@@ -253,11 +246,11 @@ namespace Interfaz {
             this.dgvErrores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvErrores.BackgroundColor = System.Drawing.Color.White;
             this.dgvErrores.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvErrores.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvErrores.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dgvErrores.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(66)))), ((int)(((byte)(60)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(66)))), ((int)(((byte)(60)))));
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -290,25 +283,7 @@ namespace Interfaz {
             this.dgvErrores.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvErrores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvErrores.Size = new System.Drawing.Size(599, 185);
-            this.dgvErrores.TabIndex = 1;
-            // 
-            // TokenError
-            // 
-            this.TokenError.HeaderText = "Token Error";
-            this.TokenError.Name = "TokenError";
-            this.TokenError.ReadOnly = true;
-            // 
-            // Linea
-            // 
-            this.Linea.HeaderText = "Linea";
-            this.Linea.Name = "Linea";
-            this.Linea.ReadOnly = true;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
+            this.dgvErrores.TabIndex = 10;
             // 
             // btnGuardarArchivoToken
             // 
@@ -318,7 +293,7 @@ namespace Interfaz {
             this.btnGuardarArchivoToken.Location = new System.Drawing.Point(1112, 701);
             this.btnGuardarArchivoToken.Name = "btnGuardarArchivoToken";
             this.btnGuardarArchivoToken.Size = new System.Drawing.Size(120, 54);
-            this.btnGuardarArchivoToken.TabIndex = 5;
+            this.btnGuardarArchivoToken.TabIndex = 6;
             this.btnGuardarArchivoToken.Text = "Guardar archivo de tokens";
             this.btnGuardarArchivoToken.UseVisualStyleBackColor = false;
             this.btnGuardarArchivoToken.Click += new System.EventHandler(this.btnGuardarArchivoToken_Click);
@@ -331,7 +306,7 @@ namespace Interfaz {
             this.btnGuardarCodigo.Location = new System.Drawing.Point(12, 696);
             this.btnGuardarCodigo.Name = "btnGuardarCodigo";
             this.btnGuardarCodigo.Size = new System.Drawing.Size(120, 54);
-            this.btnGuardarCodigo.TabIndex = 6;
+            this.btnGuardarCodigo.TabIndex = 4;
             this.btnGuardarCodigo.Text = "Guardar código";
             this.btnGuardarCodigo.UseVisualStyleBackColor = false;
             this.btnGuardarCodigo.Click += new System.EventHandler(this.btnGuardarCodigo_Click);
@@ -345,10 +320,47 @@ namespace Interfaz {
             this.btnCargarCodigo.Location = new System.Drawing.Point(138, 696);
             this.btnCargarCodigo.Name = "btnCargarCodigo";
             this.btnCargarCodigo.Size = new System.Drawing.Size(120, 54);
-            this.btnCargarCodigo.TabIndex = 7;
+            this.btnCargarCodigo.TabIndex = 5;
             this.btnCargarCodigo.Text = "Cargar codigo";
             this.btnCargarCodigo.UseVisualStyleBackColor = false;
             this.btnCargarCodigo.Click += new System.EventHandler(this.btnCargarCodigo_Click);
+            // 
+            // txtNumeracionCompilacion
+            // 
+            this.txtNumeracionCompilacion.BackColor = System.Drawing.Color.LightGray;
+            this.txtNumeracionCompilacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNumeracionCompilacion.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumeracionCompilacion.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.txtNumeracionCompilacion.Location = new System.Drawing.Point(6, 28);
+            this.txtNumeracionCompilacion.Name = "txtNumeracionCompilacion";
+            this.txtNumeracionCompilacion.ReadOnly = true;
+            this.txtNumeracionCompilacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.txtNumeracionCompilacion.Size = new System.Drawing.Size(50, 644);
+            this.txtNumeracionCompilacion.TabIndex = 1001;
+            this.txtNumeracionCompilacion.Text = "";
+            this.txtNumeracionCompilacion.FontChanged += new System.EventHandler(this.txtNumeracionCompilacion_FontChanged);
+            this.txtNumeracionCompilacion.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txtNumeracionCompilacion_MouseDown);
+            // 
+            // TokenError
+            // 
+            this.TokenError.FillWeight = 68.35763F;
+            this.TokenError.HeaderText = "Token Error";
+            this.TokenError.Name = "TokenError";
+            this.TokenError.ReadOnly = true;
+            // 
+            // Linea
+            // 
+            this.Linea.FillWeight = 60.9137F;
+            this.Linea.HeaderText = "Linea";
+            this.Linea.Name = "Linea";
+            this.Linea.ReadOnly = true;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.FillWeight = 170.7287F;
+            this.Descripcion.HeaderText = "Descripcion";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
             // 
             // Form1
             // 
@@ -397,13 +409,13 @@ namespace Interfaz {
         private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
         private System.Windows.Forms.DataGridView dgvErrores;
         private System.Windows.Forms.RichTextBox txtNumeracionCodificacion;
+        private System.Windows.Forms.Button btnGuardarArchivoToken;
+        private System.Windows.Forms.Button btnGuardarCodigo;
+        private System.Windows.Forms.Button btnCargarCodigo;
         private System.Windows.Forms.RichTextBox txtNumeracionCompilacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn TokenError;
         private System.Windows.Forms.DataGridViewTextBoxColumn Linea;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
-        private System.Windows.Forms.Button btnGuardarArchivoToken;
-        private System.Windows.Forms.Button btnGuardarCodigo;
-        private System.Windows.Forms.Button btnCargarCodigo;
     }
 }
 

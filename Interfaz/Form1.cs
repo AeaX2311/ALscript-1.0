@@ -27,13 +27,15 @@ namespace Interfaz {
         public Form1() {
             InitializeComponent();
 
-                ////Iniciamos los richtextbox con numeracion de linea
+            ////Iniciamos los richtextbox con numeracion de linea
             txtNumeracionCodificacion.Font = txtCodificacion.Font;
             txtCodificacion.Select();
             AddLineNumbersLineaCodigo();
             txtCompilacion.Font = txtCompilacion.Font;
             txtCompilacion.Select();
             AddLineNumbersCompilacion();
+            txtCodificacion.Select();
+            txtCodificacion.SelectionStart = txtCodificacion.TextLength;
         }
 
         #region Acciones Click
@@ -104,24 +106,44 @@ namespace Interfaz {
         private void AddLineNumbersLineaCodigo() {
             // create & set Point pt to (0,0)    
             Point pt = new Point(0, 0);
+            Point pt2 = new Point(0, 0);
             // get First Index & First Line from the richTextBoxs  
             int First_Index = txtCodificacion.GetCharIndexFromPosition(pt);
             int First_Line = txtCodificacion.GetLineFromCharIndex(First_Index);
+
+            int First_Index2 = txtCodificacion.GetCharIndexFromPosition(pt);
+            int First_Line2 = txtCodificacion.GetLineFromCharIndex(First_Index);
             // set X & Y coordinates of Point pt to ClientRectangle Width & Height respectively    
             pt.X = ClientRectangle.Width;
             pt.Y = ClientRectangle.Height;
+
+            pt2.X = ClientRectangle.Width;
+            pt2.Y = ClientRectangle.Height;
             // get Last Index & Last Line from the richTextBoxs    
             int Last_Index = txtCodificacion.GetCharIndexFromPosition(pt);
             int Last_Line = txtCodificacion.GetLineFromCharIndex(Last_Index);
+
+            int Last_Index2 = txtCompilacion.GetCharIndexFromPosition(pt2);
+            int Last_Line2 = txtCompilacion.GetLineFromCharIndex(Last_Index2);
             // set Center alignment to LineNumberTextBox    
             txtNumeracionCodificacion.SelectionAlignment = HorizontalAlignment.Center;
+
+            txtNumeracionCompilacion.SelectionAlignment = HorizontalAlignment.Center;
             // set LineNumberTextBox text to null & width to getWidth() function value    
             txtNumeracionCodificacion.Text = "";
             txtNumeracionCodificacion.Width = getWidthLineaCodigo();
+
+            txtNumeracionCompilacion.Text = "";
+            txtNumeracionCompilacion.Width = getWidthLineaCodigo();
             // now add each line number to LineNumberTextBox upto last line    
             for (int i = First_Line; i <= Last_Line + 1; i++)
             {
                 txtNumeracionCodificacion.Text += i + 1 + "\n";
+            }
+
+            for (int i = First_Line; i <= Last_Line + 1; i++)
+            {
+                txtNumeracionCompilacion.Text += i + 1 + "\n";
             }
         }
 
@@ -242,7 +264,8 @@ namespace Interfaz {
             txtCodificacion.Select();
             txtNumeracionCodificacion.DeselectAll();
         }
-
+        
+        //--------------------------------------------------------------------------//
         private void txtCompilacion_SelectionChanged(object sender, EventArgs e)
         {
             Point pt = txtCompilacion.GetPositionFromCharIndex(txtCompilacion.SelectionStart);
