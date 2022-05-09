@@ -20,7 +20,8 @@ namespace Interfaz.Facade {
         private int contadorLetras;
         private bool agregueIdentificador;
         private bool agregueFDC = false;
-        private bool generaError = false; //FALTA UTILIZAAAAAAAAAAAAAAAAR
+        private bool generaError = false;
+        private bool ignorarFDC = false;
         //CHECAR COMENTARIOS Y CADENAX
         #endregion
 
@@ -39,9 +40,11 @@ namespace Interfaz.Facade {
         /// <returns>Codigo compilado y sus detalles</returns>
         public Compilado compilarCodigo(string codificacion) {
             do {
-                agregueIdentificador = false;
+                    ////Inicializacion de banderas y auxiliares
+                agregueIdentificador = generaError = ignorarFDC = false;
                 contadorLetras = 0;
-                    ////Cantidad de "letras" que ya se evaluaron
+
+                    ////Recorre la siguiente palabra, setea el numero de "letras" leidas en contadorLetras
                 recorrerPalabra(codificacion, 0, 1, false);
 
                     ////Se agrega el nombre del identificador
@@ -76,7 +79,8 @@ namespace Interfaz.Facade {
                 return recorrerPalabra(codigo + FDC, contadorLetras, 241, true);
             }
 
-            if(isFDC) {
+            if(isFDC) { //revisarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+                isFDC = !ignorarFDC;
             }
             else
             if(codigo[contadorLetras] == FDL) {
@@ -94,7 +98,11 @@ namespace Interfaz.Facade {
                 this.contadorLetras = contadorLetras;
             }
 
-            return fueFDC ? contadorLetras : (isFDC ? recorrerPalabra(codigo, contadorLetras, estado, true) : recorrerPalabra(codigo, ++contadorLetras, estado, false));
+            return fueFDC 
+                ? contadorLetras 
+                : (isFDC 
+                    ? recorrerPalabra(codigo, contadorLetras, estado, true) 
+                    : recorrerPalabra(codigo, ++contadorLetras, estado, false));
         }
 
         private string buscarColumna(char encabezado, int estado) {
@@ -119,7 +127,10 @@ namespace Interfaz.Facade {
             if(token.Equals("IDEN")) {
                 agregueIdentificador = true; //Esta bandera activa la funcion de seteo de nombre al final del recorrido
                 identificadores.Add(new Identificador("", null));
+
             } else if(resultado.Equals("ERROR")) {
+                if(generaError)  return false;
+
                 errores.Add(new Error(token, numeroDeLinea)); //Guarda el error
                 generaError = true; //Realiza las instrucciones necesarias para evitar errores duplicados
             }
@@ -136,10 +147,24 @@ namespace Interfaz.Facade {
 
             if(mayusculas.Contains(relevante))
                 columna += relevante;
-            else if(relevante == '!')
-                columna = "Cnot";
-            else if(relevante == '.')
-                columna = "Cpunto";
+
+            switch(relevante) {
+                case '!':
+                    columna = "Cnot";
+                    break;
+                case '.':
+                    columna = "Cpunto";
+                    break;
+                case '[':
+                    columna = "Cllar";
+                    break;
+                case ']':
+                    columna = "Cllal";
+                    break;
+                case '"':
+                    ignorarFDC = !ignorarFDC; //Invierte el valor 
+                    break;                   
+            }
 
             return columna;
         }
@@ -151,7 +176,7 @@ namespace Interfaz.Facade {
         }
 
         private bool esFDC(char caracter) {
-            return caracter == FDC ; //|| caracter == ';'; Comentado momentaneamente, prox.. AC. 08-05-22.
+            return caracter == FDC;//&& !ignorarFDC; //|| caracter == ';'; Comentado momentaneamente, prox.. AC. 08-05-22.
         }
     }
 }

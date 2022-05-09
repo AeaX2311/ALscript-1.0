@@ -110,7 +110,7 @@ namespace Interfaz.Connection {
 
                 string resultado = null;
                 SqlCommand command = new SqlCommand(
-                    "SELECT m2.FDC FROM matriz m INNER JOIN matriz m2 ON m2.Estado = m.Estado - 1 WHERE m.cat = @token",
+                    "SELECT m2.FDC FROM matriz m INNER JOIN matriz m2 ON m2.Estado = m.Estado + 1 WHERE m.cat = @token",
                     conexion
                 );
 

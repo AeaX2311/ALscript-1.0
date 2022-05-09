@@ -12,7 +12,7 @@ namespace Interfaz {
         public Form1() {
             InitializeComponent();
 
-            //Iniciamos los richtextbox con numeracion de linea
+                ////Iniciamos los richtextbox con numeracion de linea
             txtNumeracionCodificacion.Font = txtCodificacion.Font;
             txtCodificacion.Select();
             AddLineNumbersLineaCodigo();
@@ -45,7 +45,6 @@ namespace Interfaz {
         #endregion        
 
         #region Metodos
-
         /// <summary>
         /// Ejecuta el procedimiento principal de compilacion, tomando lo que se encuentre en la codificacion ingresada por el usuario.
         /// </summary>
@@ -64,7 +63,6 @@ namespace Interfaz {
             }
 
             if(resultado.Identificadores.Count > 0) {
-                //asignar valores de identificadores
                 cargarIdentificadores(resultado.Identificadores);
             }
 
@@ -82,13 +80,13 @@ namespace Interfaz {
         private void cargarIdentificadores(List<Identificador> identificadores) {
             dgvIdentificadores.Rows.Clear();
 
+            //Verificar repetidos
             foreach(Identificador i in identificadores) {
                 dgvIdentificadores.Rows.Add(i.Nombre, i.Valor);
             }
         }
         
-        private void AddLineNumbersLineaCodigo()
-        {
+        private void AddLineNumbersLineaCodigo() {
             // create & set Point pt to (0,0)    
             Point pt = new Point(0, 0);
             // get First Index & First Line from the richTextBoxs  
@@ -112,8 +110,7 @@ namespace Interfaz {
             }
         }
 
-        private void AddLineNumbersCompilacion()
-        {
+        private void AddLineNumbersCompilacion() {
             // create & set Point pt to (0,0)    
             Point pt = new Point(0, 0);
             // get First Index & First Line from the richTextBoxs  
@@ -136,8 +133,8 @@ namespace Interfaz {
                 txtNumeracionCompilacion.Text += i + 1 + "\n";
             }
         }
-        private int getWidthLineaCodigo()
-        {
+
+        private int getWidthLineaCodigo() {
             int w = 25;
             // get total lines of richTextBoxLineaCodigo 
             int line = txtNumeracionCodificacion.Lines.Length;
@@ -158,8 +155,7 @@ namespace Interfaz {
             return w;
         }
 
-        private int getWidthCompilacion()
-        {
+        private int getWidthCompilacion() {
             int w = 25;
             // get total lines of richTextBoxCompilacion
             int line = txtNumeracionCompilacion.Lines.Length;
