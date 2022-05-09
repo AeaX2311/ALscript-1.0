@@ -3,6 +3,7 @@ using Interfaz.Facade;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Interfaz {
@@ -48,7 +49,7 @@ namespace Interfaz {
         /// <summary>
         /// Ejecuta el procedimiento principal de compilacion, tomando lo que se encuentre en la codificacion ingresada por el usuario.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Verdadero, si el programa se ejecuto limpiamente. Falso si encontro algun error</returns>
         private bool compilar() {
             bool tieneErrores = false;
             facade = new MatrizFacade();
@@ -63,7 +64,15 @@ namespace Interfaz {
             }
 
             if(resultado.Identificadores.Count > 0) {
-                cargarIdentificadores(resultado.Identificadores);
+
+                //foreach(Identificador c in resultado.Identificadores) {
+                //    foreach(char cc in c.Nombre) {
+                //        MessageBox.Show(cc+":car");
+                //    }
+                //    MessageBox.Show("Cambia");
+                //}
+
+                cargarIdentificadores(resultado.Identificadores.Distinct().ToList()); //Eliminando los duplicados
             }
 
             return tieneErrores;
@@ -80,7 +89,6 @@ namespace Interfaz {
         private void cargarIdentificadores(List<Identificador> identificadores) {
             dgvIdentificadores.Rows.Clear();
 
-            //Verificar repetidos
             foreach(Identificador i in identificadores) {
                 dgvIdentificadores.Rows.Add(i.Nombre, i.Valor);
             }

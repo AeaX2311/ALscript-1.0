@@ -22,7 +22,7 @@ namespace Interfaz.Facade {
         private bool agregueFDC = false;
         private bool generaError = false;
         private bool ignorarFDC = false;
-        //CHECAR COMENTARIOS Y CADENAX
+        private int contadorComentarios = 0;
         #endregion
 
 
@@ -42,7 +42,7 @@ namespace Interfaz.Facade {
             do {
                     ////Inicializacion de banderas y auxiliares
                 agregueIdentificador = generaError = ignorarFDC = false;
-                contadorLetras = 0;
+                contadorLetras = contadorComentarios = 0;
 
                     ////Recorre la siguiente palabra, setea el numero de "letras" leidas en contadorLetras
                 recorrerPalabra(codificacion, 0, 1, false);
@@ -162,8 +162,29 @@ namespace Interfaz.Facade {
                     columna = "Cllal";
                     break;
                 case '"':
+                    //TOMAR EN CUENTA SI ESTA DENTRO DE COMENTARIOOOOOOO
                     ignorarFDC = !ignorarFDC; //Invierte el valor 
-                    break;                   
+                    break;
+                case '#':
+                    contadorComentarios++;
+                    break;
+
+                //if(pretendeComentario) {
+                //    pretendeComentario = false;
+                //    ignorarFDC = !ignorarFDC;
+                //} else { 
+                //    pretendeComentario = true;
+                //}
+
+                //                    return columna;
+                default:
+                    contadorComentarios = 0;
+                    break;
+            }
+
+            if(contadorComentarios == 2) {
+                ignorarFDC = !ignorarFDC;
+                contadorComentarios = 0;
             }
 
             return columna;
