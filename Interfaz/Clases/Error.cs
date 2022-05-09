@@ -18,5 +18,9 @@
             Token = token;
             Linea = linea;
         }
+
+        public bool isNullOrEmpty() {
+            return string.IsNullOrEmpty(Token);
+        }
     }
 }

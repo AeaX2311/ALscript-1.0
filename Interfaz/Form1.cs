@@ -1,4 +1,6 @@
-﻿using Interfaz.Connection;
+﻿using Interfaz.Clases;
+using Interfaz.Connection;
+using Interfaz.Facade;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +13,8 @@ using System.Windows.Forms;
 
 namespace Interfaz {
     public partial class Form1 : Form {
+        MatrizFacade facade;
+
         public Form1() {
             InitializeComponent();
         }
@@ -19,6 +23,8 @@ namespace Interfaz {
         private void btnLimpiar_Click(object sender, EventArgs e) {
             txtCodificacion.Text = txtCompilacion.Text = "";
             txtCodificacion.Enabled = txtCompilacion.Enabled = true;
+            dgvIdentificadores.Rows.Clear();
+            dgvErrores.Rows.Clear();
         }
 
         private void btnCompilar_Click(object sender, EventArgs e) {
@@ -44,10 +50,39 @@ namespace Interfaz {
         /// <returns></returns>
         private bool compilar() {
             bool tieneErrores = false;
+            facade = new MatrizFacade();
 
+            Compilado resultado = facade.compilarCodigo(txtCodificacion.Text);
 
+            txtCompilacion.Text = resultado.CodigoCompilado;
+
+            if(resultado.Errores.Count > 0) {
+                tieneErrores = true;
+                cargarErrores(resultado.Errores);
+            }
+
+            if(resultado.Identificadores.Count > 0) {
+                //asignar valores de identificadores
+                cargarIdentificadores(resultado.Identificadores);
+            }
 
             return tieneErrores;
+        }
+
+        private void cargarErrores(List<Error> errores) {
+            dgvErrores.Rows.Clear();
+
+            foreach(Error e in errores) {
+                dgvErrores.Rows.Add(e.Token, e.Linea, facade.obtenerDescripcionError(e));
+            }
+        }
+
+        private void cargarIdentificadores(List<Identificador> identificadores) {
+            dgvIdentificadores.Rows.Clear();
+
+            foreach(Identificador i in identificadores) {
+                dgvIdentificadores.Rows.Add(i.Nombre, i.Valor);
+            }
         }
         #endregion
     }

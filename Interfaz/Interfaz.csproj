@@ -47,8 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Error.cs" />
-    <Compile Include="Connection\MatrizConnection.cs" />
+    <Compile Include="Clases\Compilado.cs" />
+    <Compile Include="Clases\Error.cs" />
+    <Compile Include="Clases\Connection\MatrizConnection.cs" />
+    <Compile Include="Clases\Facade\MatrizFacade.cs" />
+    <Compile Include="Clases\Identificador.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
