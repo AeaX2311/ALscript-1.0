@@ -32,11 +32,13 @@ namespace Interfaz {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblInfo = new System.Windows.Forms.Label();
             this.txtNumeracionCodificacion = new System.Windows.Forms.RichTextBox();
             this.txtCodificacion = new System.Windows.Forms.RichTextBox();
             this.btnCompilar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtNumeracionCompilacion = new System.Windows.Forms.RichTextBox();
             this.txtCompilacion = new System.Windows.Forms.RichTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvIdentificadores = new System.Windows.Forms.DataGridView();
@@ -44,13 +46,13 @@ namespace Interfaz {
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvErrores = new System.Windows.Forms.DataGridView();
-            this.btnGuardarArchivoToken = new System.Windows.Forms.Button();
-            this.btnGuardarCodigo = new System.Windows.Forms.Button();
-            this.btnCargarCodigo = new System.Windows.Forms.Button();
-            this.txtNumeracionCompilacion = new System.Windows.Forms.RichTextBox();
             this.TokenError = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnGuardarArchivoToken = new System.Windows.Forms.Button();
+            this.btnGuardarCodigo = new System.Windows.Forms.Button();
+            this.btnCargarCodigo = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -61,6 +63,7 @@ namespace Interfaz {
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblInfo);
             this.groupBox1.Controls.Add(this.txtNumeracionCodificacion);
             this.groupBox1.Controls.Add(this.txtCodificacion);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -70,6 +73,17 @@ namespace Interfaz {
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Codificación";
+            // 
+            // lblInfo
+            // 
+            this.lblInfo.AutoSize = true;
+            this.lblInfo.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfo.ForeColor = System.Drawing.Color.Teal;
+            this.lblInfo.Location = new System.Drawing.Point(490, 632);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(58, 40);
+            this.lblInfo.TabIndex = 1001;
+            this.lblInfo.Text = "🖋️";
             // 
             // txtNumeracionCodificacion
             // 
@@ -109,24 +123,25 @@ namespace Interfaz {
             this.btnCompilar.BackColor = System.Drawing.Color.LightGreen;
             this.btnCompilar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCompilar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCompilar.Location = new System.Drawing.Point(572, 296);
+            this.btnCompilar.Location = new System.Drawing.Point(572, 262);
             this.btnCompilar.Name = "btnCompilar";
             this.btnCompilar.Size = new System.Drawing.Size(106, 54);
             this.btnCompilar.TabIndex = 2;
-            this.btnCompilar.Text = "Compilar";
+            this.btnCompilar.Text = "✔️\r\nCompilar";
             this.btnCompilar.UseVisualStyleBackColor = false;
             this.btnCompilar.Click += new System.EventHandler(this.btnCompilar_Click);
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnLimpiar.BackColor = System.Drawing.Color.OrangeRed;
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLimpiar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(572, 356);
+            this.btnLimpiar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnLimpiar.Location = new System.Drawing.Point(572, 382);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(106, 54);
             this.btnLimpiar.TabIndex = 3;
-            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.Text = "🧹\r\nLimpiar";
             this.btnLimpiar.UseVisualStyleBackColor = false;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
@@ -141,6 +156,22 @@ namespace Interfaz {
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Compilación";
+            // 
+            // txtNumeracionCompilacion
+            // 
+            this.txtNumeracionCompilacion.BackColor = System.Drawing.Color.LightGray;
+            this.txtNumeracionCompilacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNumeracionCompilacion.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumeracionCompilacion.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.txtNumeracionCompilacion.Location = new System.Drawing.Point(6, 28);
+            this.txtNumeracionCompilacion.Name = "txtNumeracionCompilacion";
+            this.txtNumeracionCompilacion.ReadOnly = true;
+            this.txtNumeracionCompilacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.txtNumeracionCompilacion.Size = new System.Drawing.Size(50, 644);
+            this.txtNumeracionCompilacion.TabIndex = 1001;
+            this.txtNumeracionCompilacion.Text = "";
+            this.txtNumeracionCompilacion.FontChanged += new System.EventHandler(this.txtNumeracionCompilacion_FontChanged);
+            this.txtNumeracionCompilacion.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txtNumeracionCompilacion_MouseDown);
             // 
             // txtCompilacion
             // 
@@ -182,7 +213,7 @@ namespace Interfaz {
             this.dgvIdentificadores.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(151)))), ((int)(((byte)(184)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(151)))), ((int)(((byte)(184)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -250,7 +281,7 @@ namespace Interfaz {
             this.dgvErrores.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(66)))), ((int)(((byte)(60)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(66)))), ((int)(((byte)(60)))));
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -285,62 +316,6 @@ namespace Interfaz {
             this.dgvErrores.Size = new System.Drawing.Size(599, 185);
             this.dgvErrores.TabIndex = 10;
             // 
-            // btnGuardarArchivoToken
-            // 
-            this.btnGuardarArchivoToken.BackColor = System.Drawing.Color.LightGreen;
-            this.btnGuardarArchivoToken.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnGuardarArchivoToken.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarArchivoToken.Location = new System.Drawing.Point(1112, 701);
-            this.btnGuardarArchivoToken.Name = "btnGuardarArchivoToken";
-            this.btnGuardarArchivoToken.Size = new System.Drawing.Size(120, 54);
-            this.btnGuardarArchivoToken.TabIndex = 6;
-            this.btnGuardarArchivoToken.Text = "Guardar archivo de tokens";
-            this.btnGuardarArchivoToken.UseVisualStyleBackColor = false;
-            this.btnGuardarArchivoToken.Click += new System.EventHandler(this.btnGuardarArchivoToken_Click);
-            // 
-            // btnGuardarCodigo
-            // 
-            this.btnGuardarCodigo.BackColor = System.Drawing.Color.LightGreen;
-            this.btnGuardarCodigo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnGuardarCodigo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarCodigo.Location = new System.Drawing.Point(12, 696);
-            this.btnGuardarCodigo.Name = "btnGuardarCodigo";
-            this.btnGuardarCodigo.Size = new System.Drawing.Size(120, 54);
-            this.btnGuardarCodigo.TabIndex = 4;
-            this.btnGuardarCodigo.Text = "Guardar código";
-            this.btnGuardarCodigo.UseVisualStyleBackColor = false;
-            this.btnGuardarCodigo.Click += new System.EventHandler(this.btnGuardarCodigo_Click);
-            // 
-            // btnCargarCodigo
-            // 
-            this.btnCargarCodigo.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnCargarCodigo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCargarCodigo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCargarCodigo.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCargarCodigo.Location = new System.Drawing.Point(138, 696);
-            this.btnCargarCodigo.Name = "btnCargarCodigo";
-            this.btnCargarCodigo.Size = new System.Drawing.Size(120, 54);
-            this.btnCargarCodigo.TabIndex = 5;
-            this.btnCargarCodigo.Text = "Cargar codigo";
-            this.btnCargarCodigo.UseVisualStyleBackColor = false;
-            this.btnCargarCodigo.Click += new System.EventHandler(this.btnCargarCodigo_Click);
-            // 
-            // txtNumeracionCompilacion
-            // 
-            this.txtNumeracionCompilacion.BackColor = System.Drawing.Color.LightGray;
-            this.txtNumeracionCompilacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtNumeracionCompilacion.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumeracionCompilacion.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtNumeracionCompilacion.Location = new System.Drawing.Point(6, 28);
-            this.txtNumeracionCompilacion.Name = "txtNumeracionCompilacion";
-            this.txtNumeracionCompilacion.ReadOnly = true;
-            this.txtNumeracionCompilacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.txtNumeracionCompilacion.Size = new System.Drawing.Size(50, 644);
-            this.txtNumeracionCompilacion.TabIndex = 1001;
-            this.txtNumeracionCompilacion.Text = "";
-            this.txtNumeracionCompilacion.FontChanged += new System.EventHandler(this.txtNumeracionCompilacion_FontChanged);
-            this.txtNumeracionCompilacion.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txtNumeracionCompilacion_MouseDown);
-            // 
             // TokenError
             // 
             this.TokenError.FillWeight = 68.35763F;
@@ -362,12 +337,66 @@ namespace Interfaz {
             this.Descripcion.Name = "Descripcion";
             this.Descripcion.ReadOnly = true;
             // 
+            // btnGuardarArchivoToken
+            // 
+            this.btnGuardarArchivoToken.BackColor = System.Drawing.Color.LightGreen;
+            this.btnGuardarArchivoToken.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnGuardarArchivoToken.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardarArchivoToken.Location = new System.Drawing.Point(1047, 701);
+            this.btnGuardarArchivoToken.Name = "btnGuardarArchivoToken";
+            this.btnGuardarArchivoToken.Size = new System.Drawing.Size(185, 54);
+            this.btnGuardarArchivoToken.TabIndex = 6;
+            this.btnGuardarArchivoToken.Text = "⏬\r\nGuardar archivo de tokens";
+            this.btnGuardarArchivoToken.UseVisualStyleBackColor = false;
+            this.btnGuardarArchivoToken.Click += new System.EventHandler(this.btnGuardarArchivoToken_Click);
+            // 
+            // btnGuardarCodigo
+            // 
+            this.btnGuardarCodigo.BackColor = System.Drawing.Color.LightGreen;
+            this.btnGuardarCodigo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnGuardarCodigo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardarCodigo.Location = new System.Drawing.Point(12, 696);
+            this.btnGuardarCodigo.Name = "btnGuardarCodigo";
+            this.btnGuardarCodigo.Size = new System.Drawing.Size(120, 54);
+            this.btnGuardarCodigo.TabIndex = 4;
+            this.btnGuardarCodigo.Text = "⏬\r\nGuardar código";
+            this.btnGuardarCodigo.UseVisualStyleBackColor = false;
+            this.btnGuardarCodigo.Click += new System.EventHandler(this.btnGuardarCodigo_Click);
+            // 
+            // btnCargarCodigo
+            // 
+            this.btnCargarCodigo.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnCargarCodigo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCargarCodigo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCargarCodigo.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnCargarCodigo.Location = new System.Drawing.Point(138, 696);
+            this.btnCargarCodigo.Name = "btnCargarCodigo";
+            this.btnCargarCodigo.Size = new System.Drawing.Size(120, 54);
+            this.btnCargarCodigo.TabIndex = 5;
+            this.btnCargarCodigo.Text = "⏫\r\nCargar código";
+            this.btnCargarCodigo.UseVisualStyleBackColor = false;
+            this.btnCargarCodigo.Click += new System.EventHandler(this.btnCargarCodigo_Click);
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.BackColor = System.Drawing.Color.Orange;
+            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnModificar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificar.Location = new System.Drawing.Point(572, 322);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(106, 54);
+            this.btnModificar.TabIndex = 11;
+            this.btnModificar.Text = "🖊️\r\nEditar código";
+            this.btnModificar.UseVisualStyleBackColor = false;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1253, 992);
+            this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnCargarCodigo);
             this.Controls.Add(this.btnGuardarCodigo);
             this.Controls.Add(this.btnGuardarArchivoToken);
@@ -385,6 +414,7 @@ namespace Interfaz {
             this.Text = "Compilador ALscript";
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIdentificadores)).EndInit();
@@ -416,6 +446,8 @@ namespace Interfaz {
         private System.Windows.Forms.DataGridViewTextBoxColumn TokenError;
         private System.Windows.Forms.DataGridViewTextBoxColumn Linea;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
+        private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.Label lblInfo;
     }
 }
 

@@ -8,6 +8,10 @@ using System.Linq;
 using System.Windows.Forms;
 
 namespace Interfaz {
+    /// <summary>
+    /// Formulario principal, nucleo del analizador lexico ALscript.
+    /// mayo 2022.
+    /// </summary>
     public partial class Form1 : Form {
         MatrizFacade facade;
 
@@ -27,21 +31,13 @@ namespace Interfaz {
 
         public Form1() {
             InitializeComponent();
-
-            ////Iniciamos los richtextbox con numeracion de linea
-            txtNumeracionCodificacion.Font = txtCodificacion.Font;
-            txtCodificacion.Select();
-            AddLineNumbersLineaCodigo();
-            txtCompilacion.Font = txtCompilacion.Font;
-            txtCompilacion.Select();
-            AddLineNumbersCompilacion();
-            txtCodificacion.Select();
-            txtCodificacion.SelectionStart = txtCodificacion.TextLength;
+            inicializarRTXBX();
         }
 
         #region Acciones Click
         private void btnLimpiar_Click(object sender, EventArgs e) {
             txtCodificacion.Text = txtCompilacion.Text = "";
+            lblInfo.Text = "🖋";
             txtCodificacion.ReadOnly = false;
             dgvIdentificadores.Rows.Clear();
             dgvErrores.Rows.Clear();
@@ -52,13 +48,47 @@ namespace Interfaz {
                 MessageBox.Show("Favor de generar un codigo para poderlo compilar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            txtCodificacion.ReadOnly = true; lblInfo.Text = "✔️";
 
             if(compilar())
                 MessageBox.Show("Programa compilado con algunos errores, favor de verificar tabla de errores.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
-                MessageBox.Show("Programa compilado correctamente.", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Programa compilado correctamente.", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
-            txtCodificacion.ReadOnly = true;
+        private void btnGuardarArchivoToken_Click(object sender, EventArgs e) {
+            saveFileDialog.ShowDialog();
+            OutputArchivo.Guardar(txtCompilacion.Text, saveFileDialog.FileName);
+            MessageBox.Show("¡Archivo de tokens guardado correctamente!", "Guardado", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
+
+        private void btnGuardarCodigo_Click(object sender, EventArgs e) {
+            saveFileDialog.Filter = "ALScript (*.alscript)|*.alscript";
+            saveFileDialog.Title = "Guardar codigo";
+            saveFileDialog.DefaultExt = "alscript";
+            saveFileDialog.FileName = "Codigo Alscript";
+            saveFileDialog.AddExtension = true;
+
+            saveFileDialog.ShowDialog();
+            OutputArchivo.Guardar(txtCodificacion.Text, saveFileDialog.FileName);
+            MessageBox.Show("¡Codigo guardado correctamente!", "Guardado", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+        }
+
+        private void btnCargarCodigo_Click(object sender, EventArgs e) {
+            if(openFileDialog.ShowDialog() == DialogResult.OK) {
+                var codigo = OutputArchivo.Cargar(openFileDialog.FileName);
+                btnLimpiar.PerformClick();
+                txtCodificacion.Text = codigo;
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e) {
+            txtCodificacion.ReadOnly = false;
+            lblInfo.Text = "🖋";
+            dgvErrores.Rows.Clear();
+            dgvIdentificadores.Rows.Clear();
         }
         #endregion        
 
@@ -81,20 +111,16 @@ namespace Interfaz {
             }
 
             if(resultado.Identificadores.Count > 0) {
-
-                //foreach(Identificador c in resultado.Identificadores) {
-                //    foreach(char cc in c.Nombre) {
-                //        MessageBox.Show(cc+":car");
-                //    }
-                //    MessageBox.Show("Cambia");
-                //}
-
                 cargarIdentificadores(resultado.Identificadores.Distinct().ToList()); //Eliminando los duplicados
             }
 
             return tieneErrores;
         }
 
+        /// <summary>
+        /// Llena DGV de errores
+        /// </summary>
+        /// <param name="errores">Listado de errores</param>
         private void cargarErrores(List<Error> errores) {
             dgvErrores.Rows.Clear();
 
@@ -103,6 +129,10 @@ namespace Interfaz {
             }
         }
 
+        /// <summary>
+        /// Llena DGV de identificadores
+        /// </summary>
+        /// <param name="identificadores">Listado de identificadores</param>
         private void cargarIdentificadores(List<Identificador> identificadores) {
             dgvIdentificadores.Rows.Clear();
 
@@ -110,7 +140,19 @@ namespace Interfaz {
                 dgvIdentificadores.Rows.Add(i.Nombre, i.Valor);
             }
         }
-        
+
+        #region RichTextBox
+        private void inicializarRTXBX() {
+            txtNumeracionCodificacion.Font = txtCodificacion.Font;
+            txtCodificacion.Select();
+            AddLineNumbersLineaCodigo();
+            txtCompilacion.Font = txtCompilacion.Font;
+            txtCompilacion.Select();
+            AddLineNumbersCompilacion();
+            txtCodificacion.Select();
+            txtCodificacion.SelectionStart = txtCodificacion.TextLength;
+        }
+
         private void AddLineNumbersLineaCodigo() {
             // create & set Point pt to (0,0)    
             Point pt = new Point(0, 0);
@@ -221,6 +263,7 @@ namespace Interfaz {
             return w;
         }
         #endregion
+        #endregion
 
         #region Eventos
         private void Form1_Resize(object sender, EventArgs e)
@@ -319,32 +362,5 @@ namespace Interfaz {
         }
         #endregion
 
-        private void btnGuardarArchivoToken_Click(object sender, EventArgs e) {
-            saveFileDialog.ShowDialog();
-            OutputArchivo.Guardar(txtCompilacion.Text, saveFileDialog.FileName);
-            MessageBox.Show("¡Archivo de tokens guardado correctamente!", "Guardado", MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-        }
-
-        private void btnGuardarCodigo_Click(object sender, EventArgs e) {
-            saveFileDialog.Filter = "ALScript (*.alscript)|*.alscript";
-            saveFileDialog.Title = "Guardar codigo";
-            saveFileDialog.DefaultExt = "alscript";
-            saveFileDialog.FileName = "Codigo Alscript";
-            saveFileDialog.AddExtension = true;
-
-            saveFileDialog.ShowDialog();
-            OutputArchivo.Guardar(txtCodificacion.Text, saveFileDialog.FileName);
-            MessageBox.Show("¡Codigo guardado correctamente!", "Guardado", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-        }
-
-        private void btnCargarCodigo_Click(object sender, EventArgs e) {
-            if (openFileDialog.ShowDialog() == DialogResult.OK) {
-                var codigo = OutputArchivo.Cargar(openFileDialog.FileName);
-                btnLimpiar.PerformClick();
-                txtCodificacion.Text = codigo;
-            }
-        }
     }
 }

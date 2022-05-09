@@ -64,11 +64,13 @@ namespace Interfaz.Connection {
 
                 command.Parameters.AddWithValue("@estado", estado);
 
-                using(SqlDataReader reader = command.ExecuteReader()) {
-                    if(reader.Read()) {
-                        resultado = (string) reader[columna];
+                try {
+                    using(SqlDataReader reader = command.ExecuteReader()) {
+                        if(reader.Read()) {
+                            resultado = (string) reader[columna];
+                        }
                     }
-                }
+                } catch { }
 
             desconectar();
             return resultado;
@@ -104,8 +106,8 @@ namespace Interfaz.Connection {
         /// Obtiene la descripcion para determinado error, en base al token unico del error.
         /// </summary>
         /// <param name="token">Token asignado al error que se busca</param>
-        /// <returns></returns>
-        public string obtenerError(string token) {
+        /// <returns>La descripcion del error</returns>
+        public string obtenerErrorPorToken(string token) {
             conectar();
 
                 string resultado = null;
@@ -119,6 +121,32 @@ namespace Interfaz.Connection {
                 using(SqlDataReader reader = command.ExecuteReader()) {
                     if(reader.Read()) {
                         resultado = (string) reader["FDC"];
+                    }
+                }
+
+            desconectar();
+            return resultado;
+        }
+
+        /// <summary>
+        /// Obtiene el token del error para determinada descripcion, en base al token unico del error.
+        /// </summary>
+        /// <param name="descripcion">La descripcion del error obtenida</param>
+        /// <returns>El token del error</returns>
+        public string obtenerErrorPorDescripcion(string descripcion) {
+            conectar();
+
+                string resultado = null;
+                SqlCommand command = new SqlCommand(
+                    "SELECT m2.CAT FROM matriz m INNER JOIN matriz m2 ON m2.Estado = m.Estado - 1 WHERE m.FDC = @descripcion",
+                    conexion
+                );
+
+                command.Parameters.AddWithValue("@descripcion", descripcion);
+
+                using(SqlDataReader reader = command.ExecuteReader()) {
+                    if(reader.Read()) {
+                        resultado = (string) reader["CAT"];
                     }
                 }
 

@@ -23,6 +23,8 @@ namespace Interfaz.Facade {
         private bool generaError = false;
         private bool ignorarFDC = false;
         private int contadorComentarios = 0;
+        private bool estoyEnComentario = false;
+        private bool estoyEnCadena = false;
         #endregion
 
 
@@ -41,7 +43,7 @@ namespace Interfaz.Facade {
         public Compilado compilarCodigo(string codificacion) {
             do {
                     ////Inicializacion de banderas y auxiliares
-                agregueIdentificador = generaError = ignorarFDC = false;
+                agregueIdentificador = generaError = ignorarFDC = estoyEnComentario = estoyEnCadena = false;
                 contadorLetras = contadorComentarios = 0;
 
                     ////Recorre la siguiente palabra, setea el numero de "letras" leidas en contadorLetras
@@ -69,21 +71,20 @@ namespace Interfaz.Facade {
         /// </summary>
         /// <param name="codigo">Codigo a evaluar</param>
         /// <param name="contadorLetras">Valor actual del contador de letras</param>
-        /// <returns>La cantidad de letras que han sido evaluadas</returns>
+        /// <returns>Cero, indicando que la recursividad se aplico correctamente</returns>
         private int recorrerPalabra(string codigo, int contadorLetras, int estado, bool fueFDC) {
             bool isFDC;
             try {
                 isFDC = esFDC(codigo[contadorLetras]);
             } catch { //Se salio del rango, es el final del codigo
                 agregueFDC = true;
-                return recorrerPalabra(codigo + FDC, contadorLetras, 241, true);
+                return recorrerPalabra(codigo + FDC, contadorLetras, 240, true);
             }
 
-            if(isFDC) { //revisarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+            if(isFDC) {
                 isFDC = !ignorarFDC;
             }
-            else
-            if(codigo[contadorLetras] == FDL) {
+            else if(codigo[contadorLetras] == FDL) {
                 numeroDeLinea++;
                 compilacion += FDL;
                 return recorrerPalabra(codigo, ++contadorLetras, estado, false);
@@ -105,6 +106,12 @@ namespace Interfaz.Facade {
                     : recorrerPalabra(codigo, ++contadorLetras, estado, false));
         }
 
+        /// <summary>
+        /// Realiza una busqueda inteligente de columnas en la matriz de transicion
+        /// </summary>
+        /// <param name="encabezado">SELECT</param>
+        /// <param name="estado">WHERE</param>
+        /// <returns>La consulta (campo) que se encontro</returns>
         private string buscarColumna(char encabezado, int estado) {
             string columna = esFDC(encabezado) ? "FDC" : ("C" + encabezado); 
             return mc.obtenerResultado(procesarColumna(columna), estado);
@@ -133,12 +140,24 @@ namespace Interfaz.Facade {
 
                 errores.Add(new Error(token, numeroDeLinea)); //Guarda el error
                 generaError = true; //Realiza las instrucciones necesarias para evitar errores duplicados
+            } else if (!resultado.Equals("ACEPTA")) { //Contiene la descripcion del error
+                if(generaError)  return false;
+
+                token = mc.obtenerErrorPorDescripcion(resultado);
+                errores.Add(new Error(token, numeroDeLinea)); //Guarda el error
+                generaError = true; //Realiza las instrucciones necesarias para evitar errores duplicados
             }
 
             compilacion += token; //Guarda el token
             return false;
         }
 
+        /// <summary>
+        /// Realiza el procesamiento logico de cada columna, para que pueda ser reconocida por SQL.
+        /// Adicional, realiza operaciones segun el caracter ingresado.
+        /// </summary>
+        /// <param name="columna">La columna que se quiere buscar</param>
+        /// <returns></returns>
         private string procesarColumna(string columna) {
             char relevante = columna[1];
 
@@ -147,6 +166,8 @@ namespace Interfaz.Facade {
 
             if(mayusculas.Contains(relevante))
                 columna += relevante;
+            if(relevante != '#')
+                contadorComentarios = 0;
 
             switch(relevante) {
                 case '!':
@@ -162,42 +183,39 @@ namespace Interfaz.Facade {
                     columna = "Cllal";
                     break;
                 case '"':
-                    //TOMAR EN CUENTA SI ESTA DENTRO DE COMENTARIOOOOOOO
-                    ignorarFDC = !ignorarFDC; //Invierte el valor 
+                    if(!estoyEnComentario) ignorarFDC = estoyEnCadena = !ignorarFDC; //Invierte el valor 
                     break;
                 case '#':
-                    contadorComentarios++;
-                    break;
-
-                //if(pretendeComentario) {
-                //    pretendeComentario = false;
-                //    ignorarFDC = !ignorarFDC;
-                //} else { 
-                //    pretendeComentario = true;
-                //}
-
-                //                    return columna;
-                default:
-                    contadorComentarios = 0;
+                    if(!estoyEnCadena) contadorComentarios++;
                     break;
             }
 
             if(contadorComentarios == 2) {
-                ignorarFDC = !ignorarFDC;
+                ignorarFDC = estoyEnComentario = !ignorarFDC;
                 contadorComentarios = 0;
             }
 
             return columna;
         }
 
+        /// <summary>
+        /// Realiza una busqueda de la descripcion de un error
+        /// </summary>
+        /// <param name="error">Error que se busca</param>
+        /// <returns>Descripcion del error</returns>
         public string obtenerDescripcionError(Error error) {
             if(error.isNullOrEmpty()) return null;
 
-            return mc.obtenerError(error.Token);
+            return mc.obtenerErrorPorToken(error.Token);
         }
 
+        /// <summary>
+        /// Determina si un caracter es un final de cadena
+        /// </summary>
+        /// <param name="caracter">Caracter a evaluar</param>
+        /// <returns>Verdadero o falso segun el caso</returns>
         private bool esFDC(char caracter) {
-            return caracter == FDC;//&& !ignorarFDC; //|| caracter == ';'; Comentado momentaneamente, prox.. AC. 08-05-22.
+            return caracter == FDC; //|| caracter == ';'; Comentado momentaneamente, prox.. AC. 08-05-22.
         }
     }
 }
