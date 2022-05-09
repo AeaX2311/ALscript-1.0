@@ -53,6 +53,8 @@
     <Compile Include="Clases\Connection\MatrizConnection.cs" />
     <Compile Include="Clases\Facade\MatrizFacade.cs" />
     <Compile Include="Clases\Identificador.cs" />
+    <Compile Include="Clases\IO\ALScriptIOException.cs" />
+    <Compile Include="Clases\IO\OutputArchivo.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

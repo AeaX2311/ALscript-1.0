@@ -1,4 +1,5 @@
 ﻿using Interfaz.Clases;
+using Interfaz.Clases.IO;
 using Interfaz.Facade;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,20 @@ using System.Windows.Forms;
 namespace Interfaz {
     public partial class Form1 : Form {
         MatrizFacade facade;
+
+        readonly SaveFileDialog saveFileDialog = new SaveFileDialog {
+            Title = "Guardar archivo de tokens",
+            Filter = "ALScript (*.alstf)|*.alstf",
+            DefaultExt = "alstf",
+            AddExtension = true,
+            FileName = "ALScript Token File"
+        };
+
+        readonly OpenFileDialog openFileDialog = new OpenFileDialog() {
+            AddExtension = true,
+            Filter = "ALScript (*.alscript)|*.alscript",
+            DefaultExt = "alscript"
+        };
 
         public Form1() {
             InitializeComponent();
@@ -272,5 +287,33 @@ namespace Interfaz {
             txtNumeracionCompilacion.DeselectAll();
         }
         #endregion
+
+        private void btnGuardarArchivoToken_Click(object sender, EventArgs e) {
+            saveFileDialog.ShowDialog();
+            OutputArchivo.Guardar(txtCompilacion.Text, saveFileDialog.FileName);
+            MessageBox.Show("¡Archivo de tokens guardado correctamente!", "Guardado", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
+
+        private void btnGuardarCodigo_Click(object sender, EventArgs e) {
+            saveFileDialog.Filter = "ALScript (*.alscript)|*.alscript";
+            saveFileDialog.Title = "Guardar codigo";
+            saveFileDialog.DefaultExt = "alscript";
+            saveFileDialog.FileName = "Codigo Alscript";
+            saveFileDialog.AddExtension = true;
+
+            saveFileDialog.ShowDialog();
+            OutputArchivo.Guardar(txtCodificacion.Text, saveFileDialog.FileName);
+            MessageBox.Show("¡Codigo guardado correctamente!", "Guardado", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+        }
+
+        private void btnCargarCodigo_Click(object sender, EventArgs e) {
+            if (openFileDialog.ShowDialog() == DialogResult.OK) {
+                var codigo = OutputArchivo.Cargar(openFileDialog.FileName);
+                btnLimpiar.PerformClick();
+                txtCodificacion.Text = codigo;
+            }
+        }
     }
 }
