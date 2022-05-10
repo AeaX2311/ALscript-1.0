@@ -42,8 +42,6 @@ namespace Interfaz {
             this.txtCompilacion = new System.Windows.Forms.RichTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvIdentificadores = new System.Windows.Forms.DataGridView();
-            this.IDIdentificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvErrores = new System.Windows.Forms.DataGridView();
             this.TokenError = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +51,9 @@ namespace Interfaz {
             this.btnGuardarCodigo = new System.Windows.Forms.Button();
             this.btnCargarCodigo = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
+            this.IDIdentificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoDato = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -222,6 +223,7 @@ namespace Interfaz {
             this.dgvIdentificadores.ColumnHeadersHeight = 40;
             this.dgvIdentificadores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IDIdentificador,
+            this.TipoDato,
             this.Valor});
             this.dgvIdentificadores.EnableHeadersVisualStyles = false;
             this.dgvIdentificadores.GridColor = System.Drawing.SystemColors.ActiveCaption;
@@ -246,18 +248,6 @@ namespace Interfaz {
             this.dgvIdentificadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvIdentificadores.Size = new System.Drawing.Size(599, 185);
             this.dgvIdentificadores.TabIndex = 8;
-            // 
-            // IDIdentificador
-            // 
-            this.IDIdentificador.HeaderText = "ID Identificador";
-            this.IDIdentificador.Name = "IDIdentificador";
-            this.IDIdentificador.ReadOnly = true;
-            // 
-            // Valor
-            // 
-            this.Valor.HeaderText = "Valor";
-            this.Valor.Name = "Valor";
-            this.Valor.ReadOnly = true;
             // 
             // groupBox4
             // 
@@ -390,6 +380,29 @@ namespace Interfaz {
             this.btnModificar.UseVisualStyleBackColor = false;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
+            // IDIdentificador
+            // 
+            this.IDIdentificador.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.IDIdentificador.Frozen = true;
+            this.IDIdentificador.HeaderText = "ID Identificador";
+            this.IDIdentificador.Name = "IDIdentificador";
+            this.IDIdentificador.ReadOnly = true;
+            this.IDIdentificador.Width = 300;
+            // 
+            // TipoDato
+            // 
+            this.TipoDato.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TipoDato.Frozen = true;
+            this.TipoDato.HeaderText = "Tipo de dato";
+            this.TipoDato.Name = "TipoDato";
+            this.TipoDato.ReadOnly = true;
+            // 
+            // Valor
+            // 
+            this.Valor.HeaderText = "Valor";
+            this.Valor.Name = "Valor";
+            this.Valor.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -435,8 +448,6 @@ namespace Interfaz {
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dgvIdentificadores;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDIdentificador;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
         private System.Windows.Forms.DataGridView dgvErrores;
         private System.Windows.Forms.RichTextBox txtNumeracionCodificacion;
         private System.Windows.Forms.Button btnGuardarArchivoToken;
@@ -448,6 +459,9 @@ namespace Interfaz {
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Label lblInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDIdentificador;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoDato;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
     }
 }
 

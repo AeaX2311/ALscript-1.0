@@ -4,7 +4,6 @@ using Interfaz.Facade;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Interfaz {
@@ -111,7 +110,7 @@ namespace Interfaz {
             }
 
             if(resultado.Identificadores.Count > 0) {
-                cargarIdentificadores(resultado.Identificadores.Distinct().ToList()); //Eliminando los duplicados
+                cargarIdentificadores(resultado.Identificadores);
             }
 
             return tieneErrores;
@@ -137,8 +136,37 @@ namespace Interfaz {
             dgvIdentificadores.Rows.Clear();
 
             foreach(Identificador i in identificadores) {
-                dgvIdentificadores.Rows.Add(i.Nombre, i.Valor);
+                dgvIdentificadores.Rows.Add(i.Nombre, determinarTipoDato(i.TipoDato), i.Valor);
             }
+        }
+
+        /// <summary>
+        /// Cambia el tipo de dato a uno mas amigable visualmente
+        /// </summary>
+        /// <param name="token">Tipo de dato original</param>
+        /// <returns>Tipo de dato renombrado</returns>
+        private string determinarTipoDato(string token) {
+            string tipoDato;
+
+            switch(token) {
+                case "CADENA":
+                    tipoDato = "Alfanumerico";
+                    break;
+                case "CONSTENT":
+                    tipoDato = "Entero";
+                    break;
+                case "CONSTRE":
+                    tipoDato = "Decimal";
+                    break;
+                case "CONSTEX":
+                    tipoDato = "Exponencial";
+                    break;
+                default:
+                    tipoDato = "N/A";
+                    break;
+            }
+
+            return tipoDato;
         }
 
         #region RichTextBox

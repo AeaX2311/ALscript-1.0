@@ -29,6 +29,13 @@ namespace Interfaz.Clases {
             set { valor = value; }
         }
 
+        private string tipoDato;
+
+        public string TipoDato {
+            get { return tipoDato; }
+            set { tipoDato = value; }
+        }
+
         public override bool Equals(object obj) {
             return obj is Identificador identificador &&
                    Nombre == identificador.Nombre;
