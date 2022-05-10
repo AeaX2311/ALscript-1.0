@@ -387,7 +387,7 @@ namespace Interfaz {
             this.IDIdentificador.HeaderText = "ID Identificador";
             this.IDIdentificador.Name = "IDIdentificador";
             this.IDIdentificador.ReadOnly = true;
-            this.IDIdentificador.Width = 300;
+            this.IDIdentificador.Width = 150;
             // 
             // TipoDato
             // 
@@ -396,12 +396,15 @@ namespace Interfaz {
             this.TipoDato.HeaderText = "Tipo de dato";
             this.TipoDato.Name = "TipoDato";
             this.TipoDato.ReadOnly = true;
+            this.TipoDato.Width = 150;
             // 
             // Valor
             // 
+            this.Valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Valor.HeaderText = "Valor";
             this.Valor.Name = "Valor";
             this.Valor.ReadOnly = true;
+            this.Valor.Width = 299;
             // 
             // Form1
             // 
