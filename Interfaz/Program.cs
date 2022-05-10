@@ -10,10 +10,10 @@ namespace Interfaz {
         /// Punto de entrada principal para la aplicación.
         /// </summary>
         [STAThread]
-        static void Main() {
+        static void Main(string [] arguments) {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(arguments.Length == 0 ? new Form1() : new Form1(arguments[0]));
         }
     }
 }
