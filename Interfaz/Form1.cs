@@ -101,6 +101,8 @@ namespace Interfaz {
             lblInfo.Text = "🖋";
             dgvErrores.Rows.Clear();
             dgvIdentificadores.Rows.Clear();
+            txtCodificacion.SelectAll();
+            txtCodificacion.SelectionColor = Color.Black;
         }
         #endregion        
 
@@ -120,6 +122,7 @@ namespace Interfaz {
             if(resultado.Errores.Count > 0) {
                 tieneErrores = true;
                 cargarErrores(resultado.Errores);
+                pintar(resultado.PalabrasARemarcarError);
             }
 
             if(resultado.Identificadores.Count > 0) {
@@ -130,6 +133,18 @@ namespace Interfaz {
         }
 
         /// <summary>
+        /// Pinta una lista de palabras de color rojo.
+        /// </summary>
+        /// <param name="palabras">Las palabras que se van a pintar</param>
+        private void pintar(List<string> palabras) {
+            palabras.ForEach(palabra => {
+                txtCodificacion.Select(txtCodificacion.Text.IndexOf(palabra), palabra.Length);
+                txtCodificacion.SelectionColor = Color.Red;
+            });
+        }
+
+
+        /// <summary>
         /// Llena DGV de errores
         /// </summary>
         /// <param name="errores">Listado de errores</param>
@@ -137,7 +152,7 @@ namespace Interfaz {
             dgvErrores.Rows.Clear();
 
             foreach(Error e in errores) {
-                dgvErrores.Rows.Add(e.Token, e.Linea, facade.obtenerDescripcionError(e));
+                dgvErrores.Rows.Add(e.Token, e.Linea, facade.obtenerDescripcionError(e), e.Palabra);
             }
         }
 

@@ -29,6 +29,7 @@ namespace Interfaz.Facade {
         private bool buscoValorParaIdentificador = false;
         private string auxTipoDatoIdentificador;
         private string auxNombreIdentificador;
+        private List<string> palabrasARemarcarError;
         #endregion
 
         public MatrizFacade() {
@@ -36,6 +37,7 @@ namespace Interfaz.Facade {
             numeroDeLinea = 1;
             errores = new List<Error>();
             identificadores = new Dictionary<string, Identificador>();
+            palabrasARemarcarError = new List<string>();
         }       
 
         /// <summary>
@@ -59,6 +61,9 @@ namespace Interfaz.Facade {
 
                     if(!identificadores.ContainsKey(auxNombreIdentificador)) 
                         identificadores.Add(auxNombreIdentificador, new Identificador(auxNombreIdentificador, null));                   
+                } else if (generaError) { //Contiene un error, guarda la palabra para poder "pintarla" despues
+                    errores.Last().Palabra = codificacion.Substring(0, contadorLetras);
+                    palabrasARemarcarError.Add(codificacion.Substring(0, contadorLetras));
                 }
                     
                     ////Asigna valor y tipo de dato a identificador, en caso de que se cumplan las condiciones
@@ -79,7 +84,7 @@ namespace Interfaz.Facade {
                 errores.Add(new Error("ERROR10", numeroDeLinea));
             }
 
-            return new Compilado(compilacion, errores, identificadores.Select(id => id.Value).ToList());
+            return new Compilado(compilacion, errores, identificadores.Select(id => id.Value).ToList(), palabrasARemarcarError);
         }
 
         /// <summary>

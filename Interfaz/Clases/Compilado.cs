@@ -23,10 +23,13 @@ namespace Interfaz.Clases {
             set { identificadores = value; }
         }
 
-        public Compilado(string codigoCompilado, List<Error> errores, List<Identificador> identificadores) {
+        public List<string> PalabrasARemarcarError { get; set; }
+
+        public Compilado(string codigoCompilado, List<Error> errores, List<Identificador> identificadores, List<string> palabrasARemarcarError) {
             CodigoCompilado = codigoCompilado;
             Errores = errores;
             Identificadores = identificadores;
+            PalabrasARemarcarError = palabrasARemarcarError;
         }
     }
 }

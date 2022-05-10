@@ -14,6 +14,13 @@
             set { linea = value; }
         }
 
+        private string palabra;
+
+        public string Palabra {
+            get { return palabra; }
+            set { palabra = value; }
+        }
+
         public Error(string token, int linea) {
             Token = token;
             Linea = linea;

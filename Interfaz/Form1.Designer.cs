@@ -42,6 +42,9 @@ namespace Interfaz {
             this.txtCompilacion = new System.Windows.Forms.RichTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvIdentificadores = new System.Windows.Forms.DataGridView();
+            this.IDIdentificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoDato = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvErrores = new System.Windows.Forms.DataGridView();
             this.TokenError = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,9 +54,7 @@ namespace Interfaz {
             this.btnGuardarCodigo = new System.Windows.Forms.Button();
             this.btnCargarCodigo = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
-            this.IDIdentificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoDato = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnPalabra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -249,6 +250,32 @@ namespace Interfaz {
             this.dgvIdentificadores.Size = new System.Drawing.Size(599, 185);
             this.dgvIdentificadores.TabIndex = 8;
             // 
+            // IDIdentificador
+            // 
+            this.IDIdentificador.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.IDIdentificador.Frozen = true;
+            this.IDIdentificador.HeaderText = "ID Identificador";
+            this.IDIdentificador.Name = "IDIdentificador";
+            this.IDIdentificador.ReadOnly = true;
+            this.IDIdentificador.Width = 150;
+            // 
+            // TipoDato
+            // 
+            this.TipoDato.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TipoDato.Frozen = true;
+            this.TipoDato.HeaderText = "Tipo de dato";
+            this.TipoDato.Name = "TipoDato";
+            this.TipoDato.ReadOnly = true;
+            this.TipoDato.Width = 150;
+            // 
+            // Valor
+            // 
+            this.Valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Valor.HeaderText = "Valor";
+            this.Valor.Name = "Valor";
+            this.Valor.ReadOnly = true;
+            this.Valor.Width = 299;
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.dgvErrores);
@@ -281,7 +308,8 @@ namespace Interfaz {
             this.dgvErrores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TokenError,
             this.Linea,
-            this.Descripcion});
+            this.Descripcion,
+            this.clmnPalabra});
             this.dgvErrores.EnableHeadersVisualStyles = false;
             this.dgvErrores.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvErrores.Location = new System.Drawing.Point(6, 28);
@@ -380,31 +408,11 @@ namespace Interfaz {
             this.btnModificar.UseVisualStyleBackColor = false;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
-            // IDIdentificador
+            // clmnPalabra
             // 
-            this.IDIdentificador.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.IDIdentificador.Frozen = true;
-            this.IDIdentificador.HeaderText = "ID Identificador";
-            this.IDIdentificador.Name = "IDIdentificador";
-            this.IDIdentificador.ReadOnly = true;
-            this.IDIdentificador.Width = 150;
-            // 
-            // TipoDato
-            // 
-            this.TipoDato.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.TipoDato.Frozen = true;
-            this.TipoDato.HeaderText = "Tipo de dato";
-            this.TipoDato.Name = "TipoDato";
-            this.TipoDato.ReadOnly = true;
-            this.TipoDato.Width = 150;
-            // 
-            // Valor
-            // 
-            this.Valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Valor.HeaderText = "Valor";
-            this.Valor.Name = "Valor";
-            this.Valor.ReadOnly = true;
-            this.Valor.Width = 299;
+            this.clmnPalabra.HeaderText = "Palabra";
+            this.clmnPalabra.Name = "clmnPalabra";
+            this.clmnPalabra.ReadOnly = true;
             // 
             // Form1
             // 
@@ -465,6 +473,7 @@ namespace Interfaz {
         private System.Windows.Forms.DataGridViewTextBoxColumn IDIdentificador;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoDato;
         private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnPalabra;
     }
 }
 
