@@ -11,12 +11,12 @@ namespace Interfaz.Facade {
         private const char FDC = ' ';
         private const char FDL = '\n';
         private List<Error> errores;
-        private List<Identificador> identificadores;
+        private Dictionary<string, Identificador> identificadores;
+        private int numeroDeLinea;
         #endregion
 
         #region Banderas y auxiliares
         private string mayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        private int numeroDeLinea;
         private int contadorLetras;
         private bool agregueIdentificador;
         private bool agregueFDC = false;
@@ -25,14 +25,17 @@ namespace Interfaz.Facade {
         private int contadorComentarios = 0;
         private bool estoyEnComentario = false;
         private bool estoyEnCadena = false;
+        private bool buscoAsignacion = false;
+        private bool buscoValorParaIdentificador = false;
+        private string auxTipoDatoIdentificador;
+        private string auxNombreIdentificador;
         #endregion
-
 
         public MatrizFacade() {
             compilacion = "";
             numeroDeLinea = 1;
             errores = new List<Error>();
-            identificadores = new List<Identificador>();
+            identificadores = new Dictionary<string, Identificador>();
         }       
 
         /// <summary>
@@ -45,12 +48,26 @@ namespace Interfaz.Facade {
                     ////Inicializacion de banderas y auxiliares
                 agregueIdentificador = generaError = ignorarFDC = estoyEnComentario = estoyEnCadena = false;
                 contadorLetras = contadorComentarios = 0;
+                auxTipoDatoIdentificador = null;
 
                     ////Recorre la siguiente palabra, setea el numero de "letras" leidas en contadorLetras
                 recorrerPalabra(codificacion, 0, 1, false);
 
                     ////Se agrega el nombre del identificador
-                if(agregueIdentificador) identificadores.Last().Nombre = codificacion.Substring(0, contadorLetras);
+                if(agregueIdentificador) {
+                    SetAuxNombreIdentificador(codificacion.Substring(0, contadorLetras));
+
+                    if(!identificadores.ContainsKey(auxNombreIdentificador)) 
+                        identificadores.Add(auxNombreIdentificador, new Identificador(auxNombreIdentificador, null));                   
+                }
+                    
+                    ////Asigna valor y tipo de dato a identificador, en caso de que se cumplan las condiciones
+                if(buscoValorParaIdentificador && auxTipoDatoIdentificador != null) {
+                    identificadores[auxNombreIdentificador].TipoDato = auxTipoDatoIdentificador;
+                    identificadores[auxNombreIdentificador].Valor = codificacion.Substring(0, contadorLetras); 
+
+                    buscoAsignacion = buscoValorParaIdentificador = false;
+                }
 
                     ////Elimina la parte inicial de la codificacion, parte que ya fue evaluada
                 codificacion = codificacion.Substring(contadorLetras + (agregueFDC ? 0 : 1));
@@ -62,7 +79,7 @@ namespace Interfaz.Facade {
                 errores.Add(new Error("ERROR10", numeroDeLinea));
             }
 
-            return new Compilado(compilacion, errores, identificadores);
+            return new Compilado(compilacion, errores, identificadores.Select(id => id.Value).ToList());
         }
 
         /// <summary>
@@ -132,9 +149,7 @@ namespace Interfaz.Facade {
             if(token == null) return false;                
 
             if(token.Equals("IDEN")) {
-                agregueIdentificador = true; //Esta bandera activa la funcion de seteo de nombre al final del recorrido
-                identificadores.Add(new Identificador("", null));
-
+                agregueIdentificador = buscoAsignacion  = true; //Esta bandera activa la funcion de seteo de nombre al final del recorrido
             } else if(resultado.Equals("ERROR")) {
                 if(generaError)  return false;
 
@@ -146,6 +161,10 @@ namespace Interfaz.Facade {
                 token = mc.obtenerErrorPorDescripcion(resultado);
                 errores.Add(new Error(token, numeroDeLinea)); //Guarda el error
                 generaError = true; //Realiza las instrucciones necesarias para evitar errores duplicados
+            } else if (token.Equals("ASIG") && buscoAsignacion) {
+                buscoValorParaIdentificador = true;
+            } else if(buscoValorParaIdentificador) {
+                auxTipoDatoIdentificador = token;
             }
 
             compilacion += token; //Guarda el token
@@ -216,6 +235,21 @@ namespace Interfaz.Facade {
         /// <returns>Verdadero o falso segun el caso</returns>
         private bool esFDC(char caracter) {
             return caracter == FDC; //|| caracter == ';'; Comentado momentaneamente, prox.. AC. 08-05-22.
+        }
+
+        /// <summary>
+        /// Seteo de KEY para identificadores. Evita caracteres vacios.
+        /// </summary>
+        /// <param name="value">El valor que se intenta setear</param>
+        private void SetAuxNombreIdentificador(string value) {
+            string nombreLimpio = "";
+
+            foreach(char c in value) {
+                if(c != '\n' && c != ' ' && c != '\t')
+                    nombreLimpio += c;
+            }
+
+            auxNombreIdentificador = nombreLimpio;
         }
     }
 }
