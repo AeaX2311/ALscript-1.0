@@ -4,6 +4,7 @@ using Interfaz.Facade;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -15,13 +16,7 @@ namespace Interfaz {
     public partial class Form1 : Form {
         MatrizFacade facade;
 
-        readonly SaveFileDialog saveFileDialog = new SaveFileDialog {
-            Title = "Guardar archivo de tokens",
-            Filter = "ALScript (*.alstf)|*.alstf",
-            DefaultExt = "alstf",
-            AddExtension = true,
-            FileName = "ALScript Token File"
-        };
+        SaveFileDialog saveFileDialog = new SaveFileDialog();
 
         readonly OpenFileDialog openFileDialog = new OpenFileDialog() {
             AddExtension = true,
@@ -32,6 +27,13 @@ namespace Interfaz {
         public Form1() {
             InitializeComponent();
             inicializarRTXBX();
+        }
+
+        public Form1(string file) : this() {
+            if(file!= string.Empty && Path.GetExtension(file).ToLower().Equals(".alscript")) {
+                var texto = OutputArchivo.Cargar(file);
+                txtCodificacion.Text = texto;
+            }
         }
 
         #region Acciones Click
@@ -57,23 +59,33 @@ namespace Interfaz {
         }
 
         private void btnGuardarArchivoToken_Click(object sender, EventArgs e) {
-            saveFileDialog.ShowDialog();
-            OutputArchivo.Guardar(txtCompilacion.Text, saveFileDialog.FileName);
-            MessageBox.Show("¡Archivo de tokens guardado correctamente!", "Guardado", MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            saveFileDialog = new SaveFileDialog {
+                Title = "Guardar archivo de tokens",
+                Filter = "ALScript (*.alstf)|*.alstf",
+                DefaultExt = "alstf",
+                AddExtension = true,
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK) {
+                OutputArchivo.Guardar(txtCompilacion.Text, saveFileDialog.FileName);
+                MessageBox.Show("¡Archivo de tokens guardado correctamente!", "Guardado", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
         }
 
         private void btnGuardarCodigo_Click(object sender, EventArgs e) {
-            saveFileDialog.Filter = "ALScript (*.alscript)|*.alscript";
-            saveFileDialog.Title = "Guardar codigo";
-            saveFileDialog.DefaultExt = "alscript";
-            saveFileDialog.FileName = "Codigo Alscript";
-            saveFileDialog.AddExtension = true;
+            saveFileDialog = new SaveFileDialog {
+                Filter = "ALScript (*.alscript)|*.alscript",
+                Title = "Guardar codigo",
+                DefaultExt = "alscript",
+                AddExtension = true,
+            };
 
-            saveFileDialog.ShowDialog();
-            OutputArchivo.Guardar(txtCodificacion.Text, saveFileDialog.FileName);
-            MessageBox.Show("¡Codigo guardado correctamente!", "Guardado", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+            if (saveFileDialog.ShowDialog() == DialogResult.OK) {
+                OutputArchivo.Guardar(txtCodificacion.Text, saveFileDialog.FileName);
+                MessageBox.Show("¡Codigo guardado correctamente!", "Guardado", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+            }
         }
 
         private void btnCargarCodigo_Click(object sender, EventArgs e) {
