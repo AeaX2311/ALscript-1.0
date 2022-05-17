@@ -59,8 +59,16 @@ namespace Interfaz.Facade {
                 if(agregueIdentificador) {
                     SetAuxNombreIdentificador(codificacion.Substring(0, contadorLetras));
 
-                    if(!identificadores.ContainsKey(auxNombreIdentificador)) 
-                        identificadores.Add(auxNombreIdentificador, new Identificador(auxNombreIdentificador, null));                   
+                    if(!identificadores.ContainsKey(auxNombreIdentificador)) {
+                            //Agrega el nuevo identificador
+                        identificadores.Add(auxNombreIdentificador, new Identificador(auxNombreIdentificador, null, identificadores.Count + 1));
+
+                            //Le agrega el secuencial a la copilacion del codigo
+                        compilacion = compilacion.Remove(compilacion.Length - 1, 1) + identificadores.Count + compilacion.Last();
+                    } else {
+                            //Le agrega el secuencial a la copilacion del codigo, realizando la busqueda del identificador existente
+                        compilacion = compilacion.Remove(compilacion.Length - 1, 1) + obtenerTokenIdentificador(auxNombreIdentificador) + compilacion.Last();
+                    }
                 } else if (generaError) { //Contiene un error, guarda la palabra para poder "pintarla" despues
                     errores.Last().Palabra = codificacion.Substring(0, contadorLetras);
                     palabrasARemarcarError.Add(codificacion.Substring(0, contadorLetras));
@@ -79,7 +87,7 @@ namespace Interfaz.Facade {
 
             } while(!string.IsNullOrWhiteSpace(codificacion));
 
-            if(string.IsNullOrEmpty(compilacion)) {
+            if(string.IsNullOrEmpty(compilacion)) { //Validacion inicial, cadena vacia o con inicio indeterminado
                 compilacion += "ERROR10";
                 errores.Add(new Error("ERROR10", numeroDeLinea));
             }
@@ -255,6 +263,15 @@ namespace Interfaz.Facade {
             }
 
             auxNombreIdentificador = nombreLimpio;
+        }
+
+        /// <summary>
+        /// Devuelve el numero secuencial de determinado identificador.
+        /// </summary>
+        /// <param name="nombreIdentificador">El nombre o KEY del identificador que se esta buscando</param>
+        /// <returns>El secuencial del identificador, o -1 en caso de no existir.</returns>
+        private int obtenerTokenIdentificador(string nombreIdentificador) {
+            return identificadores.ContainsKey(nombreIdentificador) ? identificadores[nombreIdentificador].Secuencial : -1;
         }
     }
 }

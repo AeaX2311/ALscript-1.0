@@ -2,9 +2,10 @@
 
 namespace Interfaz.Clases {
     class Identificador {
-        public Identificador(string nombre, string valor) {
+        public Identificador(string nombre, string valor, int secuencial) {
             Nombre = nombre;
             Valor = valor;
+            Secuencial = secuencial;
         }
 
         private string nombre;
@@ -34,6 +35,13 @@ namespace Interfaz.Clases {
         public string TipoDato {
             get { return tipoDato; }
             set { tipoDato = value; }
+        }
+
+        private int secuencial;
+
+        public int Secuencial {
+            get { return secuencial; }
+            set { secuencial = value; }
         }
 
         public override bool Equals(object obj) {

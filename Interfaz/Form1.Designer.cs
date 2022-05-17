@@ -42,19 +42,20 @@ namespace Interfaz {
             this.txtCompilacion = new System.Windows.Forms.RichTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvIdentificadores = new System.Windows.Forms.DataGridView();
-            this.IDIdentificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoDato = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvErrores = new System.Windows.Forms.DataGridView();
-            this.TokenError = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnGuardarArchivoToken = new System.Windows.Forms.Button();
             this.btnGuardarCodigo = new System.Windows.Forms.Button();
             this.btnCargarCodigo = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
+            this.TokenError = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnPalabra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDIdentificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoDato = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -71,7 +72,7 @@ namespace Interfaz {
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(554, 678);
+            this.groupBox1.Size = new System.Drawing.Size(615, 678);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Codificación";
@@ -81,7 +82,7 @@ namespace Interfaz {
             this.lblInfo.AutoSize = true;
             this.lblInfo.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInfo.ForeColor = System.Drawing.Color.Teal;
-            this.lblInfo.Location = new System.Drawing.Point(490, 632);
+            this.lblInfo.Location = new System.Drawing.Point(551, 632);
             this.lblInfo.Name = "lblInfo";
             this.lblInfo.Size = new System.Drawing.Size(58, 40);
             this.lblInfo.TabIndex = 1001;
@@ -111,7 +112,7 @@ namespace Interfaz {
             this.txtCodificacion.ForeColor = System.Drawing.Color.Black;
             this.txtCodificacion.Location = new System.Drawing.Point(41, 28);
             this.txtCodificacion.Name = "txtCodificacion";
-            this.txtCodificacion.Size = new System.Drawing.Size(507, 644);
+            this.txtCodificacion.Size = new System.Drawing.Size(568, 644);
             this.txtCodificacion.TabIndex = 1;
             this.txtCodificacion.Text = "";
             this.txtCodificacion.WordWrap = false;
@@ -125,7 +126,7 @@ namespace Interfaz {
             this.btnCompilar.BackColor = System.Drawing.Color.LightGreen;
             this.btnCompilar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCompilar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCompilar.Location = new System.Drawing.Point(572, 262);
+            this.btnCompilar.Location = new System.Drawing.Point(633, 262);
             this.btnCompilar.Name = "btnCompilar";
             this.btnCompilar.Size = new System.Drawing.Size(106, 54);
             this.btnCompilar.TabIndex = 2;
@@ -139,7 +140,7 @@ namespace Interfaz {
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLimpiar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLimpiar.Location = new System.Drawing.Point(572, 382);
+            this.btnLimpiar.Location = new System.Drawing.Point(633, 382);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(106, 54);
             this.btnLimpiar.TabIndex = 3;
@@ -152,9 +153,9 @@ namespace Interfaz {
             this.groupBox2.Controls.Add(this.txtNumeracionCompilacion);
             this.groupBox2.Controls.Add(this.txtCompilacion);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(684, 12);
+            this.groupBox2.Location = new System.Drawing.Point(745, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(554, 678);
+            this.groupBox2.Size = new System.Drawing.Size(607, 678);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Compilación";
@@ -184,7 +185,7 @@ namespace Interfaz {
             this.txtCompilacion.Location = new System.Drawing.Point(41, 28);
             this.txtCompilacion.Name = "txtCompilacion";
             this.txtCompilacion.ReadOnly = true;
-            this.txtCompilacion.Size = new System.Drawing.Size(507, 644);
+            this.txtCompilacion.Size = new System.Drawing.Size(560, 644);
             this.txtCompilacion.TabIndex = 9;
             this.txtCompilacion.Text = "";
             this.txtCompilacion.WordWrap = false;
@@ -199,7 +200,7 @@ namespace Interfaz {
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(12, 761);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(611, 219);
+            this.groupBox3.Size = new System.Drawing.Size(683, 219);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tabla de identificadores";
@@ -223,6 +224,7 @@ namespace Interfaz {
             this.dgvIdentificadores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvIdentificadores.ColumnHeadersHeight = 40;
             this.dgvIdentificadores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
             this.IDIdentificador,
             this.TipoDato,
             this.Valor});
@@ -247,42 +249,16 @@ namespace Interfaz {
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvIdentificadores.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvIdentificadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvIdentificadores.Size = new System.Drawing.Size(599, 185);
+            this.dgvIdentificadores.Size = new System.Drawing.Size(671, 185);
             this.dgvIdentificadores.TabIndex = 8;
-            // 
-            // IDIdentificador
-            // 
-            this.IDIdentificador.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.IDIdentificador.Frozen = true;
-            this.IDIdentificador.HeaderText = "ID Identificador";
-            this.IDIdentificador.Name = "IDIdentificador";
-            this.IDIdentificador.ReadOnly = true;
-            this.IDIdentificador.Width = 150;
-            // 
-            // TipoDato
-            // 
-            this.TipoDato.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.TipoDato.Frozen = true;
-            this.TipoDato.HeaderText = "Tipo de dato";
-            this.TipoDato.Name = "TipoDato";
-            this.TipoDato.ReadOnly = true;
-            this.TipoDato.Width = 150;
-            // 
-            // Valor
-            // 
-            this.Valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Valor.HeaderText = "Valor";
-            this.Valor.Name = "Valor";
-            this.Valor.ReadOnly = true;
-            this.Valor.Width = 299;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.dgvErrores);
             this.groupBox4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(632, 761);
+            this.groupBox4.Location = new System.Drawing.Point(701, 761);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(609, 219);
+            this.groupBox4.Size = new System.Drawing.Size(655, 219);
             this.groupBox4.TabIndex = 9;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Tabla de Errores";
@@ -331,36 +307,15 @@ namespace Interfaz {
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvErrores.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvErrores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvErrores.Size = new System.Drawing.Size(599, 185);
+            this.dgvErrores.Size = new System.Drawing.Size(639, 185);
             this.dgvErrores.TabIndex = 10;
-            // 
-            // TokenError
-            // 
-            this.TokenError.FillWeight = 68.35763F;
-            this.TokenError.HeaderText = "Token Error";
-            this.TokenError.Name = "TokenError";
-            this.TokenError.ReadOnly = true;
-            // 
-            // Linea
-            // 
-            this.Linea.FillWeight = 60.9137F;
-            this.Linea.HeaderText = "Linea";
-            this.Linea.Name = "Linea";
-            this.Linea.ReadOnly = true;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.FillWeight = 170.7287F;
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
             // 
             // btnGuardarArchivoToken
             // 
             this.btnGuardarArchivoToken.BackColor = System.Drawing.Color.LightGreen;
             this.btnGuardarArchivoToken.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGuardarArchivoToken.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarArchivoToken.Location = new System.Drawing.Point(1047, 701);
+            this.btnGuardarArchivoToken.Location = new System.Drawing.Point(1167, 701);
             this.btnGuardarArchivoToken.Name = "btnGuardarArchivoToken";
             this.btnGuardarArchivoToken.Size = new System.Drawing.Size(185, 54);
             this.btnGuardarArchivoToken.TabIndex = 6;
@@ -400,7 +355,7 @@ namespace Interfaz {
             this.btnModificar.BackColor = System.Drawing.Color.Orange;
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnModificar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(572, 322);
+            this.btnModificar.Location = new System.Drawing.Point(633, 322);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(106, 54);
             this.btnModificar.TabIndex = 11;
@@ -408,18 +363,69 @@ namespace Interfaz {
             this.btnModificar.UseVisualStyleBackColor = false;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
+            // TokenError
+            // 
+            this.TokenError.FillWeight = 68.35763F;
+            this.TokenError.HeaderText = "Token";
+            this.TokenError.Name = "TokenError";
+            this.TokenError.ReadOnly = true;
+            // 
+            // Linea
+            // 
+            this.Linea.FillWeight = 60.9137F;
+            this.Linea.HeaderText = "Linea";
+            this.Linea.Name = "Linea";
+            this.Linea.ReadOnly = true;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.FillWeight = 170.7287F;
+            this.Descripcion.HeaderText = "Descripcion";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            // 
             // clmnPalabra
             // 
             this.clmnPalabra.HeaderText = "Palabra";
             this.clmnPalabra.Name = "clmnPalabra";
             this.clmnPalabra.ReadOnly = true;
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Token";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // IDIdentificador
+            // 
+            this.IDIdentificador.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.IDIdentificador.HeaderText = "Nombre Identificador";
+            this.IDIdentificador.Name = "IDIdentificador";
+            this.IDIdentificador.ReadOnly = true;
+            this.IDIdentificador.Width = 150;
+            // 
+            // TipoDato
+            // 
+            this.TipoDato.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TipoDato.HeaderText = "Tipo de dato";
+            this.TipoDato.Name = "TipoDato";
+            this.TipoDato.ReadOnly = true;
+            this.TipoDato.Width = 150;
+            // 
+            // Valor
+            // 
+            this.Valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Valor.HeaderText = "Valor";
+            this.Valor.Name = "Valor";
+            this.Valor.ReadOnly = true;
+            this.Valor.Width = 299;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1253, 992);
+            this.ClientSize = new System.Drawing.Size(1368, 992);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnCargarCodigo);
             this.Controls.Add(this.btnGuardarCodigo);
@@ -465,14 +471,15 @@ namespace Interfaz {
         private System.Windows.Forms.Button btnGuardarCodigo;
         private System.Windows.Forms.Button btnCargarCodigo;
         private System.Windows.Forms.RichTextBox txtNumeracionCompilacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TokenError;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Linea;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Label lblInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDIdentificador;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoDato;
         private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TokenError;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Linea;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnPalabra;
     }
 }

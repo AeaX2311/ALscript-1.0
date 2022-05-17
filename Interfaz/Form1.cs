@@ -51,10 +51,13 @@ namespace Interfaz {
             }
             txtCodificacion.ReadOnly = true; lblInfo.Text = "✔️";
 
-            if(compilar())
+            bool tieneErrores = compilar();
+            if(tieneErrores)
                 MessageBox.Show("Programa compilado con algunos errores, favor de verificar tabla de errores.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
                 MessageBox.Show("Programa compilado correctamente.", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
+            btnGuardarArchivoToken.Enabled = !tieneErrores;
         }
 
         private void btnGuardarArchivoToken_Click(object sender, EventArgs e) {
@@ -164,7 +167,7 @@ namespace Interfaz {
             dgvIdentificadores.Rows.Clear();
 
             foreach(Identificador i in identificadores) {
-                dgvIdentificadores.Rows.Add(i.Nombre, determinarTipoDato(i.TipoDato), i.Valor);
+                dgvIdentificadores.Rows.Add("IDEN" + i.Secuencial, i.Nombre, determinarTipoDato(i.TipoDato), i.Valor);
             }
         }
 
