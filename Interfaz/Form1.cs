@@ -1,11 +1,13 @@
 ﻿using Interfaz.Clases;
 using Interfaz.Clases.IO;
 using Interfaz.Facade;
+using Interfaz.Recursos;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace Interfaz {
     /// <summary>
@@ -14,7 +16,6 @@ namespace Interfaz {
     /// </summary>
     public partial class Form1 : Form {
         MatrizFacade facade;
-
         SaveFileDialog saveFileDialog = new SaveFileDialog();
 
         readonly OpenFileDialog openFileDialog = new OpenFileDialog() {
@@ -45,7 +46,7 @@ namespace Interfaz {
         }
 
         private void btnCompilar_Click(object sender, EventArgs e) {
-            if(string.IsNullOrEmpty(txtCodificacion.Text)) {
+            if(string.IsNullOrEmpty(txtCodificacion.Text) || string.IsNullOrWhiteSpace(txtCodificacion.Text)) {
                 MessageBox.Show("Favor de generar un codigo para poderlo compilar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -420,6 +421,5 @@ namespace Interfaz {
             txtNumeracionCompilacion.DeselectAll();
         }
         #endregion
-
     }
 }
