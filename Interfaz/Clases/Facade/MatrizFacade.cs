@@ -30,6 +30,7 @@ namespace Interfaz.Facade {
         private string auxTipoDatoIdentificador;
         private string auxNombreIdentificador;
         private List<string> palabrasARemarcarError;
+        private bool agregarPuntoYComa;
         #endregion
 
         public MatrizFacade() {
@@ -48,7 +49,7 @@ namespace Interfaz.Facade {
         public Compilado compilarCodigo(string codificacion) {
             do {
                     ////Inicializacion de banderas y auxiliares
-                agregueIdentificador = generaError = ignorarFDC = estoyEnComentario = estoyEnCadena = false;
+                agregueIdentificador = generaError = ignorarFDC = estoyEnComentario = estoyEnCadena = agregarPuntoYComa = false;
                 contadorLetras = contadorComentarios = 0;
                 auxTipoDatoIdentificador = null;
 
@@ -82,6 +83,12 @@ namespace Interfaz.Facade {
                     buscoAsignacion = buscoValorParaIdentificador = false;
                 }
 
+                    ////Agregacion global de punto y coma a compilacion, se representa con el token CE13
+                if(agregarPuntoYComa) compilacion+="CE13";
+
+                    ////Agregado de separacion entre tokens, en caso de necesitarlo
+                if(compilacion.Last() != ' ' && compilacion.Last() != '\n') compilacion += " ";
+
                     ////Elimina la parte inicial de la codificacion, parte que ya fue evaluada
                 codificacion = codificacion.Substring(contadorLetras + (agregueFDC ? 0 : 1));
 
@@ -112,15 +119,22 @@ namespace Interfaz.Facade {
             }
 
             if(isFDC) {
-                isFDC = !ignorarFDC;
-            }
-            else if(codigo[contadorLetras] == FDL) {
+                if(codigo[contadorLetras] == ';') {
+                    agregarPuntoYComa = true;
+                } else {
+                    isFDC = !ignorarFDC;
+                }
+            } else if(codigo[contadorLetras] == FDL) {
                 numeroDeLinea++;
                 compilacion += FDL;
                 return recorrerPalabra(codigo, ++contadorLetras, estado, false);
             }
             
             string resultado = buscarColumna(codigo[contadorLetras], estado);
+
+            if(resultado == null) { //Ignora posicion, salta palabra porque es un espacio en blanco
+                return contadorLetras;
+            }
 
             if(realizarMovimientoAEstado(resultado, estado)) estado = int.Parse(resultado);
 
@@ -143,7 +157,9 @@ namespace Interfaz.Facade {
         /// <param name="estado">WHERE</param>
         /// <returns>La consulta (campo) que se encontro</returns>
         private string buscarColumna(char encabezado, int estado) {
-            string columna = esFDC(encabezado) ? "FDC" : ("C" + encabezado); 
+            string columna = esFDC(encabezado) ? "FDC" : ("C" + encabezado);
+            if(estado == 1 && columna.Equals("FDC"))
+                return null;
             return mc.obtenerResultado(procesarColumna(columna), estado);
         }
 
@@ -247,7 +263,7 @@ namespace Interfaz.Facade {
         /// <param name="caracter">Caracter a evaluar</param>
         /// <returns>Verdadero o falso segun el caso</returns>
         private bool esFDC(char caracter) {
-            return caracter == FDC; //|| caracter == ';'; Comentado momentaneamente, prox.. AC. 08-05-22.
+            return caracter == FDC || caracter == ';';
         }
 
         /// <summary>
