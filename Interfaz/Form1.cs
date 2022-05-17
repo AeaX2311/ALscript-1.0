@@ -140,10 +140,10 @@ namespace Interfaz {
         /// </summary>
         /// <param name="palabras">Las palabras que se van a pintar</param>
         private void pintar(List<string> palabras) {
-         /*   palabras.ForEach(palabra => {
+            palabras.ForEach(palabra => {
                 txtCodificacion.Select(txtCodificacion.Text.IndexOf(palabra), palabra.Length);
                 txtCodificacion.SelectionColor = Color.Red;
-            });*/
+            });
         }
 
 
