@@ -45,7 +45,7 @@ namespace Interfaz {
         }
 
         private void btnCompilar_Click(object sender, EventArgs e) {
-            if(string.IsNullOrEmpty(txtCodificacion.Text)) {
+            if(string.IsNullOrEmpty(txtCodificacion.Text) || string.IsNullOrWhiteSpace(txtCodificacion.Text)) {
                 MessageBox.Show("Favor de generar un codigo para poderlo compilar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -118,7 +118,7 @@ namespace Interfaz {
             bool tieneErrores = false;
             facade = new MatrizFacade();
 
-            Compilado resultado = facade.compilarCodigo(txtCodificacion.Text);
+            Compilado resultado = facade.compilarCodigo(txtCodificacion.Text + " ");
 
             txtCompilacion.Text = resultado.CodigoCompilado;
 
