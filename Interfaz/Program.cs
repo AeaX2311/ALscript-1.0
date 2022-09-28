@@ -13,7 +13,7 @@ namespace Interfaz {
         static void Main(string [] arguments) {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(arguments.Length == 0 ? new Form1() : new Form1(arguments[0]));
+            Application.Run(arguments.Length == 0 ? new FormPrincipal() : new FormPrincipal(arguments[0]));
         }
     }
 }

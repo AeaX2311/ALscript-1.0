@@ -51,23 +51,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\Compilado.cs" />
-    <Compile Include="Clases\Error.cs" />
+    <Compile Include="Clases\Compilacion\Compilado.cs" />
+    <Compile Include="Clases\Compilacion\Error.cs" />
+    <Compile Include="Clases\Compilacion\Gramatica.cs" />
     <Compile Include="Clases\Connection\MatrizConnection.cs" />
-    <Compile Include="Clases\Facade\MatrizFacade.cs" />
-    <Compile Include="Clases\Identificador.cs" />
+    <Compile Include="Clases\Facade\LexicoFacade.cs" />
+    <Compile Include="Clases\Facade\SintaxisFacade.cs" />
+    <Compile Include="Clases\Compilacion\Identificador.cs" />
     <Compile Include="Clases\IO\ALScriptIOException.cs" />
     <Compile Include="Clases\IO\OutputArchivo.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Clases\Main.cs" />
+    <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormPrincipal.Designer.cs">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormPrincipal.resx">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
