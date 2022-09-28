@@ -203,8 +203,8 @@ namespace Interfaz.Clases.Facade {
             
             //Identificadores
             gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
-            gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
-            gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
+            gramaticaAux.Add(new Gramatica("INI_1", new List<string> { "IDEN", "ASIG", "VAL1", "CE13" }, true));
+            gramaticaAux.Add(new Gramatica("INI_2", new List<string> { "PRI6", "PRV1", "INI_1" }, true));
 
             //Operadores aritmeticos
             gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
