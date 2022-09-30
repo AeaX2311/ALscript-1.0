@@ -245,8 +245,8 @@ namespace Interfaz.Clases.Facade {
 
             //CICLO WHILE
             gramaticaAux.Add(new Gramatica("INP3", new List<string> { "PRI17", "INCOND" }, true));
-            gramaticaAux.Add(new Gramatica("INP1_1", new List<string> { "PRI17", "INCOND", "CE8" }, true));
-            gramaticaAux.Add(new Gramatica("INP1", new List<string> { "PRI17", "INCOND", "CE8", "ALLC", "FINL" }, true));
+            gramaticaAux.Add(new Gramatica("INP3_1", new List<string> { "PRI17", "INCOND", "CE8" }, true));
+            gramaticaAux.Add(new Gramatica("INP3_2", new List<string> { "PRI17", "INCOND", "CE8", "ALLC", "FINL" }, true));
 
             //CICLO DO WHILE
             gramaticaAux.Add(new Gramatica("INP4", new List<string> { "PRI18" }, true));
@@ -256,8 +256,8 @@ namespace Interfaz.Clases.Facade {
 
             //IF
             gramaticaAux.Add(new Gramatica("INP5", new List<string> { "PRI2", "INCOND" }, true));
-            gramaticaAux.Add(new Gramatica("INP1_1", new List<string> { "PRI2", "INCOND", "CE8" }, true));
-            gramaticaAux.Add(new Gramatica("INP1", new List<string> { "PRI12", "INCOND", "CE8", "ALL", "FINL" }, true));
+            gramaticaAux.Add(new Gramatica("INP5_1", new List<string> { "PRI2", "INCOND", "CE8" }, true));
+            gramaticaAux.Add(new Gramatica("INP5_2", new List<string> { "PRI12", "INCOND", "CE8", "ALL", "FINL" }, true));
 
             //ELSE
             gramaticaAux.Add(new Gramatica("INP6", new List<string> { "PRI3" }, true));
@@ -282,7 +282,7 @@ namespace Interfaz.Clases.Facade {
             gramaticaAux.Add(new Gramatica("INPA1", new List<string> { "PRI9", "CE13" }, true)); //ROMPER
             gramaticaAux.Add(new Gramatica("INPA2", new List<string> { "PRI10", "CE13" }, true)); //CONTINUAR
             gramaticaAux.Add(new Gramatica("FINL", new List<string> { "CE9", "CE13" }, true));
-            gramaticaAux.Add(new Gramatica("CE8", new List<string> { "CE8" }, true)); //
+            gramaticaAux.Add(new Gramatica("CE8", new List<string> { "CE8" }, true)); //{
 
 
             return gramaticaAux;
