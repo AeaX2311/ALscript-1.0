@@ -247,7 +247,43 @@ namespace Interfaz.Clases.Facade {
             gramaticaAux.Add(new Gramatica("INP3", new List<string> { "PRI17", "INCOND" }, true));
             gramaticaAux.Add(new Gramatica("INP1_1", new List<string> { "PRI17", "INCOND", "CE8" }, true));
             gramaticaAux.Add(new Gramatica("INP1", new List<string> { "PRI17", "INCOND", "CE8", "ALLC", "FINL" }, true));
+
+            //CICLO DO WHILE
+            gramaticaAux.Add(new Gramatica("INP4", new List<string> { "PRI18" }, true));
+            gramaticaAux.Add(new Gramatica("INP4_1", new List<string> { "PRI17", "CE8" }, true));
+            gramaticaAux.Add(new Gramatica("INP4_2", new List<string> { "CE9", "PRI17", "INCOND", "CE13" }, true));
+            gramaticaAux.Add(new Gramatica("INP4_3", new List<string> { "PRI18", "CE8", "ALLC", "CE9", "PRI17", "INCOND", "CE13" }, true));
+
+            //IF
+            gramaticaAux.Add(new Gramatica("INP5", new List<string> { "PRI2", "INCOND" }, true));
+            gramaticaAux.Add(new Gramatica("INP1_1", new List<string> { "PRI2", "INCOND", "CE8" }, true));
+            gramaticaAux.Add(new Gramatica("INP1", new List<string> { "PRI12", "INCOND", "CE8", "ALL", "FINL" }, true));
+
+            //ELSE
+            gramaticaAux.Add(new Gramatica("INP6", new List<string> { "PRI3" }, true));
+            gramaticaAux.Add(new Gramatica("INP6_1", new List<string> { "CE9", "PRI3" }, true));
+            gramaticaAux.Add(new Gramatica("INP6_2", new List<string> { "PRI3", "CE8" }, true));
+            gramaticaAux.Add(new Gramatica("INP6_3", new List<string> { "CE9", "PRI3", "CE8"}, true));
+            gramaticaAux.Add(new Gramatica("INP6_4", new List<string> { "PRI3", "CE8", "ALL", "FINL" }, true));
+            gramaticaAux.Add(new Gramatica("INP6_5", new List<string> { "CE9", "PRI3", "CE8", "ALL", "FINL" }, true));
             
+            //ELSE IF
+            gramaticaAux.Add(new Gramatica("INP7", new List<string> { "PRI3", "PRI2", "INCOND" }, true));
+            gramaticaAux.Add(new Gramatica("INP7_1", new List<string> { "PRI3", "PRI2", "INCOND", "CE8" }, true));
+            gramaticaAux.Add(new Gramatica("INP7_2", new List<string> { "PRI3", "PRI2", "INCOND", "CE8", "ALL", "FINL" }, true));
+            gramaticaAux.Add(new Gramatica("INP7_3", new List<string> { "CE9", "PRI3", "PRI2", "INCOND" }, true));
+            gramaticaAux.Add(new Gramatica("INP7_4", new List<string> { "CE9", "PRI3", "PRI2", "INCOND", "CE8" }, true));
+            gramaticaAux.Add(new Gramatica("INP7_5", new List<string> { "CE9", "PRI3", "PRI2", "INCOND", "CE8", "ALL", "FINL" }, true));
+
+            //COMENTARIOS
+            gramaticaAux.Add(new Gramatica("INCO", new List<string> { "COMENTARIO" }, true));
+
+            //AUXILIARES
+            gramaticaAux.Add(new Gramatica("INPA1", new List<string> { "PRI9", "CE13" }, true)); //ROMPER
+            gramaticaAux.Add(new Gramatica("INPA2", new List<string> { "PRI10", "CE13" }, true)); //CONTINUAR
+            gramaticaAux.Add(new Gramatica("FINL", new List<string> { "CE9", "CE13" }, true));
+            gramaticaAux.Add(new Gramatica("CE8", new List<string> { "CE8" }, true)); //
+
 
             return gramaticaAux;
         }
