@@ -207,34 +207,47 @@ namespace Interfaz.Clases.Facade {
             gramaticaAux.Add(new Gramatica("INI_2", new List<string> { "PRI6", "PRV1", "INI_1" }, true));
 
             //Operadores aritmeticos
-            gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
-            gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
-            gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
+            gramaticaAux.Add(new Gramatica("INO", new List<string> { "VAL2", "OPAA", "VAL2" }, true));
+            gramaticaAux.Add(new Gramatica("INO_1", new List<string> { "CE6", "INO", "CE7", "OPAA", "CE6", "INO", "CE7" }, true));
+            gramaticaAux.Add(new Gramatica("INO_2", new List<string> { "VAL2" }, true));
 
             //Operadores logicos
-            gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
-            gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
-            gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
-            gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
+            gramaticaAux.Add(new Gramatica("INC", new List<string> { "VAL1", "OPLA", "VAL1" }, true));
+            gramaticaAux.Add(new Gramatica("INC_1", new List<string> { "OPL1", "VAL4" }, true));
+            gramaticaAux.Add(new Gramatica("INC_2", new List<string> { "VAL1" }, true));
+            gramaticaAux.Add(new Gramatica("INC_3", new List<string> { "CE6", "INC", "CE7", "OPLA", "CE6", "INC", "CE7" }, true));
 
             //Operadores relacionales
-            gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
-            gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
+            gramaticaAux.Add(new Gramatica("INR", new List<string> { "INO", "OPRA", "INO" }, true));
+            gramaticaAux.Add(new Gramatica("INR_1", new List<string> { "CE6", "INR", "CE7", "OPRA", "CE6", "INR", "CE7" }, true));
 
             //Condiciones
-            gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
-            gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
+            gramaticaAux.Add(new Gramatica("INCOND", new List<string> { "CONDIC" }, false));
+            gramaticaAux.Add(new Gramatica("INCOND_1", new List<string> { "CE6", "CONDIC", "CE7", "OPLA", "CE6", "CONDIC", "CE7" }, false));
 
             //Entrada y salida
-            gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
-            gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
+            gramaticaAux.Add(new Gramatica("INS", new List<string> { "PRI4", "IDEN" }, true));
+            gramaticaAux.Add(new Gramatica("INS_1", new List<string> { "PRI5", "VAL5" }, true));
 
+            //Instrucciones complejas//
+            //caso
+            gramaticaAux.Add(new Gramatica("INP1", new List<string> { "PRI7", "IDEN" }, true));
+            gramaticaAux.Add(new Gramatica("INP1_1", new List<string> { "PRI7", "IDEN", "CE8" }, true));
+            gramaticaAux.Add(new Gramatica("INP1_2", new List<string> { "PRI8", "VAL3", "CE13" }, true));
+            gramaticaAux.Add(new Gramatica("INP1_1", new List<string> { "PRI9", "CE13" }, true));
+            gramaticaAux.Add(new Gramatica("INP1", new List<string> { "PRI12", "VAL3", "OPR2", "CE13" }, true));
+            gramaticaAux.Add(new Gramatica("INP1_1", new List<string> { "PRI7", "IDEN", "CE8", "PRI8", "VAL3", "OPR2", "ALLS", "PRI9", "CE13", "PRI12", "VAL3", "OPR2", "ALLS", "PRI9", "CE13", "FINL" }, true));
 
-            gramaticaAux.Add(new Gramatica("INI", new List<string> { "PRI6", "PRV1", "IDEN", "CE13" }, true));
+            //CICLO FOR
+            gramaticaAux.Add(new Gramatica("INP2", new List<string> { "PRI1", "CE6","CICLO", "CE13", "INCOND", "CE13", "INI_1", "CE7" }, true));
+            gramaticaAux.Add(new Gramatica("INP2_1", new List<string> { "PRI1", "CE6", "CICLO", "CE13", "INCOND", "CE13", "INI_1", "CE7", "CE8" }, true));
+            gramaticaAux.Add(new Gramatica("INP2_2", new List<string> { "PRI1", "CE6", "CICLO", "CE13", "INCOND", "CE13", "INI_1", "CE7", "CE8", "ALLC", "FINL" }, true));
 
-            gramaticaAux.Add(new Gramatica("INI", new List<string>{ "PRI6", "PRV1", "IDEN", "CE13" }, true));
-            gramaticaAux.Add(new Gramatica("INI_1", new List<string> { "IDEN", "ASIG", "VAL1", "CE13" }, true));
-            gramaticaAux.Add(new Gramatica("INI_2", new List<string> { "PRI6", "PRV1", "INI_1", "CE13" }, true));
+            //CICLO WHILE
+            gramaticaAux.Add(new Gramatica("INP3", new List<string> { "PRI17", "INCOND" }, true));
+            gramaticaAux.Add(new Gramatica("INP1_1", new List<string> { "PRI17", "INCOND", "CE8" }, true));
+            gramaticaAux.Add(new Gramatica("INP1", new List<string> { "PRI17", "INCOND", "CE8", "ALLC", "FINL" }, true));
+            
 
             return gramaticaAux;
         }
