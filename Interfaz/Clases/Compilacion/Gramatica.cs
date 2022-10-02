@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace Interfaz.Clases.Compilacion {
     class Gramatica {
+        public Gramatica() { }
         public Gramatica(string pK, List<string> instruccionGramatica, bool esTerminal) {
             PK = pK;
             InstruccionGramatica = instruccionGramatica;

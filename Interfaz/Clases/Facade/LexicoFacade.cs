@@ -65,7 +65,7 @@ namespace Interfaz.Clases.Facade {
                         identificadores.Add(auxNombreIdentificador, new Identificador(auxNombreIdentificador, null, identificadores.Count + 1));
 
                             //Le agrega el secuencial a los identificadores
-                        compilacion = compilacion.Remove(compilacion.Length - 1, 1) + "_" + identificadores.Count + compilacion.Last();
+                        compilacion = compilacion.Remove(compilacion.Length - 1, 1) + "#" + identificadores.Count + compilacion.Last();
                     } else {
                             //Le agrega el secuencial a la copilacion del codigo, realizando la busqueda del identificador existente
                         compilacion = compilacion.Remove(compilacion.Length - 1, 1) + obtenerTokenIdentificador(auxNombreIdentificador) + compilacion.Last();
