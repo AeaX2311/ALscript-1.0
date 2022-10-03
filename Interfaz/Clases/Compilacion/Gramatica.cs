@@ -41,7 +41,7 @@ namespace Interfaz.Clases.Compilacion {
         }
 
         public bool entraEnElRangoPosible(int maximo) {
-            return Longitud == maximo;
+            return Longitud <= maximo; //creo que tarda menos que el ==...............
         }
     }
 }

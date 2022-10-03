@@ -68,7 +68,7 @@ namespace Interfaz.Clases.Facade {
                         compilacion = compilacion.Remove(compilacion.Length - 1, 1) + "#" + identificadores.Count + compilacion.Last();
                     } else {
                             //Le agrega el secuencial a la copilacion del codigo, realizando la busqueda del identificador existente
-                        compilacion = compilacion.Remove(compilacion.Length - 1, 1) + obtenerTokenIdentificador(auxNombreIdentificador) + compilacion.Last();
+                        compilacion = compilacion.Remove(compilacion.Length - 1, 1) + "#" + obtenerTokenIdentificador(auxNombreIdentificador) + compilacion.Last();
                     }
                 } else if (generaError) { //Contiene un error, guarda la palabra para poder "pintarla" despues
                     errores.Last().Palabra = codificacion.Substring(0, contadorLetras);
@@ -87,7 +87,7 @@ namespace Interfaz.Clases.Facade {
                 if(agregarPuntoYComa) compilacion += "CE13";
 
                     ////Agregado de separacion entre tokens, en caso de necesitarlo
-                if(compilacion.Last() != ' ' && compilacion.Last() != '\n') compilacion += " ";
+                if(compilacion != "" && compilacion.Last() != ' ' && compilacion.Last() != '\n') compilacion += " ";
 
                     ////Elimina la parte inicial de la codificacion, parte que ya fue evaluada
                 codificacion = codificacion.Substring(contadorLetras + (agregueFDC ? 0 : 1));
