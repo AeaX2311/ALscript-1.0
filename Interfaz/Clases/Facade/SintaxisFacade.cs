@@ -5,18 +5,19 @@ using System.Linq;
 namespace Interfaz.Clases.Facade {
     class SintaxisFacade {
         #region Componentes primordiales
-        private List<List<string>> tokens; //Contiene el listado global de tokens ordenados segun se mando.
+        private List<List<string>> tokens; //Contiene el listado global de tokens ordenados segun se mandó.
         private string resultadoFinal;
         private List<Gramatica> gramaticasSintaxis;
         private List<Gramatica> gramaticasAuxiliaresVariable;
-        private int k;
         #endregion
+        private Gramatica gramaticaGlobalAuxiliar;
 
         private void init(string archivoTokens) {
             tokens = dividirStringPorLineas(archivoTokens);
             resultadoFinal = "";
             gramaticasSintaxis = generarGramatica();
             gramaticasAuxiliaresVariable = generarGramaticaAuxiliarVariable();
+            gramaticaGlobalAuxiliar = new Gramatica();
         }
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Interfaz.Clases.Facade {
 
                 foreach(Gramatica gramatica in gramaticasAceptables) {
                     //Si la longitud de la gramatica no coincide con la actual de busqueda, saltatela. Siempre y cuando no estes en una gramatica en especifico
-                    if(!buscoGramaticaEspecifica && !gramatica.entraEnElRangoPosible(rangoBusqueda - 1))
+                    if(!buscoGramaticaEspecifica && !gramatica.entraEnElRangoPosible(rangoBusqueda -1))
                         continue;
                     //Si la linea, es menor a la longitud de la gramatica, salte porque sabes que no cumpliras con esa gramatica. Siempre y cuando es una gramatica en especifico
                     else if(buscoGramaticaEspecifica && linea.Count - 1 - posicionInicialEspecifica < gramatica.Longitud)
@@ -84,7 +85,7 @@ namespace Interfaz.Clases.Facade {
                             iteracionesEnLinea = gramatica.Longitud + rangoInicialEnLinea;
                         } else {
                             rangoInicialEnLinea = 0 + rep;
-                            iteracionesEnLinea = rangoBusqueda - 1;
+                            iteracionesEnLinea = rangoBusqueda -1;
                         }
 
                         for(; rangoInicialEnLinea < iteracionesEnLinea; rangoInicialEnLinea++) {
@@ -96,18 +97,34 @@ namespace Interfaz.Clases.Facade {
                                 contGram++;
                                 continue;
                             } //CASO 2: Si la gramatica contiene _, entonces busca la gramatica en especifico para el resto de la linea
-                            else if(gramatica.InstruccionGramatica[contGram].Contains("_")) {
+                            else if(gramatica.InstruccionGramatica[contGram].Contains("_") || esInstruccion(gramatica.InstruccionGramatica[contGram])) {
 
-                                string reemplazo = recorrerLinea(linea, buscarGramatica(gramatica.InstruccionGramatica[contGram], true), rangoInicialEnLinea);
+                                string reemplazo;
+                                if(gramatica.InstruccionGramatica[contGram].Contains("_")) {
+                                    reemplazo= recorrerLinea(linea, buscarGramatica(gramatica.InstruccionGramatica[contGram], true), rangoInicialEnLinea);
 
-                                if(reemplazo != null) { //Si regresa un token, asignalo y busca con nueva
+                                } else {
+                                    reemplazo= recorrerLinea(linea, buscarGramatica(gramatica.InstruccionGramatica[contGram], false), rangoInicialEnLinea);
+
+                                }
+
+                                if(reemplazo != null && !reemplazo.Equals("ERR")) { //Si regresa un token, asignalo y busca con nueva
                                     if(!reemplazo.Equals("S")) { //Si no has terminado, continua..
-                                        // ... Reemplazar los tokens de la linea por la PK de la gramatica
+
+
                                         int rangoInicialAux = rangoInicialEnLinea, rangoFinal = gramatica.Longitud + rangoInicialEnLinea;
+
+
+                                        // ... Reemplazar los tokens de la linea por la PK de la gramatica
                                         linea[rangoInicialAux++] = reemplazo;
-                                        for(int x = rangoInicialAux; x <= rangoFinal; x++) {
-                                            linea.RemoveAt(rangoInicialAux);
-                                        }// ...
+                                        if(gramaticaGlobalAuxiliar.Longitud != 1) { //Si la gramatica tiene mas de un elemento, elimina esos n elementos                  
+                                            //int rangoInicialAux = posicionActual, rangoFinal = gramatica.Longitud + posicionActual;
+                                            for(int x = rangoInicialAux; x < rangoFinal; x++) {
+                                                linea.RemoveAt(rangoInicialAux);
+                                            }// ...
+                                        }
+
+
 
                                         guardarResultadoFinal(linea);
                                         return recorrerLinea(linea, null, -1);
@@ -115,6 +132,13 @@ namespace Interfaz.Clases.Facade {
                                         return reemplazo;
                                     }
                                 }
+                                
+                                
+                                
+                                
+                                //else { //No se logro nada, buscar otra solucion
+                                //    continue;
+                                //}
 
                                 reemplazable = false; //Si regresa nulo, salte, por aqui no es
                                 break;
@@ -145,8 +169,10 @@ namespace Interfaz.Clases.Facade {
                         }
 
                         if(reemplazable && contGram == gramatica.Longitud) {
-                            if(buscoGramaticaEspecifica)
+                            if(buscoGramaticaEspecifica) {
+                                gramaticaGlobalAuxiliar = gramatica;
                                 return gramatica.PK; //Si busco una gramatica y si fue reemplazable, regresa el pk para que se asigne
+                            }
 
                             // ... Reemplazar los tokens de la linea por la PK de la gramatica
                             int rangoInicialAux = linea.Count - rangoBusqueda, rangoFinal = rangoBusqueda - 2;
@@ -222,9 +248,7 @@ namespace Interfaz.Clases.Facade {
         private List<string> buscarUnicaVariableGramaticaAuxiliar(string gramaticaPK, List<string> linea, int posicionActual) {
             string token = linea[posicionActual];
 
-            int xx = 0;
             foreach(Gramatica gramatica in gramaticasAuxiliaresVariable) { //Recorre todas las gramaticas auxiliares de tipo variable
-                xx++;
                 if(gramatica.PK.Equals(gramaticaPK)) {
                         if(gramatica.InstruccionGramatica[0].Equals(token)) { //La encontraste, regresala
                         return new List<string> { gramaticaPK };
@@ -327,7 +351,10 @@ namespace Interfaz.Clases.Facade {
         }
 
 
-
+        private bool esInstruccion(string token) {
+            string kk = token.Substring(0, 2);
+            return "IN".Equals(kk);
+        }
 
 
 
@@ -338,8 +365,8 @@ namespace Interfaz.Clases.Facade {
 
             //Iniciales
             //gramaticaAux.Add(new Gramatica("IN", new List<string> { "VAL-ALL" }, true));
-            gramaticaAux.Add(new Gramatica("IN_1", new List<string> { "INICIO" }, true));
-            gramaticaAux.Add(new Gramatica("IN_2", new List<string> { "FIN" }, true));
+            //gramaticaAux.Add(new Gramatica("IN_1", new List<string> { "INICIO" }, true));
+            //gramaticaAux.Add(new Gramatica("IN_2", new List<string> { "FIN" }, true));
             //gramaticaAux.Add(new Gramatica("IN_3", new List<string> { "VAL-ALLC" }, true));
             //gramaticaAux.Add(new Gramatica("IN_4", new List<string> { "VAL-ALLS" }, true));
 
@@ -348,8 +375,8 @@ namespace Interfaz.Clases.Facade {
             gramaticaAux.Add(new Gramatica("INP6", new List<string> { "PRI3" }, true));
             gramaticaAux.Add(new Gramatica("CE8", new List<string> { "CE8" }, true));
             gramaticaAux.Add(new Gramatica("INO_2", new List<string> { "VAL-2" }, true));
-            gramaticaAux.Add(new Gramatica("INC_2", new List<string> { "VAL-1" }, true));
-         //   gramaticaAux.Add(new Gramatica("INCOND", new List<string> { "VAL-CONDIC" }, false));
+            //gramaticaAux.Add(new Gramatica("INC_2", new List<string> { "VAL-1" }, true));
+            gramaticaAux.Add(new Gramatica("INCOND", new List<string> { "VAL-CONDIC" }, false));
 
             gramaticaAux.Add(new Gramatica("INP4_1", new List<string> { "PRI17", "CE8" }, true));
             gramaticaAux.Add(new Gramatica("INP1", new List<string> { "PRI7", "IDEN" }, true));
@@ -366,9 +393,9 @@ namespace Interfaz.Clases.Facade {
             gramaticaAux.Add(new Gramatica("INP6_3", new List<string> { "CE9", "PRI3", "CE8" }, true));
             gramaticaAux.Add(new Gramatica("INS", new List<string> { "PRI4", "IDEN", "CE13" }, true));
             gramaticaAux.Add(new Gramatica("INP1_1", new List<string> { "PRI7", "IDEN", "CE8" }, true));
-            gramaticaAux.Add(new Gramatica("INR", new List<string> { "INO", "VAL-OPRA", "INO" }, true));
-            gramaticaAux.Add(new Gramatica("INS_1", new List<string> { "PRI5", "VAL-5", "CE13" }, true));
             gramaticaAux.Add(new Gramatica("INI_2", new List<string> { "PRI6", "PRV1", "INI_1" }, true));
+            //gramaticaAux.Add(new Gramatica("INR", new List<string> { "INO", "VAL-OPRA", "INO" }, true));
+            gramaticaAux.Add(new Gramatica("INS_1", new List<string> { "PRI5", "VAL-5", "CE13" }, true));
             gramaticaAux.Add(new Gramatica("INP1_2", new List<string> { "PRI8", "VAL-3", "OPR2" }, true));
             gramaticaAux.Add(new Gramatica("INO", new List<string> { "VAL-2", "VAL-OPAA", "VAL-2" }, true));
             gramaticaAux.Add(new Gramatica("INC", new List<string> { "VAL-1", "VAL-OPLA", "VAL-1" }, true));
@@ -425,6 +452,7 @@ namespace Interfaz.Clases.Facade {
             List<Gramatica> gramaticaAux = new List<Gramatica>();
 
             gramaticaAux.Add(new Gramatica("VAL-1", new List<string> { "CADENA" }, false));
+           // gramaticaAux.Add(new Gramatica("VAL-1", new List<string> { "VAL-2" }, false));
             gramaticaAux.Add(new Gramatica("VAL-2", new List<string> { "IDEN" }, false));
             gramaticaAux.Add(new Gramatica("VAL-3", new List<string> { "CADENA" }, false));
             gramaticaAux.Add(new Gramatica("VAL-4", new List<string> { "IDEN" }, false));
@@ -453,7 +481,8 @@ namespace Interfaz.Clases.Facade {
             gramaticaAux.Add(new Gramatica("VAL-2", new List<string> { "VAL-CONST" }, false));
             gramaticaAux.Add(new Gramatica("VAL-3", new List<string> { "VAL-2" }, false));
             gramaticaAux.Add(new Gramatica("VAL-4", new List<string> { "VAL-PRB" }, false));
-            gramaticaAux.Add(new Gramatica("VAL-CONDIC", new List<string> { "VAL-PRB" }, false));
+            gramaticaAux.Add(new Gramatica("VAL-CONDIC", new List<string> { "PRB1" }, false));
+            gramaticaAux.Add(new Gramatica("VAL-CONDIC", new List<string> { "PRB2" }, false));
             gramaticaAux.Add(new Gramatica("VAL-ALLC", new List<string> { "VAL-ALL" }, false));
             gramaticaAux.Add(new Gramatica("VAL-ALLS", new List<string> { "VAL-ALL" }, false));
 
