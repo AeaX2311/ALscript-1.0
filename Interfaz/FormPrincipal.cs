@@ -37,7 +37,7 @@ namespace Interfaz {
 
         #region Acciones Click
         private void btnLimpiar_Click(object sender, EventArgs e) {
-            txtCodificacion.Text = txtLexico.Text = "";
+            txtCodificacion.Text = txtLexico.Text = txtSintaxis.Text = "";
             lblInfo.Text = "🖋";
             txtCodificacion.ReadOnly = false;
             dgvIdentificadores.Rows.Clear();
@@ -174,8 +174,10 @@ namespace Interfaz {
         /// <param name="palabras">Las palabras que se van a pintar</param>
         private void pintar(List<string> palabras) {
             palabras.ForEach(palabra => {
-                txtCodificacion.Select(txtCodificacion.Text.IndexOf(palabra), palabra.Length);
-                txtCodificacion.SelectionColor = Color.Red;
+                try {
+                    txtCodificacion.Select(txtCodificacion.Text.IndexOf(palabra), palabra.Length);
+                    txtCodificacion.SelectionColor = Color.Red;
+                } catch (Exception) { }
             });
         }
 
