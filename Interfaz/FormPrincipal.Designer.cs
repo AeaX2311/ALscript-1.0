@@ -70,30 +70,36 @@ namespace Interfaz {
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.lblInfo);
             this.groupBox1.Controls.Add(this.txtNumeracionCodificacion);
             this.groupBox1.Controls.Add(this.txtCodificacion);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(615, 678);
+            this.groupBox1.Size = new System.Drawing.Size(615, 217);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Codificación";
             // 
             // lblInfo
             // 
+            this.lblInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblInfo.AutoSize = true;
             this.lblInfo.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInfo.ForeColor = System.Drawing.Color.Teal;
-            this.lblInfo.Location = new System.Drawing.Point(551, 632);
+            this.lblInfo.Location = new System.Drawing.Point(551, 171);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(58, 40);
+            this.lblInfo.Size = new System.Drawing.Size(57, 40);
             this.lblInfo.TabIndex = 1001;
             this.lblInfo.Text = "🖋️";
             // 
             // txtNumeracionCodificacion
             // 
+            this.txtNumeracionCodificacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNumeracionCodificacion.BackColor = System.Drawing.Color.LightGray;
             this.txtNumeracionCodificacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNumeracionCodificacion.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -102,7 +108,7 @@ namespace Interfaz {
             this.txtNumeracionCodificacion.Name = "txtNumeracionCodificacion";
             this.txtNumeracionCodificacion.ReadOnly = true;
             this.txtNumeracionCodificacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.txtNumeracionCodificacion.Size = new System.Drawing.Size(50, 644);
+            this.txtNumeracionCodificacion.Size = new System.Drawing.Size(50, 183);
             this.txtNumeracionCodificacion.TabIndex = 1000;
             this.txtNumeracionCodificacion.TabStop = false;
             this.txtNumeracionCodificacion.Text = "";
@@ -111,13 +117,17 @@ namespace Interfaz {
             // 
             // txtCodificacion
             // 
+            this.txtCodificacion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCodificacion.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtCodificacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCodificacion.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodificacion.ForeColor = System.Drawing.Color.Black;
             this.txtCodificacion.Location = new System.Drawing.Point(41, 28);
             this.txtCodificacion.Name = "txtCodificacion";
-            this.txtCodificacion.Size = new System.Drawing.Size(568, 644);
+            this.txtCodificacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Horizontal;
+            this.txtCodificacion.Size = new System.Drawing.Size(568, 183);
             this.txtCodificacion.TabIndex = 1;
             this.txtCodificacion.TabStop = false;
             this.txtCodificacion.Text = "";
@@ -129,10 +139,11 @@ namespace Interfaz {
             // 
             // btnCompilar
             // 
+            this.btnCompilar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCompilar.BackColor = System.Drawing.Color.LightGreen;
             this.btnCompilar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCompilar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCompilar.Location = new System.Drawing.Point(633, 237);
+            this.btnCompilar.Location = new System.Drawing.Point(633, 123);
             this.btnCompilar.Name = "btnCompilar";
             this.btnCompilar.Size = new System.Drawing.Size(106, 54);
             this.btnCompilar.TabIndex = 2;
@@ -142,11 +153,12 @@ namespace Interfaz {
             // 
             // btnLimpiar
             // 
+            this.btnLimpiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLimpiar.BackColor = System.Drawing.Color.OrangeRed;
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLimpiar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLimpiar.Location = new System.Drawing.Point(633, 357);
+            this.btnLimpiar.Location = new System.Drawing.Point(633, 243);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(106, 54);
             this.btnLimpiar.TabIndex = 3;
@@ -156,18 +168,23 @@ namespace Interfaz {
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.txtNumeracionCompilacion);
             this.groupBox2.Controls.Add(this.txtLexico);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(745, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(607, 331);
+            this.groupBox2.Size = new System.Drawing.Size(607, 217);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Lexico";
             // 
             // txtNumeracionCompilacion
             // 
+            this.txtNumeracionCompilacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNumeracionCompilacion.BackColor = System.Drawing.Color.LightGray;
             this.txtNumeracionCompilacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNumeracionCompilacion.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -176,7 +193,7 @@ namespace Interfaz {
             this.txtNumeracionCompilacion.Name = "txtNumeracionCompilacion";
             this.txtNumeracionCompilacion.ReadOnly = true;
             this.txtNumeracionCompilacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.txtNumeracionCompilacion.Size = new System.Drawing.Size(50, 297);
+            this.txtNumeracionCompilacion.Size = new System.Drawing.Size(50, 183);
             this.txtNumeracionCompilacion.TabIndex = 1001;
             this.txtNumeracionCompilacion.Text = "";
             this.txtNumeracionCompilacion.FontChanged += new System.EventHandler(this.txtNumeracionCompilacion_FontChanged);
@@ -184,6 +201,9 @@ namespace Interfaz {
             // 
             // txtLexico
             // 
+            this.txtLexico.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLexico.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtLexico.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtLexico.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -191,7 +211,7 @@ namespace Interfaz {
             this.txtLexico.Location = new System.Drawing.Point(41, 28);
             this.txtLexico.Name = "txtLexico";
             this.txtLexico.ReadOnly = true;
-            this.txtLexico.Size = new System.Drawing.Size(560, 297);
+            this.txtLexico.Size = new System.Drawing.Size(560, 183);
             this.txtLexico.TabIndex = 9;
             this.txtLexico.Text = "";
             this.txtLexico.WordWrap = false;
@@ -375,10 +395,11 @@ namespace Interfaz {
             // 
             // btnGuardarArchivoToken
             // 
+            this.btnGuardarArchivoToken.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGuardarArchivoToken.BackColor = System.Drawing.Color.LightGreen;
             this.btnGuardarArchivoToken.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGuardarArchivoToken.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarArchivoToken.Location = new System.Drawing.Point(1167, 701);
+            this.btnGuardarArchivoToken.Location = new System.Drawing.Point(1167, 441);
             this.btnGuardarArchivoToken.Name = "btnGuardarArchivoToken";
             this.btnGuardarArchivoToken.Size = new System.Drawing.Size(185, 54);
             this.btnGuardarArchivoToken.TabIndex = 6;
@@ -391,7 +412,7 @@ namespace Interfaz {
             this.btnGuardarCodigo.BackColor = System.Drawing.Color.LightGreen;
             this.btnGuardarCodigo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGuardarCodigo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarCodigo.Location = new System.Drawing.Point(12, 696);
+            this.btnGuardarCodigo.Location = new System.Drawing.Point(12, 235);
             this.btnGuardarCodigo.Name = "btnGuardarCodigo";
             this.btnGuardarCodigo.Size = new System.Drawing.Size(120, 54);
             this.btnGuardarCodigo.TabIndex = 4;
@@ -405,7 +426,7 @@ namespace Interfaz {
             this.btnCargarCodigo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCargarCodigo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCargarCodigo.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCargarCodigo.Location = new System.Drawing.Point(138, 696);
+            this.btnCargarCodigo.Location = new System.Drawing.Point(138, 235);
             this.btnCargarCodigo.Name = "btnCargarCodigo";
             this.btnCargarCodigo.Size = new System.Drawing.Size(120, 54);
             this.btnCargarCodigo.TabIndex = 5;
@@ -415,10 +436,11 @@ namespace Interfaz {
             // 
             // btnModificar
             // 
+            this.btnModificar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnModificar.BackColor = System.Drawing.Color.Orange;
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnModificar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(633, 297);
+            this.btnModificar.Location = new System.Drawing.Point(633, 183);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(106, 54);
             this.btnModificar.TabIndex = 11;
@@ -428,17 +450,22 @@ namespace Interfaz {
             // 
             // groupBox5
             // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Controls.Add(this.txtSintaxis);
             this.groupBox5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(745, 353);
+            this.groupBox5.Location = new System.Drawing.Point(745, 277);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(607, 331);
+            this.groupBox5.Size = new System.Drawing.Size(607, 158);
             this.groupBox5.TabIndex = 1002;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Sintaxis";
             // 
             // txtSintaxis
             // 
+            this.txtSintaxis.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSintaxis.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtSintaxis.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSintaxis.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -446,18 +473,20 @@ namespace Interfaz {
             this.txtSintaxis.Location = new System.Drawing.Point(6, 28);
             this.txtSintaxis.Name = "txtSintaxis";
             this.txtSintaxis.ReadOnly = true;
-            this.txtSintaxis.Size = new System.Drawing.Size(595, 297);
+            this.txtSintaxis.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Horizontal;
+            this.txtSintaxis.Size = new System.Drawing.Size(595, 124);
             this.txtSintaxis.TabIndex = 9;
             this.txtSintaxis.Text = "";
             this.txtSintaxis.WordWrap = false;
             // 
             // btnSintaxis
             // 
+            this.btnSintaxis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSintaxis.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btnSintaxis.Enabled = false;
             this.btnSintaxis.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSintaxis.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSintaxis.Location = new System.Drawing.Point(633, 417);
+            this.btnSintaxis.Location = new System.Drawing.Point(633, 303);
             this.btnSintaxis.Name = "btnSintaxis";
             this.btnSintaxis.Size = new System.Drawing.Size(106, 54);
             this.btnSintaxis.TabIndex = 1003;
@@ -470,7 +499,7 @@ namespace Interfaz {
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1368, 992);
+            this.ClientSize = new System.Drawing.Size(1368, 507);
             this.Controls.Add(this.btnSintaxis);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.btnModificar);
@@ -485,7 +514,6 @@ namespace Interfaz {
             this.Controls.Add(this.groupBox1);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "FormPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Compilador ALscript";
