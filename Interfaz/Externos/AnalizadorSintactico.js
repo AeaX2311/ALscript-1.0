@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 const gramaticasIf = {
   VAL_CONSTANTE: [
     "CONSTENT",
@@ -6,45 +8,51 @@ const gramaticasIf = {
     "CE6 CONSTENT CE7",
     "CE6 CONSTEX CE7",
     "CE6 CONSTRE CE7",
-    "CE6 VAL_CONSTANTE CE7"
+    "CE6 VAL_CONSTANTE CE7",
   ],
 
-  VAL_BOLEANO:[
+  VAL_BOLEANO: [
     "PRB1",
     "PRB2",
     "CE6 PRB1 CE7",
     "CE6 PRB2 CE7",
-    "CE6 VAL_BOLEANO CE7"
+    "CE6 VAL_BOLEANO CE7",
   ],
 
   IN_IO: [
     "PRI4 IDEN CE13",
     "PRI5 OP_CONDICION CE13",
-    "PRI5 OP_CADENA_CONCATENACION CE13", 
-    "PRI5 CADENA CE13", 
-    "PRI5 VAL_CONSTANTE CE13", 
+    "PRI5 OP_CADENA_CONCATENACION CE13",
+    "PRI5 CE6 OP_CADENA_CONCATENACION CE7 CE13",
+    "PRI5 CADENA CE13",
+    "PRI5 VAL_CONSTANTE CE13",
+    "PRI5 IDEN CE13",
+    "PRI5 CE6 IDEN CE7 CE13",
+    "PRI5 OP_ARITMETICA CE13",
+    "PRI5 CE6 OPA1 IDEN CE7 CE13",
+    "PRI5 OPA1 IDEN CE13",
+    "PRI5 CE6 OPA2 IDEN CE7 CE13",
+    "PRI5 OPA2 IDEN CE13",
   ],
 
-  IN_COMENTARIO: [
-    "COMENTARIO"
-  ],
+  IN_COMENTARIO: ["COMENTARIO"],
 
   IN_ASIGNACION: [
     "PRI6 PRV1 IDEN CE13",
-    
+
     "PRI6 PRV1 IDEN ASIG IDEN CE13",
     "PRI6 PRV1 IDEN ASIG VAL_CONSTANTE CE13",
     "PRI6 PRV1 IDEN ASIG OP_CADENA_CONCATENACION CE13",
     "PRI6 PRV1 IDEN ASIG OP_CONDICION CE13",
     "PRI6 PRV1 IDEN ASIG OP_ARITMETICA CE13",
-    
+
     "IDEN ASIG VAL_CONSTANTE CE13",
     "IDEN ASIG OP_CADENA_CONCATENACION CE13",
     "IDEN ASIG OP_CONDICION CE13",
     "IDEN ASIG IDEN CE13",
-    "IDEN ASIG OP_ARITMETICA CE13"
+    "IDEN ASIG OP_ARITMETICA CE13",
   ],
-  
+
   IN_SI: [
     "PRI2 OP_CONDICION CE8", //IF CONDICION {
     "PRI2 OP_CONDICION", //IF VALOR
@@ -54,11 +62,11 @@ const gramaticasIf = {
     "PRI3 CE8", //ELSE {
     "CE9 PRI3", //ELSE
     "PRI3", //ELSE
-    "CE9 PRI3 PRI2 OP_CONDICION CE8",  //ELSE IF VALOR {
-    "PRI3 PRI2 OP_CONDICION CE8",  //ELSE IF VALOR {
-    "CE9 PRI3 PRI2 OP_CONDICION",  //ELSE IF VALOR 
-    "PRI3 PRI2 OP_CONDICION",  //ELSE IF VALOR 
-    "CE9 PRI3 PRI2 OP_CONDICION",  //ELSE IF VALOR 
+    "CE9 PRI3 PRI2 OP_CONDICION CE8", //ELSE IF VALOR {
+    "PRI3 PRI2 OP_CONDICION CE8", //ELSE IF VALOR {
+    "CE9 PRI3 PRI2 OP_CONDICION", //ELSE IF VALOR
+    "PRI3 PRI2 OP_CONDICION", //ELSE IF VALOR
+    "CE9 PRI3 PRI2 OP_CONDICION", //ELSE IF VALOR
     "PRI3 PRI2 IDEN CE8", //ELSE IF IDEN
     "CE9 PRI3 PRI2 IDEN CE8", //ELSE IF IDEN
     "PRI3 PRI2 IDEN", //ELSE IF IDEN
@@ -79,9 +87,7 @@ const gramaticasIf = {
     "AUX_CICLO CE13 IDEN ASIG OP_ARITMETICA",
   ],
 
-  IN_CICLO: [
-    "AUX_CICLO CE7 CE8"
-  ],
+  IN_CICLO: ["AUX_CICLO CE7 CE8"],
 
   IN_MIENTRAS: [
     "PRI18",
@@ -99,20 +105,13 @@ const gramaticasIf = {
 
     "PRI9 CE13",
 
-    "PRI12 OPR2"
+    "PRI12 OPR2",
   ],
 
-  AUX_OPA:[
-    "OPA1",
-    "OPA2",
-    "OPA3",
-    "OPA4",
-    "OPA5",
-    "OPA6",
-  ],
+  AUX_OPA: ["OPA1", "OPA2", "OPA3", "OPA4", "OPA5", "OPA6"],
 
   OP_ARITMETICA: [
-    "VAL_CONSTANTE AUX_OPA VAL_CONSTANTE", 
+    "VAL_CONSTANTE AUX_OPA VAL_CONSTANTE",
     "IDEN AUX_OPA IDEN",
     "IDEN AUX_OPA VAL_CONSTANTE",
     "VAL_CONSTANTE AUX_OPA IDEN",
@@ -123,25 +122,17 @@ const gramaticasIf = {
     "VAL_CONSTANTE AUX_OPA OP_ARITMETICA",
     "OP_ARITMETICA AUX_OPA VAL_CONSTANTE",
 
-    "CE6 OP_ARITMETICA CE7"
+    "CE6 OP_ARITMETICA CE7",
   ],
 
-  AUX_OPR:[
-    "OPR1",
-    "OPR2",
-    "OPR3",
-    "OPR4"
-  ],
-  
-  AUX_OPR2:[
-    "OPR5",
-    "OPR6"
-  ],
+  AUX_OPR: ["OPR1", "OPR2", "OPR3", "OPR4"],
+
+  AUX_OPR2: ["OPR5", "OPR6"],
 
   OP_RELACIONAL: [
-    "VAL_CONSTANTE AUX_OPR VAL_CONSTANTE",  
-    "IDEN AUX_OPR IDEN", 
-    "IDEN AUX_OPR VAL_CONSTANTE",     
+    "VAL_CONSTANTE AUX_OPR VAL_CONSTANTE",
+    "IDEN AUX_OPR IDEN",
+    "IDEN AUX_OPR VAL_CONSTANTE",
     "VAL_CONSTANTE AUX_OPR IDEN",
 
     "OP_RELACIONAL AUX_OPR OP_RELACIONAL",
@@ -152,20 +143,20 @@ const gramaticasIf = {
 
     "CE6 OP_RELACIONAL CE7",
 
-    "OP_ARITMETICA AUX_OPR OP_RELACIONAL", 
-    "OP_RELACIONAL AUX_OPR OP_ARITMETICA", 
+    "OP_ARITMETICA AUX_OPR OP_RELACIONAL",
+    "OP_RELACIONAL AUX_OPR OP_ARITMETICA",
 
-    "OP_ARITMETICA AUX_OPR IDEN", 
-    "IDEN AUX_OPR OP_ARITMETICA", 
+    "OP_ARITMETICA AUX_OPR IDEN",
+    "IDEN AUX_OPR OP_ARITMETICA",
 
-    "OP_ARITMETICA AUX_OPR VAL_CONSTANTE", 
-    "VAL_CONSTANTE AUX_OPR OP_ARITMETICA", 
+    "OP_ARITMETICA AUX_OPR VAL_CONSTANTE",
+    "VAL_CONSTANTE AUX_OPR OP_ARITMETICA",
 
     "OP_ARITMETICA AUX_OPR OP_ARITMETICA",
 
-    "VAL_CONSTANTE AUX_OPR2 VAL_CONSTANTE",  
-    "IDEN AUX_OPR2 IDEN", 
-    "IDEN AUX_OPR2 VAL_CONSTANTE",     
+    "VAL_CONSTANTE AUX_OPR2 VAL_CONSTANTE",
+    "IDEN AUX_OPR2 IDEN",
+    "IDEN AUX_OPR2 VAL_CONSTANTE",
     "VAL_CONSTANTE AUX_OPR2 IDEN",
 
     "OP_RELACIONAL AUX_OPR2 OP_RELACIONAL",
@@ -176,22 +167,19 @@ const gramaticasIf = {
 
     "CE6 OP_RELACIONAL CE7",
 
-    "OP_ARITMETICA AUX_OPR2 OP_RELACIONAL", 
-    "OP_RELACIONAL AUX_OPR2 OP_ARITMETICA", 
+    "OP_ARITMETICA AUX_OPR2 OP_RELACIONAL",
+    "OP_RELACIONAL AUX_OPR2 OP_ARITMETICA",
 
-    "OP_ARITMETICA AUX_OPR2 IDEN", 
-    "IDEN AUX_OPR2 OP_ARITMETICA", 
+    "OP_ARITMETICA AUX_OPR2 IDEN",
+    "IDEN AUX_OPR2 OP_ARITMETICA",
 
-    "OP_ARITMETICA AUX_OPR2 VAL_CONSTANTE", 
-    "VAL_CONSTANTE AUX_OPR2 OP_ARITMETICA", 
+    "OP_ARITMETICA AUX_OPR2 VAL_CONSTANTE",
+    "VAL_CONSTANTE AUX_OPR2 OP_ARITMETICA",
 
-    "OP_ARITMETICA AUX_OPR2 OP_ARITMETICA"
+    "OP_ARITMETICA AUX_OPR2 OP_ARITMETICA",
   ],
 
-  AUX_OPL:[
-    "OPL2",
-    "OPL3"
-  ],
+  AUX_OPL: ["OPL2", "OPL3"],
 
   OP_LOGICA: [
     //NOT
@@ -210,13 +198,13 @@ const gramaticasIf = {
     "OP_RELACIONAL AUX_OPL OP_RELACIONAL",
     "VAL_CONSTANTE AUX_OPL VAL_CONSTANTE",
     "OP_CADENA_COMPARACION AUX_OPL OP_CADENA_COMPARACION",
-    
+
     "VAL_CONSTANTE AUX_OPL IDEN",
     "VAL_CONSTANTE AUX_OPL VAL_BOLEANO",
     "VAL_CONSTANTE AUX_OPL OP_LOGICA",
     "VAL_CONSTANTE AUX_OPL OP_RELACIONAL",
     "VAL_CONSTANTE AUX_OPL OP_CADENA_COMPARACION",
-    
+
     "IDEN AUX_OPL VAL_BOLEANO",
     "IDEN AUX_OPL OP_LOGICA",
     "IDEN AUX_OPL OP_RELACIONAL",
@@ -234,27 +222,27 @@ const gramaticasIf = {
     "OP_LOGICA AUX_OPL OP_RELACIONAL",
     "OP_LOGICA AUX_OPL VAL_CONSTANTE",
     "OP_LOGICA AUX_OPL OP_CADENA_COMPARACION",
-    
+
     "OP_RELACIONAL AUX_OPL IDEN",
     "OP_RELACIONAL AUX_OPL VAL_BOLEANO",
     "OP_RELACIONAL AUX_OPL OP_LOGICA",
     "OP_RELACIONAL AUX_OPL VAL_CONSTANTE",
     "OP_RELACIONAL AUX_OPL OP_CADENA_COMPARACION",
-    
+
     "OP_CADENA_COMPARACION AUX_OPL IDEN",
     "OP_CADENA_COMPARACION AUX_OPL VAL_BOLEANO",
     "OP_CADENA_COMPARACION AUX_OPL OP_LOGICA",
     "OP_CADENA_COMPARACION AUX_OPL VAL_CONSTANTE",
     "OP_CADENA_COMPARACION AUX_OPL OP_RELACIONAL",
 
-    "CE6 OPL_LOGICA CE7"
+    "CE6 OPL_LOGICA CE7",
   ],
 
-  OP_CADENA_CONCATENACION:[
+  OP_CADENA_CONCATENACION: [
     "CADENA OPA1 CADENA",
     "CADENA OPA1 IDEN",
     "IDEN OPA1 CADENA",
-    "CE6 CADENA CE7"
+    "CE6 CADENA CE7",
   ],
 
   OP_CADENA_COMPARACION: [
@@ -264,7 +252,7 @@ const gramaticasIf = {
     "CADENA AUX_OPR2 CADENA",
     "CADENA AUX_OPR2 IDEN",
     "IDEN AUX_OPR2 CADENA",
-    "CE6 OP_CADENA_COMPARACION CE7"
+    "CE6 OP_CADENA_COMPARACION CE7",
   ],
 
   OP_CONDICION: [
@@ -275,12 +263,12 @@ const gramaticasIf = {
 
     "OP_CONDICION AUX_OPL OP_CONDICION",
     "OP_CADENA_COMPARACION AUX_OPL OP_CADENA_COMPARACION",
-    
+
     "OP_CONDICION AUX_OPL OP_RELACIONAL",
     "OP_CONDICION AUX_OPL OP_LOGICA",
     "OP_CONDICION AUX_OPL OP_CADENA_COMPARACION",
     "OP_CONDICION AUX_OPL VAL_BOLEANO",
-    
+
     "OP_RELACIONAL AUX_OPL OP_CONDICION",
     "OP_LOGICA AUX_OPL OP_CONDICION",
     "OP_CADENA_COMPARACION AUX_OPL OP_CONDICION",
@@ -288,12 +276,12 @@ const gramaticasIf = {
 
     "OP_CONDICION AUX_OPR2 OP_CONDICION",
     "OP_CADENA_COMPARACION AUX_OPR2 OP_CADENA_COMPARACION",
-    
+
     "OP_CONDICION AUX_OPR2 OP_RELACIONAL",
     "OP_CONDICION AUX_OPR2 OP_LOGICA",
     "OP_CONDICION AUX_OPR2 OP_CADENA_COMPARACION",
     "OP_CONDICION AUX_OPR2 VAL_BOLEANO",
-    
+
     "OP_RELACIONAL AUX_OPR2 OP_CONDICION",
     "OP_LOGICA AUX_OPR2 OP_CONDICION",
     "OP_CADENA_COMPARACION AUX_OPR2 OP_CONDICION",
@@ -302,9 +290,9 @@ const gramaticasIf = {
     "OPL1 OP_CONDICION",
     "CE6 OPL1 OP_CONDICION CE7",
 
-    "CE6 OP_CONDICION CE7"
+    "CE6 OP_CONDICION CE7",
   ],
-  
+
   IN_AUXILIARES: [
     "CE8", //{
     "CE9 CE13", //};
@@ -318,47 +306,74 @@ const gramaticasIf = {
     "IN_SEGUN",
     "IN_IO",
     "IN_COMENTARIO",
-    "IN_AUXILIARES"
-  ]
+    "IN_AUXILIARES",
+  ],
 };
 
 let evaluacionSintaxis = "";
 const reduceCadena = (origen, puntero, fin, nuevo) => {
   const origenTokens = origen.split(" ");
-  return origenTokens.slice(0, puntero).concat([`${nuevo}`]).concat(origenTokens.slice(fin, origenTokens.length)).join(" ");
-}
+  return origenTokens
+    .slice(0, puntero)
+    .concat([`${nuevo}`])
+    .concat(origenTokens.slice(fin, origenTokens.length))
+    .join(" ");
+};
 
 function recorridoCadenaTokens(tokensInput) {
-  let tokensInputToArray = tokensInput.split(" "), longitudTokens = tokensInputToArray.length;
+  let tokensInputToArray = tokensInput.split(" "),
+    longitudTokens = tokensInputToArray.length;
   evaluacionSintaxis += "-->  " + tokensInput + "\n";
 
-  for (let contLongitud = longitudTokens - 1; contLongitud >= 0; contLongitud--) {
+  for (
+    let contLongitud = longitudTokens - 1;
+    contLongitud >= 0;
+    contLongitud--
+  ) {
     for (const [k, v] of Object.entries(gramaticasIf)) {
-      for (let puntero = 0; puntero < longitudTokens - contLongitud; puntero++) {
+      for (
+        let puntero = 0;
+        puntero < longitudTokens - contLongitud;
+        puntero++
+      ) {
         const fin = contLongitud + puntero + 1;
-        if (v.find((e) => e === tokensInputToArray.slice(puntero, fin).join(" "))) {
+        if (
+          v.find((e) => e === tokensInputToArray.slice(puntero, fin).join(" "))
+        ) {
           tokensInput = reduceCadena(tokensInput, puntero, fin, k);
-          return tokensInput === "S" ? tokensInput : recorridoCadenaTokens(tokensInput);
+          return tokensInput === "S"
+            ? tokensInput
+            : recorridoCadenaTokens(tokensInput);
         }
       }
     }
   }
-  
+
   return tokensInput;
 }
 
-  let loquelei = `PRI7 IDEN CE8
-  PRI8 CONSTENT OPR2
-  PRI9 CE13
-  PRI8 CADENA OPR2
-  PRI9 CE13
-  PRI12 OPR2
-  PRI9 CE13
-  CE9 CE13`;
+fs.readFile("lexicoTokens.tmpalscript", "utf-8", (err, data) => {
+  if (!err) {
+    const repairedData = data.replace(/[\r]+/g, '').trimEnd();
+    const manipulableData = repairedData.split("\n");
+    console.log(manipulableData);
+    for (const linea of manipulableData) {
+      if(linea === '') continue;
+      if (recorridoCadenaTokens(linea) === "S")
+        evaluacionSintaxis += "-->  S\n\n";
+      else evaluacionSintaxis += "-->  ERR\n\n";
+    }
 
-for (const linea of loquelei.split("\n")) {
-  if(recorridoCadenaTokens(linea) === "S") evaluacionSintaxis += "-->  S\n\n";
-  else evaluacionSintaxis += "-->  ERR\n\n";
-}
+    console.log(evaluacionSintaxis);
 
-console.log(evaluacionSintaxis);
+    fs.writeFile(
+      "sintaxisResult.tmpalscript",
+      evaluacionSintaxis.trimEnd(),
+      (err) => {
+        if (err) {
+          console.error("Algo sucedio");
+        }
+      }
+    );
+  }
+});
