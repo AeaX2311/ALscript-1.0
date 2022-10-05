@@ -20,8 +20,12 @@ const gramaticasIf = {
     "PRB2"
   ],
 
-  VALOR: [
+  VALOR1: [
     "CADENA",
+  ],
+
+  VALOR2:[
+    "CADENA"
   ],
 
   IN_IO: [
@@ -43,8 +47,8 @@ const gramaticasIf = {
     "PRI6 PRV1 IDEN CE13",
     //DECLARAR Y ASIGNAR
     "PRI6 PRV1 IDEN ASIG VAL_CONSTANTE CE13",
-    "PRI6 PRV1 IDEN ASIG VALOR CE13",
     "PRI6 PRV1 IDEN ASIG VAL_BOLEANO CE13",
+    "PRI6 PRV1 IDEN ASIG VALOR CE13",
     "PRI6 PRV1 IDEN ASIG OP_ARITMETICA CE13",
     "PRI6 PRV1 IDEN ASIG OP_CADENA_CONCATENACION CE13",
     "PRI6 PRV1 IDEN ASIG OP_CONDICION CE13",
@@ -89,24 +93,16 @@ const gramaticasIf = {
   ],
 
   OP_ARITMETICA: [
-    //CONSTANTES
     "VAL_CONSTANTE AUX_OPA VAL_CONSTANTE", 
-    //IDENTIFICADORES
     "IDEN AUX_OPA IDEN",
-    //VALOR
-    "VALOR AUX_OPA VALOR",
-    //IDENTIFICADORES DE IZQUIERDA, CONSTANTE DE DERECHA
     "IDEN AUX_OPA VAL_CONSTANTE",
-    //IDENTIFICADORES DE DERECHA, CONSTANTE DE IZQUIERDA
     "VAL_CONSTANTE AUX_OPA IDEN",
-    //VALORES DE IZQUIERDA CON CONSTANTES DE DERECHA
-    "VALOR AUX_OPA VAL_CONSTANTE", 
-    //VALORES DE DERECHA CON CONSTANTES DE ISQUIERDA
-    "VAL_CONSTANTE AUX_OPA VALOR",
-    //VALORES DE DERECHA CON IDENTIFICADORES DE IZQUIERDA
-    "VALOR AUX_OPA IDEN",
-    //VALORES DE IZQUIERDA CON IDENTIFICADORES DE DERECHA
-    "IDEN AUX_OPA VALOR",
+    "OP_ARITMETICA AUX_OPA OP_ARITMETICA",
+    "IDEN AUX_OPA OP_ARITMETICA",
+    "OP_ARITMETICA AUX_OPA IDEN",
+    "VAL_CONSTANTE AUX_OPA OP_ARITMETICA",
+    "OP_ARITMETICA AUX_OPA VAL_CONSTANTE",
+    "CE6 OP_ARITMETICA CE7"
   ],
 
   AUX_OPR:[
@@ -125,7 +121,7 @@ const gramaticasIf = {
     "IDEN AUX_OPR VAL_CONSTANTE",     
     "VAL_CONSTANTE AUX_OPR IDEN",
     "VALOR AUX_OPR VAL_CONSTANTE",
-    "VALOR AUX_OPR IDEN",
+      "VALOR AUX_OPR IDEN",
     "IDEN AUX_OPR VALOR",
     "VAL_CONSTANTE AUX_OPR VALOR",
     "OP_ARITMETICA AUX_OPR OP_ARITMETICA", 
@@ -251,38 +247,11 @@ const gramaticasIf = {
   ],
 
   OP_CADENA_COMPARACION: [
-    "CADENA OPR1 CADENA",
-    "CADENA OPR2 CADENA",
-    "CADENA OPR3 CADENA",
-    "CADENA OPR4 CADENA",
-    "CADENA OPR5 CADENA",
-    "CADENA OPR6 CADENA",
-      //CON IDEN
-    "CADENA OPR1 IDEN",
-    "CADENA OPR2 IDEN",
-    "CADENA OPR3 IDEN",
-    "CADENA OPR4 IDEN",
-    "CADENA OPR5 IDEN",
-    "CADENA OPR6 IDEN",
-    "IDEN   OPR1 CADENA",
-    "IDEN   OPR2 CADENA",
-    "IDEN   OPR3 CADENA",
-    "IDEN   OPR4 CADENA",
-    "IDEN   OPR5 CADENA",
-    "IDEN   OPR6 CADENA",
-      //CON VALOR
-    "CADENA OPR1 VALOR",
-    "CADENA OPR2 VALOR",
-    "CADENA OPR3 VALOR",
-    "CADENA OPR4 VALOR",
-    "CADENA OPR5 VALOR",
-    "CADENA OPR6 VALOR",
-    "VALOR  OPR1 CADENA",
-    "VALOR  OPR2 CADENA",
-    "VALOR  OPR3 CADENA",
-    "VALOR  OPR4 CADENA",
-    "VALOR  OPR5 CADENA",
-    "VALOR  OPR6 CADENA"    
+    "CADENA AUX_OPR CADENA",
+    "CADENA AUX_OPR IDEN",
+    "IDEN AUX_OPR CADENA",
+    "CADENA AUX_OPR VALOR",
+    "VALOR AUX_OPR CADENA", 
   ],
 
   OP_CONDICION: [
@@ -293,24 +262,20 @@ const gramaticasIf = {
   ]
 };
 
+let evaluacionSintaxis = "";
 const reduceCadena = (origen, puntero, fin, nuevo) => {
   const origenTokens = origen.split(" ");
-  const len = origenTokens.length;
-  const arrayRetorno = origenTokens.slice(0, puntero).concat([`${nuevo}`]);
-  const restante = origenTokens.slice(fin, len);
-
-  return arrayRetorno.concat(restante).join(" ");
-};
+  return origenTokens.slice(0, puntero).concat([`${nuevo}`]).concat(origenTokens.slice(fin, origenTokens.length)).join(" ");
+}
 
 function recorridoCadenaTokens(tokensInput) {
   let tokensInputToArray = tokensInput.split(" "), longitudTokens = tokensInputToArray.length;
+  evaluacionSintaxis += "-->  " + tokensInput + "\n";
 
-  console.log("-->  ", tokensInput);
-  
   for (let contLongitud = longitudTokens - 1; contLongitud >= 0; contLongitud--) {
     for (const [k, v] of Object.entries(gramaticasIf)) {
       for (let puntero = 0; puntero < longitudTokens - contLongitud; puntero++) {
-        const fin = contLongitud + puntero + 1;        
+        const fin = contLongitud + puntero + 1;
         if (v.find((e) => e === tokensInputToArray.slice(puntero, fin).join(" "))) {
           tokensInput = reduceCadena(tokensInput, puntero, fin, k);
           return tokensInput === "S" ? tokensInput : recorridoCadenaTokens(tokensInput);
@@ -318,21 +283,17 @@ function recorridoCadenaTokens(tokensInput) {
       }
     }
   }
+  
   return tokensInput;
 }
 
-const archivoTokens = `PRI6 PRV1 ASIG ASIG CONSTENT OPA2 IDEN CE13
-IDEN ASIG CONSTENT OPA1 PRB2 CE13
-COMENTARIO
-PRI2 IDEN CONSTENT OPR2 CONSTENT CE7`;
-// console.log(archivoTokens.split(" "))
-const lineasSeparadas = archivoTokens.split("\n");
+  let loquelei = `CONSTENT OPA1 CONSTENT
+  CONSTEX OPA1 CONSTENT OPA1 CONSTRE
+  PRI6 PRV1 IDEN ASIG CONSTENT OPA2 CONSTENT OPA3 CONSTENT OPA2 CONSTENT OPA3 CE6 CONSTENT OPA2 CONSTENT OPA1 CONSTENT CE7 CE13`;
 
-for (const linea of lineasSeparadas) {
-  if(recorridoCadenaTokens(linea) === "S")
-    console.log("-->   S");
-  else 
-    console.log("-->   ERR");
-
-  console.log("\n");
+for (const linea of loquelei.split("\n")) {
+  if(recorridoCadenaTokens(linea) === "S") evaluacionSintaxis += "-->  S\n\n";
+  else evaluacionSintaxis += "-->  ERR\n\n";
 }
+
+console.log(evaluacionSintaxis);
