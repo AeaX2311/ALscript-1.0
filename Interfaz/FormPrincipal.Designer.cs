@@ -79,7 +79,7 @@ namespace Interfaz {
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(615, 217);
+            this.groupBox1.Size = new System.Drawing.Size(615, 417);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Codificación";
@@ -90,9 +90,9 @@ namespace Interfaz {
             this.lblInfo.AutoSize = true;
             this.lblInfo.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInfo.ForeColor = System.Drawing.Color.Teal;
-            this.lblInfo.Location = new System.Drawing.Point(551, 171);
+            this.lblInfo.Location = new System.Drawing.Point(551, 371);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(57, 40);
+            this.lblInfo.Size = new System.Drawing.Size(58, 40);
             this.lblInfo.TabIndex = 1001;
             this.lblInfo.Text = "🖋️";
             // 
@@ -108,7 +108,7 @@ namespace Interfaz {
             this.txtNumeracionCodificacion.Name = "txtNumeracionCodificacion";
             this.txtNumeracionCodificacion.ReadOnly = true;
             this.txtNumeracionCodificacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.txtNumeracionCodificacion.Size = new System.Drawing.Size(50, 183);
+            this.txtNumeracionCodificacion.Size = new System.Drawing.Size(50, 383);
             this.txtNumeracionCodificacion.TabIndex = 1000;
             this.txtNumeracionCodificacion.TabStop = false;
             this.txtNumeracionCodificacion.Text = "";
@@ -127,7 +127,7 @@ namespace Interfaz {
             this.txtCodificacion.Location = new System.Drawing.Point(41, 28);
             this.txtCodificacion.Name = "txtCodificacion";
             this.txtCodificacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Horizontal;
-            this.txtCodificacion.Size = new System.Drawing.Size(568, 183);
+            this.txtCodificacion.Size = new System.Drawing.Size(568, 383);
             this.txtCodificacion.TabIndex = 1;
             this.txtCodificacion.TabStop = false;
             this.txtCodificacion.Text = "";
@@ -412,7 +412,7 @@ namespace Interfaz {
             this.btnGuardarCodigo.BackColor = System.Drawing.Color.LightGreen;
             this.btnGuardarCodigo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGuardarCodigo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarCodigo.Location = new System.Drawing.Point(12, 235);
+            this.btnGuardarCodigo.Location = new System.Drawing.Point(12, 440);
             this.btnGuardarCodigo.Name = "btnGuardarCodigo";
             this.btnGuardarCodigo.Size = new System.Drawing.Size(120, 54);
             this.btnGuardarCodigo.TabIndex = 4;
@@ -426,7 +426,7 @@ namespace Interfaz {
             this.btnCargarCodigo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCargarCodigo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCargarCodigo.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCargarCodigo.Location = new System.Drawing.Point(138, 235);
+            this.btnCargarCodigo.Location = new System.Drawing.Point(138, 440);
             this.btnCargarCodigo.Name = "btnCargarCodigo";
             this.btnCargarCodigo.Size = new System.Drawing.Size(120, 54);
             this.btnCargarCodigo.TabIndex = 5;
@@ -454,9 +454,9 @@ namespace Interfaz {
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Controls.Add(this.txtSintaxis);
             this.groupBox5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(745, 277);
+            this.groupBox5.Location = new System.Drawing.Point(745, 243);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(607, 158);
+            this.groupBox5.Size = new System.Drawing.Size(607, 192);
             this.groupBox5.TabIndex = 1002;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Sintaxis";
@@ -473,8 +473,7 @@ namespace Interfaz {
             this.txtSintaxis.Location = new System.Drawing.Point(6, 28);
             this.txtSintaxis.Name = "txtSintaxis";
             this.txtSintaxis.ReadOnly = true;
-            this.txtSintaxis.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Horizontal;
-            this.txtSintaxis.Size = new System.Drawing.Size(595, 124);
+            this.txtSintaxis.Size = new System.Drawing.Size(595, 158);
             this.txtSintaxis.TabIndex = 9;
             this.txtSintaxis.Text = "";
             this.txtSintaxis.WordWrap = false;
