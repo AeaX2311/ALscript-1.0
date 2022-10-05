@@ -8,6 +8,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace Interfaz {
     /// <summary>
@@ -16,7 +17,7 @@ namespace Interfaz {
     /// </summary>
     public partial class FormPrincipal : Form {
         LexicoFacade lexicoFacade;
-        SintaxisFacade sintaxisFacade;
+        SintaxisFacade sintaxisFacade = null;
         SaveFileDialog saveFileDialog = new SaveFileDialog();
 
         readonly OpenFileDialog openFileDialog = new OpenFileDialog() {
@@ -28,6 +29,7 @@ namespace Interfaz {
         public FormPrincipal() {
             InitializeComponent();
             inicializarRTXBX();
+            sintaxisFacade = new SintaxisFacade();
         }
 
         public FormPrincipal(string file) : this() {
@@ -67,7 +69,7 @@ namespace Interfaz {
         }
 
         private void btnSintaxis_Click(object sender, EventArgs e) {
-            string[] lines = txtLexico.Lines;
+            string[] lines = RemoverHashtags(txtLexico.Text);
             for (int i = 0; i < lines.Length; i++) {
                 lines[i] = lines[i].TrimEnd();
             }
@@ -96,6 +98,16 @@ namespace Interfaz {
             if (txtSintaxis.Text.Contains("ERR")) {
                 MessageBox.Show("Existen errores de sintaxis. Favor de revisar el codigo.", "Errores de sintaxis", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private string[] RemoverHashtags(string text) {
+            var nuevasLineas = new List<string>();
+            foreach(string linea in txtLexico.Lines) {
+                var temp = Regex.Replace(linea, @"\bIDEN#[0-9]+", "IDEN");
+                nuevasLineas.Add(temp);
+            }
+
+            return nuevasLineas.ToArray();
         }
 
         private void btnGuardarArchivoToken_Click(object sender, EventArgs e) {
