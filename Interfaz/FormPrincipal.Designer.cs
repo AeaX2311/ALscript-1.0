@@ -92,7 +92,7 @@ namespace Interfaz {
             this.lblInfo.ForeColor = System.Drawing.Color.Teal;
             this.lblInfo.Location = new System.Drawing.Point(551, 371);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(58, 40);
+            this.lblInfo.Size = new System.Drawing.Size(57, 40);
             this.lblInfo.TabIndex = 1001;
             this.lblInfo.Text = "🖋️";
             // 
@@ -147,7 +147,7 @@ namespace Interfaz {
             this.btnCompilar.Name = "btnCompilar";
             this.btnCompilar.Size = new System.Drawing.Size(106, 54);
             this.btnCompilar.TabIndex = 2;
-            this.btnCompilar.Text = "✔️\r\nCompilar";
+            this.btnCompilar.Text = "✔️\r\nLéxico";
             this.btnCompilar.UseVisualStyleBackColor = false;
             this.btnCompilar.Click += new System.EventHandler(this.btnCompilar_Click);
             // 
