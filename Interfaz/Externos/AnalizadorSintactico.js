@@ -1,99 +1,296 @@
 const gramaticasIf = {
   S: [
-    "PRHACER LLAVEABRIR",
-    "PRASIG PRV ASIGNACION CE;",
-    "PRASIG PRV IDEN CE;",
-    "ASIGNACION CE;",
-    "PRSI COND",
-    "PRWHILE COND",
-    "INICIO",
-    "FIN",
-    "LLAVEABRIR",
-    "LLAVECIERRE",
     "IN_ASIGNACION",
+    "IN_SI",
+    "IN_CICLO",
+    "IN_MIENTRAS",
+    "IN_SEGUN",
+    "IN_IO",
+    "IN_COMENTARIO"
+  ],
+
+  VAL_CONSTANTE: [
+    "CONSTENT",
+    "CONSTEX",
+    "CONSTRE"
+  ],
+
+  VAL_BOLEANO:[
+    "PRB1",
+    "PRB2"
+  ],
+
+  VALOR: [
+    "CADENA",
+  ],
+
+  IN_IO: [
+    "PRI4 IDEN CE13", //leer <iden>
+    "PRI5 VAL5 CE13"  // imprimir <val>
+  ],
+
+  IN_COMENTARIO: [
+    "COMENTARIO"
+  ],
+
+  IN_AUXILIARES: [
+    "CE8", //{
+    "CE9 CE13", //};
   ],
 
   IN_ASIGNACION: [
     //DECLARAR VARIABLE v1;
     "PRI6 PRV1 IDEN CE13",
     //DECLARAR Y ASIGNAR
-    "PRI6 PRV1 ASIG CADENA CE13",
-    "PRI6 PRV1 ASIG OPA CE13",
+    "PRI6 PRV1 IDEN ASIG VAL_CONSTANTE CE13",
+    "PRI6 PRV1 IDEN ASIG VALOR CE13",
+    "PRI6 PRV1 IDEN ASIG VAL_BOLEANO CE13",
+    "PRI6 PRV1 IDEN ASIG OP_ARITMETICA CE13",
+    "PRI6 PRV1 IDEN ASIG OP_CADENA_CONCATENACION CE13",
+    "PRI6 PRV1 IDEN ASIG OP_CONDICION CE13",
     //ASIGNAR
-    "IDEN ASIG EX CE13",
+    "IDEN ASIG VAL_CONSTANTE CE13",
+    "IDEN ASIG VALOR CE13",
+    "IDEN ASIG VAL_BOLEANO CE13",
+    "IDEN ASIG OP_ARITMETICA CE13",
+    "IDEN ASIG OP_CADENA_CONCATENACION CE13",
+    "IDEN ASIG OP_CONDICION CE13",  ],
+
+  IN_SI: [
+    "PRI2 CE6 OP_CONDICION CE7", //IF ( VALOR )
+    "PRI2 CE6 IDEN CE7", //IF ( IDEN )
+    "PRI3" /*ELSE*/, "CE8", "CE9", //ELSE { }
+    "PRI3 PRI2 CE6 OP_CONDICION CE7",  // ELSE IF ( VALOR ) //TODO RESULTADO (ARITMETICO, RELACIONAL, LOGICO) ES UN VALOR
+    "PRI3 PRI2 CE6 IDEN CE7", //ELSE IF ( IDEN )
   ],
 
-  LLAVECIERRE: [
-    "CE} CE;"
+  IN_CICLO: [
+    "PRI1 CE6 IDEN CE13 OP_CONDICION CE13 IDEN CE7" /*CICLO ( IDEN = 0 ; IDEN < 1 ; IDEN = IDEN + 1 )*/, //IDEN < 1 ES UN RESULTADO LOGICO POR LO TANTO ES UN VALOR
   ],
 
-  LLAVEABRIR: [
-    "CE{"
+  IN_MIENTRAS: [
+    "PRI18" /*HACER*/,
+    "PRI17 CE6 OP_CONDICION CE6" /*MIENTRAS ( VALOR )*/,
   ],
 
-  COND: [
-    "OPLO",
-    "OPRE",
-    "OPRE LLAVEABRIR",
-    "OPLO LLAVEABRIR",
-    "OPRE LLAVECIERRE",
-    "OPLO LLAVECIERRE",
-    "BOOLEANO"
+  IN_SEGUN: [
+    "PRI7 CE6 IDEN CE7", //SEGUN ( IDEN ) //IDEN TAMBIEN ES UN VALOR PERO UN VALOR SE PUEDE ASIGNAR A UN IDEN, MIENTRAS QUE UN IDEN NO SE PUEDE ASIGNAR A UN VALOR, POR ESO IDEN ES TOP
+    "PRI8 VALOR OPR2" /*CASO VALOR >*/, //POR ESO VALOR TIENE CIERTOS CASOS DE USO MIENTRAS OTROS, PUES EN MUCHOS CASOS SE REQUIERE DE VALORES CONSTANTES Y NO VARIABLES COMO LOS IDEN
+    "PRI12 OPR2" /*DEFECTO >*/ //EN ESTE CASO DEFECTO NO REQUIERE VALOR, ES EL DEFECTO
   ],
 
-  EX: [
-    "CONN",
-    "IDEN",
-    "CAD",
-    "EX OPRA IDEN",
-    "IDEN OPRA EX",
-    "IDEN OPRA CONN",
-    "CONN OPRA IDEN",
-    "EX OPRA EX",
-    "CES( EX CES)",
-    "CES( OPA CES)",
-    "CES( IDEN CES)",
-    "OPA",
-    "OPLO",
-    "OPRE",
-    "COND",
+  AUX_OPA:[
+    "OPA1",
+    "OPA2",
+    "OPA3",
+    "OPA4",
+    "OPA5",
+    "OPA6",
   ],
-  OPA: [
-    "CONN OPRA CONN",
-    "IDEN OPRA IDEN",
-    "EX OPRA EX",
-    "EX OPRA CONN",
-    "CONN OPRA EX",
-    "OPA OPRA IDEN",
-    "IDEN OPRA OPA",
+
+  OP_ARITMETICA: [
+    //CONSTANTES
+    "VAL_CONSTANTE AUX_OPA VAL_CONSTANTE", 
+    //IDENTIFICADORES
+    "IDEN AUX_OPA IDEN",
+    //VALOR
+    "VALOR AUX_OPA VALOR",
+    //IDENTIFICADORES DE IZQUIERDA, CONSTANTE DE DERECHA
+    "IDEN AUX_OPA VAL_CONSTANTE",
+    //IDENTIFICADORES DE DERECHA, CONSTANTE DE IZQUIERDA
+    "VAL_CONSTANTE AUX_OPA IDEN",
+    //VALORES DE IZQUIERDA CON CONSTANTES DE DERECHA
+    "VALOR AUX_OPA VAL_CONSTANTE", 
+    //VALORES DE DERECHA CON CONSTANTES DE ISQUIERDA
+    "VAL_CONSTANTE AUX_OPA VALOR",
+    //VALORES DE DERECHA CON IDENTIFICADORES DE IZQUIERDA
+    "VALOR AUX_OPA IDEN",
+    //VALORES DE IZQUIERDA CON IDENTIFICADORES DE DERECHA
+    "IDEN AUX_OPA VALOR",
   ],
-  OPRA: ["+", "-", "*", "/"],
-  OPRE: [
-    "EX oprel EX",
-    "EX oprel OPAR",
-    "CONN oprel CONN",
-    "OPAR oprel EX",
-    "CONN oprel IDEN",
-    "IDEN oprel CONN",
-    "IDEN oprel IDEN",
-    "CES( OPRE CES)",
-    "CES( OPAR CES)",
+
+  AUX_OPR:[
+    "OPR1",
+    "OPR2",
+    "OPR3",
+    "OPR4",
+    "OPR5",
+    "OPR6",
   ],
-  OPLO: [
-    "CES( oplog CES)",
-    "CES( oplog CES)",
-    "OPLO oplog OPRE",
-    "OPRE oplog OPLO",
-    "OPRE oprel OPRE",
-    "OPRE oplog OPRE",
-    "OPLO oplog OPLO",
-    "EX oplog EX",
-    "EX oplog CONN",
-    "CONN oplog EX",
-    "CES( OPLO CES)",
-    "CES( BOOLEANO CES)",
+
+  OP_RELACIONAL: [
+    "VAL_CONSTANTE AUX_OPR VAL_CONSTANTE",  
+    "IDEN AUX_OPR IDEN", 
+    "VALOR AUX_OPR VALOR", 
+    "IDEN AUX_OPR VAL_CONSTANTE",     
+    "VAL_CONSTANTE AUX_OPR IDEN",
+    "VALOR AUX_OPR VAL_CONSTANTE",
+    "VALOR AUX_OPR IDEN",
+    "IDEN AUX_OPR VALOR",
+    "VAL_CONSTANTE AUX_OPR VALOR",
+    "OP_ARITMETICA AUX_OPR OP_ARITMETICA", 
   ],
-  BOOLEANO: ["TRUE", "FALSE"],
+
+  OP_LOGICA: [
+    //NOT
+    "OPL1 VAL_BOLEANO", //SIN PARENTESIS
+    "CE6 OPL1 VAL_BOLEANO CE7", //CON PARENTESIS
+    "OPL1 VAL_BOLEANO", 
+    "CE6 OPL1 VAL_BOLEANO CE7",
+    "OPL1 IDEN",
+    "CE6 OPL1 IDEN CE7",
+    "OPL1 VALOR",
+    "CE6 OPL1 VALOR CE7",
+    //AND
+    "VALOR OPL3 VALOR",
+    "IDEN OPL3 IDEN",
+    "VAL_BOLEANO OPL3 VAL_BOLEANO",
+    "VAL_BOLEANO OPL3 VAL_BOLEANO",
+    "VALOR OPL3 IDEN",
+    "VALOR OPL3 VAL_BOLEANO",
+    "VALOR OPL3 VAL_BOLEANO",
+    "IDEN OPL3 VALOR",
+    "IDEN OPL3 VAL_BOLEANO",
+    "IDEN OPL3 VAL_BOLEANO",
+    "VAL_BOLEANO OPL3 VALOR",
+    "VAL_BOLEANO OPL3 IDEN",
+    "VAL_BOLEANO OPL3 VAL_BOLEANO",
+    "VAL_BOLEANO OPL3 VALOR",
+    "VAL_BOLEANO OPL3 IDEN",
+    "VAL_BOLEANO OPL3 VAL_BOLEANO",
+    //OR
+    "VALOR OPL2 VALOR",
+    "IDEN OPL2 IDEN",
+    "VAL_BOLEANO OPL2 VAL_BOLEANO",
+    "VAL_BOLEANO OPL2 VAL_BOLEANO",
+    "VALOR OPL2 IDEN",
+    "VALOR OPL2 VAL_BOLEANO",
+    "VALOR OPL2 VAL_BOLEANO",
+    "IDEN OPL2 VALOR",
+    "IDEN OPL2 VAL_BOLEANO",
+    "IDEN OPL2 VAL_BOLEANO",
+    "VAL_BOLEANO OPL2 VALOR",
+    "VAL_BOLEANO OPL2 IDEN",
+    "VAL_BOLEANO OPL2 VAL_BOLEANO",
+    "VAL_BOLEANO OPL2 VALOR",
+    "VAL_BOLEANO OPL2 IDEN",
+    "VAL_BOLEANO OPL2 VAL_BOLEANO",//NOT
+    "OPL1 VAL_BOLEANO", //SIN PARENTESIS
+    "CE6 OPL1 VAL_BOLEANO CE7", //CON PARENTESIS
+    "OPL1 VAL_BOLEANO", 
+    "CE6 OPL1 VAL_BOLEANO CE7",
+    "OPL1 IDEN",
+    "CE6 OPL1 IDEN CE7",
+    "OPL1 VALOR",
+    "CE6 OPL1 VALOR CE7",
+    //AND
+    "VALOR OPL3 VALOR",
+    "IDEN OPL3 IDEN",
+    "VAL_BOLEANO OPL3 VAL_BOLEANO",
+    "VAL_BOLEANO OPL3 VAL_BOLEANO",
+    "VALOR OPL3 IDEN",
+    "VALOR OPL3 VAL_BOLEANO",
+    "VALOR OPL3 VAL_BOLEANO",
+    "IDEN OPL3 VALOR",
+    "IDEN OPL3 VAL_BOLEANO",
+    "IDEN OPL3 VAL_BOLEANO",
+    "VAL_BOLEANO OPL3 VALOR",
+    "VAL_BOLEANO OPL3 IDEN",
+    "VAL_BOLEANO OPL3 VAL_BOLEANO",
+    "VAL_BOLEANO OPL3 VALOR",
+    "VAL_BOLEANO OPL3 IDEN",
+    "VAL_BOLEANO OPL3 VAL_BOLEANO",
+    //OR
+    "VALOR OPL2 VALOR",
+    "IDEN OPL2 IDEN",
+    "VAL_BOLEANO OPL2 VAL_BOLEANO",
+    "VAL_BOLEANO OPL2 VAL_BOLEANO",
+    "VALOR OPL2 IDEN",
+    "VALOR OPL2 VAL_BOLEANO",
+    "VALOR OPL2 VAL_BOLEANO",
+    "IDEN OPL2 VALOR",
+    "IDEN OPL2 VAL_BOLEANO",
+    "IDEN OPL2 VAL_BOLEANO",
+    "VAL_BOLEANO OPL2 VALOR",
+    "VAL_BOLEANO OPL2 IDEN",
+    "VAL_BOLEANO OPL2 VAL_BOLEANO",
+    "VAL_BOLEANO OPL2 VALOR",
+    "VAL_BOLEANO OPL2 IDEN",
+    "VAL_BOLEANO OPL2 VAL_BOLEANO",
+
+    "VAL_CONSTANTE OPL2 VAL_CONSTANTE", //OR
+    "VAL_CONSTANTE OPL3 VAL_CONSTANTE", //AND
+    "CE6 VAL_CONSTANTE CE7",
+    "IDEN OPL2 IDEN", //OR
+    "IDEN OPL3 IDEN", //AND
+    "CE6 IDEN CE7",
+    "VALOR OPL2 VALOR", //OR
+    "VALOR OPL3 VALOR", //AND
+    "IDEN OPL2 VAL_CONSTANTE", //OR
+    "IDEN OPL3 VAL_CONSTANTE", //AND
+    "VAL_CONSTANTE OPL2 IDEN", //OR
+    "VAL_CONSTANTE OPL3 IDEN", //AND
+    "VALOR OPL2 VAL_CONSTANTE", //OR
+    "VALOR OPL3 VAL_CONSTANTE", //AND
+    "VAL_CONSTANTE OPL2 VALOR", //OR
+    "VAL_CONSTANTE OPL3 VALOR", //AND
+    "VALOR OPL2 IDEN", //OR
+    "VALOR OPL3 IDEN", //AND
+    "IDEN OPL2 VALOR", //OR
+    "IDEN OPL3 VALOR", //AND
+    "CE6 VALOR CE7", 
+  ],
+
+  OP_CADENA_CONCATENACION:[
+    "CADENA OPA1 CADENA",
+    "CADENA OPA1 IDEN",
+    "CADENA OPA1 VALOR",
+    "IDEN OPA1 CADENA",
+    "VALOR OPA1 CADENA",
+    "CE6 CADENA CE7" 
+  ],
+
+  OP_CADENA_COMPARACION: [
+    "CADENA OPR1 CADENA",
+    "CADENA OPR2 CADENA",
+    "CADENA OPR3 CADENA",
+    "CADENA OPR4 CADENA",
+    "CADENA OPR5 CADENA",
+    "CADENA OPR6 CADENA",
+      //CON IDEN
+    "CADENA OPR1 IDEN",
+    "CADENA OPR2 IDEN",
+    "CADENA OPR3 IDEN",
+    "CADENA OPR4 IDEN",
+    "CADENA OPR5 IDEN",
+    "CADENA OPR6 IDEN",
+    "IDEN   OPR1 CADENA",
+    "IDEN   OPR2 CADENA",
+    "IDEN   OPR3 CADENA",
+    "IDEN   OPR4 CADENA",
+    "IDEN   OPR5 CADENA",
+    "IDEN   OPR6 CADENA",
+      //CON VALOR
+    "CADENA OPR1 VALOR",
+    "CADENA OPR2 VALOR",
+    "CADENA OPR3 VALOR",
+    "CADENA OPR4 VALOR",
+    "CADENA OPR5 VALOR",
+    "CADENA OPR6 VALOR",
+    "VALOR  OPR1 CADENA",
+    "VALOR  OPR2 CADENA",
+    "VALOR  OPR3 CADENA",
+    "VALOR  OPR4 CADENA",
+    "VALOR  OPR5 CADENA",
+    "VALOR  OPR6 CADENA"    
+  ],
+
+  OP_CONDICION: [
+    "OP_RELACIONAL",
+    "OP_LOGICA",
+    "OP_CADENA_COMPARACION",
+    "OP_RELACIONAL OP_LOGICA OP_RELACIONAL"
+  ]
 };
 
 const reduceCadena = (origen, puntero, fin, nuevo) => {
@@ -106,38 +303,36 @@ const reduceCadena = (origen, puntero, fin, nuevo) => {
 };
 
 function recorridoCadenaTokens(tokensInput) {
-  let tokensInputToArray = tokensInput.split(" ");
-  let longitudTokens = tokensInputToArray.length;
+  let tokensInputToArray = tokensInput.split(" "), longitudTokens = tokensInputToArray.length;
 
   console.log("-->  ", tokensInput);
-
-  for (var ii = longitudTokens - 1; ii >= 0; ii--) {
+  
+  for (let contLongitud = longitudTokens - 1; contLongitud >= 0; contLongitud--) {
     for (const [k, v] of Object.entries(gramaticasIf)) {
-      for (var puntero = 0; puntero < longitudTokens - ii; puntero++) {
-        const fin = ii + puntero + 1;
-
-        let combinacion = tokensInputToArray.slice(puntero, fin).join(" ");
-
-        if (v.find((e) => e === combinacion)) {
+      for (let puntero = 0; puntero < longitudTokens - contLongitud; puntero++) {
+        const fin = contLongitud + puntero + 1;        
+        if (v.find((e) => e === tokensInputToArray.slice(puntero, fin).join(" "))) {
           tokensInput = reduceCadena(tokensInput, puntero, fin, k);
-
-          return (tokensInput === "S") ? tokensInput : recorridoCadenaTokens(tokensInput);
+          return tokensInput === "S" ? tokensInput : recorridoCadenaTokens(tokensInput);
         }
       }
     }
   }
-
-  if (longitudTokens === 2) {
-    return recorridoCadenaTokens(tokensInput);
-  }
-
   return tokensInput;
 }
 
-const archivoTokens = `PRI6 PRV1 ASIG A S D F G H CE13`;
-\const lineasSeparadas = archivoTokens.split("\n");
+const archivoTokens = `PRI6 PRV1 ASIG ASIG CONSTENT OPA2 IDEN CE13
+IDEN ASIG CONSTENT OPA1 PRB2 CE13
+COMENTARIO
+PRI2 IDEN CONSTENT OPR2 CONSTENT CE7`;
+// console.log(archivoTokens.split(" "))
+const lineasSeparadas = archivoTokens.split("\n");
 
 for (const linea of lineasSeparadas) {
-  recorridoCadenaTokens(linea);
+  if(recorridoCadenaTokens(linea) === "S")
+    console.log("-->   S");
+  else 
+    console.log("-->   ERR");
+
   console.log("\n");
 }
