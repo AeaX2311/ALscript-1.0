@@ -29,11 +29,21 @@ namespace Interfaz.Clases.Facade {
         public string evaluarSintaxis(string archivoTokens) {
             init(archivoTokens);
 
-            foreach (List<string> linea in tokens) {
+
+
+            foreach (List<string> linea in tokens)
+            {
                 ////se guarda resultado final....
                 //guardarResultadoFinal(linea);
                 //string pk = recorrerLinea(linea, null, -1);
                 //resultadoFinal += "-->  " + pk + "\n\n";
+                foreach (var t in linea)
+                {
+                    //Eliminamos los # de los IDEN
+                    resultadoFinal = resultadoFinal + " " + t.Replace("#", "");
+                }
+                //Eliminamos el ultimo espacio
+                resultadoFinal = resultadoFinal.Remove(resultadoFinal.Length - 1);
             }
 
             //resultadoFinal = "Aqui va todo el resultado final jeje salu2.";
