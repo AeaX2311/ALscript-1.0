@@ -97,6 +97,8 @@ namespace Interfaz {
             } while (resultadoAnalisisSintaxis == null);
             if (txtSintaxis.Text.Contains("ERR")) {
                 MessageBox.Show("Existen errores de sintaxis. Favor de revisar el codigo.", "Errores de sintaxis", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } else {
+                MessageBox.Show("¡Programa correcto!", "Operacion exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

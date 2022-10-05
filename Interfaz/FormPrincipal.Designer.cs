@@ -92,7 +92,7 @@ namespace Interfaz {
             this.lblInfo.ForeColor = System.Drawing.Color.Teal;
             this.lblInfo.Location = new System.Drawing.Point(551, 371);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(57, 40);
+            this.lblInfo.Size = new System.Drawing.Size(58, 40);
             this.lblInfo.TabIndex = 1001;
             this.lblInfo.Text = "🖋️";
             // 
@@ -143,7 +143,7 @@ namespace Interfaz {
             this.btnCompilar.BackColor = System.Drawing.Color.LightGreen;
             this.btnCompilar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCompilar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCompilar.Location = new System.Drawing.Point(633, 123);
+            this.btnCompilar.Location = new System.Drawing.Point(633, 146);
             this.btnCompilar.Name = "btnCompilar";
             this.btnCompilar.Size = new System.Drawing.Size(106, 54);
             this.btnCompilar.TabIndex = 2;
@@ -158,7 +158,7 @@ namespace Interfaz {
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLimpiar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLimpiar.Location = new System.Drawing.Point(633, 243);
+            this.btnLimpiar.Location = new System.Drawing.Point(264, 440);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(106, 54);
             this.btnLimpiar.TabIndex = 3;
@@ -440,7 +440,7 @@ namespace Interfaz {
             this.btnModificar.BackColor = System.Drawing.Color.Orange;
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnModificar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(633, 183);
+            this.btnModificar.Location = new System.Drawing.Point(633, 206);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(106, 54);
             this.btnModificar.TabIndex = 11;
@@ -485,7 +485,7 @@ namespace Interfaz {
             this.btnSintaxis.Enabled = false;
             this.btnSintaxis.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSintaxis.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSintaxis.Location = new System.Drawing.Point(633, 303);
+            this.btnSintaxis.Location = new System.Drawing.Point(633, 266);
             this.btnSintaxis.Name = "btnSintaxis";
             this.btnSintaxis.Size = new System.Drawing.Size(106, 54);
             this.btnSintaxis.TabIndex = 1003;
@@ -513,6 +513,7 @@ namespace Interfaz {
             this.Controls.Add(this.groupBox1);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FormPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Compilador ALscript";

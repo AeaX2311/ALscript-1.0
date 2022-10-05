@@ -53,15 +53,8 @@ const gramaticasIf = {
     "IDEN ASIG OP_ARITMETICA CE13",
   ],
 
-  IN_SI: [
-    "PRI2 OP_CONDICION CE8", //IF CONDICION {
-    "PRI2 OP_CONDICION", //IF VALOR
-    "PRI2 IDEN CE8", //IF ( IDEN )
-    "PRI2 IDEN", //IF ( IDEN )
-    "CE9 PRI3 CE8", //ELSE {
-    "PRI3 CE8", //ELSE {
-    "CE9 PRI3", //ELSE
-    "PRI3", //ELSE
+  AUX_SI:[
+    "CE9 PRI3 PRI2",
     "CE9 PRI3 PRI2 OP_CONDICION CE8", //ELSE IF VALOR {
     "PRI3 PRI2 OP_CONDICION CE8", //ELSE IF VALOR {
     "CE9 PRI3 PRI2 OP_CONDICION", //ELSE IF VALOR
@@ -71,6 +64,19 @@ const gramaticasIf = {
     "CE9 PRI3 PRI2 IDEN CE8", //ELSE IF IDEN
     "PRI3 PRI2 IDEN", //ELSE IF IDEN
     "CE9 PRI3 PRI2 IDEN", //ELSE IF IDEN
+  ],
+  
+  IN_SI: [
+    "CE9 PRI3 CE8", //} ELSE {
+    "PRI3 CE8", //ELSE {
+    "CE9 PRI3", //} ELSE
+    "PRI3", //ELSE
+    "PRI2 OP_CONDICION CE8", //IF CONDICION {
+    "PRI2 OP_CONDICION", //IF VALOR
+    "PRI2 IDEN CE8", //IF ( IDEN )
+    "PRI2 IDEN", //IF ( IDEN )
+    "AUX_SI OP_CONDICION",
+    "AUX_SI OP_CONDICION CE8"
   ],
 
   AUX_CICLO: [
@@ -268,11 +274,13 @@ const gramaticasIf = {
     "OP_CONDICION AUX_OPL OP_LOGICA",
     "OP_CONDICION AUX_OPL OP_CADENA_COMPARACION",
     "OP_CONDICION AUX_OPL VAL_BOLEANO",
+    "OP_CONDICION AUX_OPL IDEN",
 
     "OP_RELACIONAL AUX_OPL OP_CONDICION",
     "OP_LOGICA AUX_OPL OP_CONDICION",
     "OP_CADENA_COMPARACION AUX_OPL OP_CONDICION",
     "VAL_BOLEANO AUX_OPL OP_CONDICION",
+    "IDEN AUX_OPL OP_CONDICION",
 
     "OP_CONDICION AUX_OPR2 OP_CONDICION",
     "OP_CADENA_COMPARACION AUX_OPR2 OP_CADENA_COMPARACION",
@@ -281,11 +289,13 @@ const gramaticasIf = {
     "OP_CONDICION AUX_OPR2 OP_LOGICA",
     "OP_CONDICION AUX_OPR2 OP_CADENA_COMPARACION",
     "OP_CONDICION AUX_OPR2 VAL_BOLEANO",
+    "OP_CONDICION AUX_OPR2 IDEN",
 
     "OP_RELACIONAL AUX_OPR2 OP_CONDICION",
     "OP_LOGICA AUX_OPR2 OP_CONDICION",
     "OP_CADENA_COMPARACION AUX_OPR2 OP_CONDICION",
     "VAL_BOLEANO AUX_OPR2 OP_CONDICION",
+    "IDEN AUX_OPR2 OP_CONDICION",
 
     "OPL1 OP_CONDICION",
     "CE6 OPL1 OP_CONDICION CE7",
@@ -306,7 +316,7 @@ const gramaticasIf = {
     "IN_SEGUN",
     "IN_IO",
     "IN_COMENTARIO",
-    "IN_AUXILIARES",
+    "IN_AUXILIARES"
   ],
 };
 
@@ -331,19 +341,13 @@ function recorridoCadenaTokens(tokensInput) {
     contLongitud--
   ) {
     for (const [k, v] of Object.entries(gramaticasIf)) {
-      for (
-        let puntero = 0;
-        puntero < longitudTokens - contLongitud;
-        puntero++
-      ) {
+      for (let puntero = 0; puntero < longitudTokens - contLongitud; puntero++) {
         const fin = contLongitud + puntero + 1;
         if (
           v.find((e) => e === tokensInputToArray.slice(puntero, fin).join(" "))
         ) {
           tokensInput = reduceCadena(tokensInput, puntero, fin, k);
-          return tokensInput === "S"
-            ? tokensInput
-            : recorridoCadenaTokens(tokensInput);
+          return tokensInput === "S" ? tokensInput : recorridoCadenaTokens(tokensInput);
         }
       }
     }
@@ -363,8 +367,6 @@ fs.readFile("lexicoTokens.tmpalscript", "utf-8", (err, data) => {
         evaluacionSintaxis += "-->  S\n\n";
       else evaluacionSintaxis += "-->  ERR\n\n";
     }
-
-    console.log(evaluacionSintaxis);
 
     fs.writeFile(
       "sintaxisResult.tmpalscript",
