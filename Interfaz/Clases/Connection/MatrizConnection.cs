@@ -7,6 +7,7 @@ namespace Interfaz.Connection {
         private string CONNECTION_STRING_NAME = "";
         public SqlConnection conexion = null;
         private static MatrizConnection _instance = null;
+        private string TABLA_MATRIZ = "matrizExamen2";
 
         /// <summary>
         /// Genera la conexion a la base de datos
@@ -58,7 +59,7 @@ namespace Interfaz.Connection {
 
                 string resultado = null;
                 SqlCommand command = new SqlCommand(
-                    "SELECT m.[" + columna + "] FROM matriz m WHERE estado = @estado",
+                    "SELECT m.[" + columna + "] FROM " + TABLA_MATRIZ + " m WHERE estado = @estado",
                     conexion
                 );
 
@@ -86,7 +87,7 @@ namespace Interfaz.Connection {
             
                 string resultado = null;
                 SqlCommand command = new SqlCommand(
-                    "SELECT m.CAT FROM matriz m WHERE estado = @estado",
+                    "SELECT m.CAT FROM " + TABLA_MATRIZ + " m WHERE estado = @estado",
                     conexion
                 );
 
@@ -112,7 +113,7 @@ namespace Interfaz.Connection {
 
                 string resultado = null;
                 SqlCommand command = new SqlCommand(
-                    "SELECT m2.FDC FROM matriz m INNER JOIN matriz m2 ON m2.Estado = m.Estado + 1 WHERE m.cat = @token",
+                    "SELECT m2.FDC FROM " + TABLA_MATRIZ + " m INNER JOIN " + TABLA_MATRIZ + " m2 ON m2.Estado = m.Estado + 1 WHERE m.cat = @token",
                     conexion
                 );
 
@@ -138,7 +139,7 @@ namespace Interfaz.Connection {
 
                 string resultado = null;
                 SqlCommand command = new SqlCommand(
-                    "SELECT m2.CAT FROM matriz m INNER JOIN matriz m2 ON m2.Estado = m.Estado - 1 WHERE m.FDC = @descripcion",
+                    "SELECT m2.CAT FROM " + TABLA_MATRIZ + " m INNER JOIN " + TABLA_MATRIZ + " m2 ON m2.Estado = m.Estado - 1 WHERE m.FDC = @descripcion",
                     conexion
                 );
 

@@ -264,3 +264,4 @@ FakesAssemblies/
 
 #APCONFIG
 Interfaz/App.config
+*.tmpalscript
