@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaz", "Interfaz.csproj", "{C5BFA831-2E7E-4176-B950-A30E0484217E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALscript", "ALscript.csproj", "{C5BFA831-2E7E-4176-B950-A30E0484217E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

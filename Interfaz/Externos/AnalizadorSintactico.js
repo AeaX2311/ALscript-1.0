@@ -3,8 +3,8 @@ const fs = require("fs");
 const gramaticasIf = {
   VAL_CONSTANTE: [
     "CONSTENT",
-    "CONSTEX",
-    "CONSTRE",
+    //"CONSTEX",
+    //"CONSTRE",
     "CE6 CONSTENT CE7",
     "CE6 CONSTEX CE7",
     "CE6 CONSTRE CE7",
@@ -316,7 +316,9 @@ const gramaticasIf = {
     "IN_SEGUN",
     "IN_IO",
     "IN_COMENTARIO",
-    "IN_AUXILIARES"
+    "IN_AUXILIARES",
+    "PR50 CE6 VAL_CONSTANTE CE80 VAL_CONSTANTE CE7",
+    "PR51 PR52 IN_ASIGNACION PR53 OP_CONDICION PR54 VAL_CONSTANTE"
   ],
 };
 

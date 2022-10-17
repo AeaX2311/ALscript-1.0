@@ -6,9 +6,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using System.Diagnostics;
-using System.Threading;
-using System.Text.RegularExpressions;
 
 namespace Interfaz {
     /// <summary>
@@ -61,55 +58,20 @@ namespace Interfaz {
             bool tieneErrores = compilarLexico();
             if (tieneErrores)
                 MessageBox.Show("Programa compilado con algunos errores, favor de verificar tabla de errores.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else { }
-            //MessageBox.Show("Programa compilado correctamente.", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Programa compilado correctamente.", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             btnGuardarArchivoToken.Enabled = !tieneErrores;
             btnSintaxis.Enabled = !btnSintaxis.Enabled;
         }
 
         private void btnSintaxis_Click(object sender, EventArgs e) {
-            string[] lines = RemoverHashtags(txtLexico.Text);
-            for (int i = 0; i < lines.Length; i++) {
-                lines[i] = lines[i].TrimEnd();
-            }
-            File.WriteAllLines(@"..\..\Externos\lexicoTokens.tmpalscript", lines);
-            string go = @System.Configuration.ConfigurationManager.AppSettings["sintax"];
-            if (File.Exists(go + "sintaxisResult.tmpalscript")) {
-                File.Delete(go + "sintaxisResult.tmpalscript");
-            }
-            var sintaxis = new Process {
-                StartInfo = {
-                    FileName = "node",
-                    WorkingDirectory = go,
-                    Arguments = "AnalizadorSintactico.js",
-                    CreateNoWindow = true,
-                    WindowStyle = ProcessWindowStyle.Hidden
-                }
-            };
-            sintaxis.Start();
-            string[] resultadoAnalisisSintaxis = null;
-            do {
-                try {
-                    resultadoAnalisisSintaxis = File.ReadAllLines(@"..\..\Externos\sintaxisResult.tmpalscript");
-                    txtSintaxis.Lines = resultadoAnalisisSintaxis;
-                } catch (Exception) { Console.WriteLine("[DEBUG] Buscando archivo..."); }
-            } while (resultadoAnalisisSintaxis == null);
-            if (txtSintaxis.Text.Contains("ERR")) {
+            bool tieneErrores = compilarSintaxis();
+            if (tieneErrores) {
                 MessageBox.Show("Existen errores de sintaxis. Favor de revisar el codigo.", "Errores de sintaxis", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } else {
                 MessageBox.Show("¡Programa correcto!", "Operacion exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
-
-        private string[] RemoverHashtags(string text) {
-            var nuevasLineas = new List<string>();
-            foreach(string linea in txtLexico.Lines) {
-                var temp = Regex.Replace(linea, @"\bIDEN#[0-9]+", "IDEN");
-                nuevasLineas.Add(temp);
-            }
-
-            return nuevasLineas.ToArray();
         }
 
         private void btnGuardarArchivoToken_Click(object sender, EventArgs e) {
@@ -187,23 +149,8 @@ namespace Interfaz {
         }
 
         private bool compilarSintaxis() {
-            bool tieneErrores = false;
-            txtSintaxis.Text = sintaxisFacade.evaluarSintaxis(txtLexico.Text);
-            //Compilado resultado = loFacade.compilarCodigo(txtCodificacion.Text.Replace("\n", " \n") + " ");
-
-            /*            txtCompilacion.Text = resultado.CodigoCompilado;
-
-                        if(resultado.Errores.Count > 0) {
-                            tieneErrores = true;
-                            cargarErrores(resultado.Errores);
-                            pintar(resultado.PalabrasARemarcarError);
-                        }
-
-                        if(resultado.Identificadores.Count > 0) {
-                            cargarIdentificadores(resultado.Identificadores);
-                        }
-            */
-            return tieneErrores;
+            txtSintaxis = sintaxisFacade.sintaxisGo(txtSintaxis, txtLexico);
+            return txtSintaxis.Text.Contains("ERR");
         }
 
         /// <summary>
