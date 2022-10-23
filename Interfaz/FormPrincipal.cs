@@ -302,7 +302,7 @@ namespace Interfaz {
         private void Form1_Resize(object sender, EventArgs e) {
             AddLineNumbersLineaCodigo();
             AddLineNumbersCompilacion();
-            MessageBox.Show("Tamaño" + this.Width + this.Height);
+            //MessageBox.Show("Tamaño" + this.Width + this.Height);
         }
 
         private void txtCodificacion_SelectionChanged(object sender, EventArgs e) {

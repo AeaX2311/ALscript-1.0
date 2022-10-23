@@ -7,7 +7,7 @@ namespace Interfaz.Connection {
         private string CONNECTION_STRING_NAME = "";
         public SqlConnection conexion = null;
         private static MatrizConnection _instance = null;
-        private string TABLA_MATRIZ = "matriz";
+        private string TABLA_MATRIZ = "Matriz2";
 
         /// <summary>
         /// Genera la conexion a la base de datos
