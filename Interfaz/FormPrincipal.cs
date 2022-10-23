@@ -51,7 +51,7 @@ namespace Interfaz {
                 MessageBox.Show("Favor de generar un codigo para poderlo compilar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            txtCodificacion.ReadOnly = true; lblInfo.Text = "✔️";
+            /*txtCodificacion.ReadOnly = true;*/ lblInfo.Text = "✔️";
 
             limpiarTodo();
             lexicoFacade = new LexicoFacade();
@@ -111,16 +111,6 @@ namespace Interfaz {
                 txtCodificacion.Text = codigo;
             }
             AddLineNumbersLineaCodigo();
-        }
-
-        private void btnModificar_Click(object sender, EventArgs e) {
-            txtCodificacion.ReadOnly = false;
-            lblInfo.Text = "🖋";
-            dgvErrores.Rows.Clear();
-            dgvIdentificadores.Rows.Clear();
-            txtCodificacion.SelectAll();
-            txtCodificacion.SelectionColor = Color.Black;
-            btnSintaxis.Enabled = !btnSintaxis.Enabled;
         }
         #endregion        
 
@@ -312,6 +302,7 @@ namespace Interfaz {
         private void Form1_Resize(object sender, EventArgs e) {
             AddLineNumbersLineaCodigo();
             AddLineNumbersCompilacion();
+            MessageBox.Show("Tamaño" + this.Width + this.Height);
         }
 
         private void txtCodificacion_SelectionChanged(object sender, EventArgs e) {
@@ -331,6 +322,13 @@ namespace Interfaz {
             if (txtCodificacion.Text == "") {
                 AddLineNumbersLineaCodigo();
             }
+            txtCodificacion.ReadOnly = false;
+            lblInfo.Text = "🖋";
+            //dgvErrores.Rows.Clear();
+            //dgvIdentificadores.Rows.Clear();
+            //txtCodificacion.SelectAll();
+            //txtCodificacion.SelectionColor = Color.Black;
+            btnSintaxis.Enabled = !btnSintaxis.Enabled;
         }
 
         private void txtCodificacion_FontChanged(object sender, EventArgs e) {
