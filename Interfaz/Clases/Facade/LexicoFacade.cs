@@ -1,5 +1,4 @@
-﻿using Interfaz.Clases;
-using Interfaz.Connection;
+﻿using Interfaz.Connection;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -34,11 +33,46 @@ namespace Interfaz.Clases.Facade {
         #endregion
 
         public LexicoFacade() {
+        
             compilacion = "";
             numeroDeLinea = 1;
             errores = new List<Error>();
             identificadores = new Dictionary<string, Identificador>();
             palabrasARemarcarError = new List<string>();
+        }
+
+        private string agregarEspacio(int posicion, string codificacion) {
+            return codificacion.Substring(0, posicion) + " " + codificacion.Substring(posicion);
+        }
+
+        private string codificacionPosibles = "=+-*/{}()[]><|&!@$^%";
+        //private List<string> codificacionPosibles = new List<string>() { "=", "+", "-", "*", "/", "{", "}", "(", ")", "==", "<=", ">=", "<", ">", "{", "{", "{", "{", "{" };
+        private string inicializarCodificacion(string codificacion) {
+            int recorridos = codificacion.Length;
+            for(int pos = 0; pos < recorridos; pos++) {
+                if(codificacionPosibles.Contains(codificacion[pos])) {
+                    if(!codificacion[pos - 1].Equals(' ')) {
+                        codificacion = agregarEspacio(pos, codificacion);
+                        recorridos++; pos++;
+                    } if(!codificacion[pos + 1].Equals(' ')) {
+                        codificacion = agregarEspacio(pos + 1, codificacion);
+                        recorridos++;
+                        pos++;
+                    }
+                }
+            }
+
+            return codificacion;
+        }
+
+        private string juntarTokens(string codificacion) {
+            codificacion = codificacion.Replace("CE14 CE14", "OPL2"); //OR
+            codificacion = codificacion.Replace("CE5 CE5", "OPL3"); //AND
+            codificacion = codificacion.Replace("OPR1 ASIG", "OPR3"); //<=
+            codificacion = codificacion.Replace("OPR2 ASIG", "OPR4"); //>=
+            codificacion = codificacion.Replace("OPL1 ASIG", "OPR5"); //!=
+            codificacion = codificacion.Replace("ASIG ASIG", "OPR6"); //==
+            return codificacion;
         }
 
         /// <summary>
@@ -47,6 +81,7 @@ namespace Interfaz.Clases.Facade {
         /// <param name="codificacion">Entrada del usuario en formato de cadena</param>
         /// <returns>Codigo compilado del lexico y sus detalles</returns>
         public Compilado compilarCodigo(string codificacion) {
+            codificacion = inicializarCodificacion(codificacion);
             do {
                     ////Inicializacion de banderas y auxiliares
                 agregueIdentificador = generaError = ignorarFDC = estoyEnComentario = estoyEnCadena = agregarPuntoYComa = false;
@@ -99,7 +134,7 @@ namespace Interfaz.Clases.Facade {
                 errores.Add(new Error("ERROR10", numeroDeLinea));
             }
 
-            return new Compilado(compilacion, errores, identificadores.Select(id => id.Value).ToList(), palabrasARemarcarError);
+            return new Compilado(juntarTokens(compilacion), errores, identificadores.Select(id => id.Value).ToList(), palabrasARemarcarError);
         }
 
         /// <summary>
