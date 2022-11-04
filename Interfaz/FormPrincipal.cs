@@ -62,7 +62,7 @@ namespace Interfaz {
                 MessageBox.Show("Programa compilado correctamente.", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             btnGuardarArchivoToken.Enabled = !tieneErrores;
-            btnSintaxis.Enabled = !btnSintaxis.Enabled;
+            btnSintaxis.Enabled = true; 
         }
 
         private void btnSintaxis_Click(object sender, EventArgs e) {

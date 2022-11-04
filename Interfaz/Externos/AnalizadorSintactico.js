@@ -91,9 +91,12 @@ const gramaticasIf = {
     "AUX_CICLO CE13 IDEN ASIG OP_CADENA_CONCATENACION",
     "AUX_CICLO CE13 IDEN ASIG OP_CONDICION",
     "AUX_CICLO CE13 IDEN ASIG OP_ARITMETICA",
+    "PRI1 CE6 S OP_CONDICION CE13 IDEN ASIG OP_ARITMETICA CE7",
   ],
 
-  IN_CICLO: ["AUX_CICLO CE7 CE8"],
+  IN_CICLO: ["AUX_CICLO CE7 CE8",
+    "AUX_CICLO",
+  ],
 
   IN_MIENTRAS: [
     "PRI18",
@@ -303,8 +306,11 @@ const gramaticasIf = {
     "CE6 OP_CONDICION CE7",
   ],
 
-  IN_AUXILIARES: [
+  IN_PARENT: [
     "CE8", //{
+  ],
+
+  FN_PARENT: [
     "CE9 CE13", //};
   ],
 
@@ -316,7 +322,8 @@ const gramaticasIf = {
     "IN_SEGUN",
     "IN_IO",
     "IN_COMENTARIO",
-    "IN_AUXILIARES",
+    "IN_PARENT",
+    "FN_PARENT",
     "PR50 CE6 VAL_CONSTANTE CE80 VAL_CONSTANTE CE7",
     "PR51 PR52 IN_ASIGNACION PR53 OP_CONDICION PR54 VAL_CONSTANTE",
     "PRINI", "PRFIN"
@@ -336,7 +343,10 @@ const reduceCadena = (origen, puntero, fin, nuevo) => {
 function recorridoCadenaTokens(tokensInput) {
   let tokensInputToArray = tokensInput.split(" "),
     longitudTokens = tokensInputToArray.length;
-  evaluacionSintaxis += "-->  " + tokensInput + "\n";
+    if (longitudTokens === 1)
+    {
+      evaluacionSintaxis += "-->  " + tokensInput + "\n";
+    }
 
   for (
     let contLongitud = longitudTokens - 1;
@@ -367,7 +377,9 @@ fs.readFile("lexicoTokens.tmpalscript", "utf-8", (err, data) => {
     for (const linea of manipulableData) {
       if(linea === '') continue;
       if (recorridoCadenaTokens(linea) === "S")
+      {  
         evaluacionSintaxis += "-->  S\n\n";
+      }
       else evaluacionSintaxis += "-->  ERR\n\n";
     }
 
