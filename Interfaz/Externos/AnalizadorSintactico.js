@@ -67,16 +67,19 @@ const gramaticasIf = {
   ],
   
   IN_SI: [
-    "CE9 PRI3 CE8", //} ELSE {
-    "PRI3 CE8", //ELSE {
-    "CE9 PRI3", //} ELSE
-    "PRI3", //ELSE
     "PRI2 OP_CONDICION CE8", //IF CONDICION {
     "PRI2 OP_CONDICION", //IF VALOR
     "PRI2 IDEN CE8", //IF ( IDEN )
     "PRI2 IDEN", //IF ( IDEN )
     "AUX_SI OP_CONDICION",
     "AUX_SI OP_CONDICION CE8"
+  ],
+  
+  IN_SINO: [
+    "CE9 PRI3 CE8", //} ELSE {
+    "PRI3 CE8", //ELSE {
+    "CE9 PRI3", //} ELSE
+    "PRI3", //ELSE
   ],
 
   AUX_CICLO: [
@@ -98,9 +101,12 @@ const gramaticasIf = {
     "AUX_CICLO",
   ],
 
-  IN_MIENTRAS: [
+  IN_HACER: [
     "PRI18",
     "PRI18 CE8",
+  ],
+
+  IN_MIENTRAS: [
     "PRI17 OP_CONDICION CE13",
     "CE9 PRI17 OP_CONDICION CE13",
   ],
@@ -108,13 +114,19 @@ const gramaticasIf = {
   IN_SEGUN: [
     "PRI7 IDEN",
     "PRI7 IDEN CE8",
+  ],
 
+  IN_CASO: [
     "PRI8 VAL_CONSTANTE OPR2",
     "PRI8 CADENA OPR2",
+  ],
 
-    "PRI9 CE13",
-
+  IN_DEFECTO: [
     "PRI12 OPR2",
+  ],
+
+  IN_ROMPER: [
+    "PRI9 CE13",
   ],
 
   AUX_OPA: ["OPA1", "OPA2", "OPA3", "OPA4", "OPA5", "OPA6"],
@@ -306,25 +318,39 @@ const gramaticasIf = {
     "CE6 OP_CONDICION CE7",
   ],
 
-  IN_PARENT: [
+  IN_PARINI: [
     "CE8", //{
   ],
 
-  FN_PARENT: [
+  IN_PARFIN: [
     "CE9 CE13", //};
-    "CE9",
+  ],
+
+  IN_PARMIDLE: [
+    "CE9", //}
+  ],
+
+  IN_CONTINUAR: [
+    "PRI10 CE13",
   ],
 
   S: [
     "IN_ASIGNACION",
     "IN_SI",
+    "IN_SINO",
     "IN_CICLO",
+    "IN_HACER",
+    "IN_CONTINUAR",
+    "IN_ROMPER",
     "IN_MIENTRAS",
     "IN_SEGUN",
+    "IN_CASO",
+    "IN_DEFECTO",
     "IN_IO",
     "IN_COMENTARIO",
-    "IN_PARENT",
-    "FN_PARENT",
+    "IN_PARINI",
+    "IN_PARMIDLE",
+    "IN_PARFIN",
     "PR50 CE6 VAL_CONSTANTE CE80 VAL_CONSTANTE CE7",
     "PR51 PR52 IN_ASIGNACION PR53 OP_CONDICION PR54 VAL_CONSTANTE",
     "PRINI", "PRFIN"
@@ -344,7 +370,7 @@ const reduceCadena = (origen, puntero, fin, nuevo) => {
 function recorridoCadenaTokens(tokensInput) {
   let tokensInputToArray = tokensInput.split(" "),
     longitudTokens = tokensInputToArray.length;
-    if (longitudTokens === 1)
+    if (tokensInput.substring(0,2) === "IN" || tokensInput.substring(0,1) === "PR")
     {
       evaluacionSintaxis += "-->  " + tokensInput + "\n";
     }
@@ -379,7 +405,7 @@ fs.readFile("lexicoTokens.tmpalscript", "utf-8", (err, data) => {
       if(linea === '') continue;
       if (recorridoCadenaTokens(linea) === "S")
       {  
-        evaluacionSintaxis += /*"-->  S*/"\n\n";
+        evaluacionSintaxis += /*"-->  S*/"\n";
       }
       else evaluacionSintaxis += "-->  ERR\n\n";
     }
