@@ -312,6 +312,7 @@ const gramaticasIf = {
 
   FN_PARENT: [
     "CE9 CE13", //};
+    "CE9",
   ],
 
   S: [
@@ -378,7 +379,7 @@ fs.readFile("lexicoTokens.tmpalscript", "utf-8", (err, data) => {
       if(linea === '') continue;
       if (recorridoCadenaTokens(linea) === "S")
       {  
-        evaluacionSintaxis += "-->  S\n\n";
+        evaluacionSintaxis += /*"-->  S*/"\n\n";
       }
       else evaluacionSintaxis += "-->  ERR\n\n";
     }
