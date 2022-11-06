@@ -15,6 +15,7 @@ namespace Interfaz {
     public partial class FormPrincipal : Form {
         LexicoFacade lexicoFacade;
         SintaxisFacade sintaxisFacade = null;
+        SemanticaFacade semanticaFacade = null;
         SaveFileDialog saveFileDialog = new SaveFileDialog();
 
         readonly OpenFileDialog openFileDialog = new OpenFileDialog() {
@@ -27,6 +28,7 @@ namespace Interfaz {
             InitializeComponent();
             inicializarRTXBX();
             sintaxisFacade = new SintaxisFacade();
+            semanticaFacade = new SemanticaFacade();
         }
 
         public FormPrincipal(string file) : this() {
@@ -43,7 +45,7 @@ namespace Interfaz {
             txtCodificacion.ReadOnly = false;
             dgvIdentificadores.Rows.Clear();
             dgvErrores.Rows.Clear();
-            btnSintaxis.Enabled = !btnSintaxis.Enabled;
+            //btnSintaxis.Enabled = !btnSintaxis.Enabled;
         }
 
         private void btnCompilar_Click(object sender, EventArgs e) {
@@ -51,15 +53,14 @@ namespace Interfaz {
                 MessageBox.Show("Favor de generar un codigo para poderlo compilar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            /*txtCodificacion.ReadOnly = true;*/ lblInfo.Text = "✔️";
+            lblInfo.Text = "✔️";
 
             limpiarTodo();
             lexicoFacade = new LexicoFacade();
+            
             bool tieneErrores = compilarLexico();
-            if (tieneErrores)
-                MessageBox.Show("Programa compilado con algunos errores, favor de verificar tabla de errores.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else
-                MessageBox.Show("Programa compilado correctamente.", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (tieneErrores) MessageBox.Show("Programa compilado con algunos errores, favor de verificar tabla de errores.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else MessageBox.Show("Programa compilado correctamente.", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             btnGuardarArchivoToken.Enabled = !tieneErrores;
             btnSintaxis.Enabled = true; 
@@ -67,11 +68,14 @@ namespace Interfaz {
 
         private void btnSintaxis_Click(object sender, EventArgs e) {
             bool tieneErrores = compilarSintaxis();
-            if (tieneErrores) {
-                MessageBox.Show("Existen errores de sintaxis. Favor de revisar el codigo.", "Errores de sintaxis", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } else {
-                MessageBox.Show("¡Programa correcto!", "Operacion exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            if (tieneErrores)  MessageBox.Show("Existen errores de sintaxis. Favor de revisar el codigo.", "Errores de sintaxis", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else  MessageBox.Show("¡Programa correcto!", "Operacion exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnSemantica_Click(object sender, EventArgs e) {
+            bool tieneErrores = compilarSemantica();
+            if(tieneErrores) MessageBox.Show("Existen errores de semantica. Favor de revisar el codigo.", "Errores de semantica", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else MessageBox.Show("¡Programa correcto!", "Operacion exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnGuardarArchivoToken_Click(object sender, EventArgs e) {
@@ -141,6 +145,11 @@ namespace Interfaz {
         private bool compilarSintaxis() {
             txtSintaxis = sintaxisFacade.sintaxisGo(txtSintaxis, txtLexico);
             return txtSintaxis.Text.Contains("ERR");
+        }
+
+        private bool compilarSemantica() {
+            txtSemantica.Text = semanticaFacade.semanticaGo(txtLexico.Text);
+            return false;
         }
 
         /// <summary>

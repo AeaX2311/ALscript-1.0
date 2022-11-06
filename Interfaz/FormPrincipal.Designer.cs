@@ -33,13 +33,13 @@ namespace Interfaz {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             this.gpbCodificacion = new System.Windows.Forms.GroupBox();
             this.lblInfo = new System.Windows.Forms.Label();
-            this.txtNumeracionCodificacion = new System.Windows.Forms.RichTextBox();
             this.txtCodificacion = new System.Windows.Forms.RichTextBox();
+            this.txtNumeracionCodificacion = new System.Windows.Forms.RichTextBox();
             this.btnCompilar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.gpbLexico = new System.Windows.Forms.GroupBox();
-            this.txtNumeracionCompilacion = new System.Windows.Forms.RichTextBox();
             this.txtLexico = new System.Windows.Forms.RichTextBox();
+            this.txtNumeracionCompilacion = new System.Windows.Forms.RichTextBox();
             this.gpbIdentificadores = new System.Windows.Forms.GroupBox();
             this.dgvIdentificadores = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,11 +59,11 @@ namespace Interfaz {
             this.txtSintaxis = new System.Windows.Forms.RichTextBox();
             this.btnSintaxis = new System.Windows.Forms.Button();
             this.pnBotones = new System.Windows.Forms.Panel();
-            this.secundarioNDivisiones = new System.Windows.Forms.TableLayoutPanel();
-            this.mainDosDivisiones = new System.Windows.Forms.TableLayoutPanel();
             this.btnSemantica = new System.Windows.Forms.Button();
+            this.secundarioNDivisiones = new System.Windows.Forms.TableLayoutPanel();
             this.gpbSemantica = new System.Windows.Forms.GroupBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.txtSemantica = new System.Windows.Forms.RichTextBox();
+            this.mainDosDivisiones = new System.Windows.Forms.TableLayoutPanel();
             this.gpbCodificacion.SuspendLayout();
             this.gpbLexico.SuspendLayout();
             this.gpbIdentificadores.SuspendLayout();
@@ -73,8 +73,8 @@ namespace Interfaz {
             this.gpbSintactico.SuspendLayout();
             this.pnBotones.SuspendLayout();
             this.secundarioNDivisiones.SuspendLayout();
-            this.mainDosDivisiones.SuspendLayout();
             this.gpbSemantica.SuspendLayout();
+            this.mainDosDivisiones.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpbCodificacion
@@ -103,24 +103,6 @@ namespace Interfaz {
             this.lblInfo.TabIndex = 1001;
             this.lblInfo.Text = "🖋️";
             // 
-            // txtNumeracionCodificacion
-            // 
-            this.txtNumeracionCodificacion.BackColor = System.Drawing.Color.LightGray;
-            this.txtNumeracionCodificacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtNumeracionCodificacion.Dock = System.Windows.Forms.DockStyle.Left;
-            this.txtNumeracionCodificacion.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumeracionCodificacion.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtNumeracionCodificacion.Location = new System.Drawing.Point(3, 25);
-            this.txtNumeracionCodificacion.Name = "txtNumeracionCodificacion";
-            this.txtNumeracionCodificacion.ReadOnly = true;
-            this.txtNumeracionCodificacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.txtNumeracionCodificacion.Size = new System.Drawing.Size(50, 506);
-            this.txtNumeracionCodificacion.TabIndex = 1000;
-            this.txtNumeracionCodificacion.TabStop = false;
-            this.txtNumeracionCodificacion.Text = "";
-            this.txtNumeracionCodificacion.FontChanged += new System.EventHandler(this.txtLineaCodigo_FontChanged);
-            this.txtNumeracionCodificacion.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txtLineaCodigo_MouseDown);
-            // 
             // txtCodificacion
             // 
             this.txtCodificacion.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -140,6 +122,24 @@ namespace Interfaz {
             this.txtCodificacion.VScroll += new System.EventHandler(this.txtCodificacion_VScroll);
             this.txtCodificacion.FontChanged += new System.EventHandler(this.txtCodificacion_FontChanged);
             this.txtCodificacion.TextChanged += new System.EventHandler(this.txtCodificacion_TextChanged);
+            // 
+            // txtNumeracionCodificacion
+            // 
+            this.txtNumeracionCodificacion.BackColor = System.Drawing.Color.LightGray;
+            this.txtNumeracionCodificacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNumeracionCodificacion.Dock = System.Windows.Forms.DockStyle.Left;
+            this.txtNumeracionCodificacion.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumeracionCodificacion.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.txtNumeracionCodificacion.Location = new System.Drawing.Point(3, 25);
+            this.txtNumeracionCodificacion.Name = "txtNumeracionCodificacion";
+            this.txtNumeracionCodificacion.ReadOnly = true;
+            this.txtNumeracionCodificacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.txtNumeracionCodificacion.Size = new System.Drawing.Size(50, 506);
+            this.txtNumeracionCodificacion.TabIndex = 1000;
+            this.txtNumeracionCodificacion.TabStop = false;
+            this.txtNumeracionCodificacion.Text = "";
+            this.txtNumeracionCodificacion.FontChanged += new System.EventHandler(this.txtLineaCodigo_FontChanged);
+            this.txtNumeracionCodificacion.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txtLineaCodigo_MouseDown);
             // 
             // btnCompilar
             // 
@@ -176,12 +176,31 @@ namespace Interfaz {
             this.gpbLexico.Controls.Add(this.txtNumeracionCompilacion);
             this.gpbLexico.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gpbLexico.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbLexico.Location = new System.Drawing.Point(0, 0);
+            this.gpbLexico.Location = new System.Drawing.Point(3, 3);
             this.gpbLexico.Name = "gpbLexico";
-            this.gpbLexico.Size = new System.Drawing.Size(474, 156);
+            this.gpbLexico.Size = new System.Drawing.Size(349, 180);
             this.gpbLexico.TabIndex = 10;
             this.gpbLexico.TabStop = false;
             this.gpbLexico.Text = "Léxico";
+            // 
+            // txtLexico
+            // 
+            this.txtLexico.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtLexico.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtLexico.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLexico.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLexico.ForeColor = System.Drawing.Color.Black;
+            this.txtLexico.Location = new System.Drawing.Point(53, 25);
+            this.txtLexico.Name = "txtLexico";
+            this.txtLexico.ReadOnly = true;
+            this.txtLexico.Size = new System.Drawing.Size(293, 152);
+            this.txtLexico.TabIndex = 9;
+            this.txtLexico.Text = "";
+            this.txtLexico.WordWrap = false;
+            this.txtLexico.SelectionChanged += new System.EventHandler(this.txtCompilacion_SelectionChanged);
+            this.txtLexico.VScroll += new System.EventHandler(this.txtCompilacion_VScroll);
+            this.txtLexico.FontChanged += new System.EventHandler(this.txtCompilacion_FontChanged);
+            this.txtLexico.TextChanged += new System.EventHandler(this.txtCompilacion_TextChanged);
             // 
             // txtNumeracionCompilacion
             // 
@@ -194,30 +213,11 @@ namespace Interfaz {
             this.txtNumeracionCompilacion.Name = "txtNumeracionCompilacion";
             this.txtNumeracionCompilacion.ReadOnly = true;
             this.txtNumeracionCompilacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.txtNumeracionCompilacion.Size = new System.Drawing.Size(50, 128);
+            this.txtNumeracionCompilacion.Size = new System.Drawing.Size(50, 152);
             this.txtNumeracionCompilacion.TabIndex = 1001;
             this.txtNumeracionCompilacion.Text = "";
             this.txtNumeracionCompilacion.FontChanged += new System.EventHandler(this.txtNumeracionCompilacion_FontChanged);
             this.txtNumeracionCompilacion.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txtNumeracionCompilacion_MouseDown);
-            // 
-            // txtLexico
-            // 
-            this.txtLexico.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtLexico.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtLexico.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtLexico.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLexico.ForeColor = System.Drawing.Color.Black;
-            this.txtLexico.Location = new System.Drawing.Point(53, 25);
-            this.txtLexico.Name = "txtLexico";
-            this.txtLexico.ReadOnly = true;
-            this.txtLexico.Size = new System.Drawing.Size(418, 128);
-            this.txtLexico.TabIndex = 9;
-            this.txtLexico.Text = "";
-            this.txtLexico.WordWrap = false;
-            this.txtLexico.SelectionChanged += new System.EventHandler(this.txtCompilacion_SelectionChanged);
-            this.txtLexico.VScroll += new System.EventHandler(this.txtCompilacion_VScroll);
-            this.txtLexico.FontChanged += new System.EventHandler(this.txtCompilacion_FontChanged);
-            this.txtLexico.TextChanged += new System.EventHandler(this.txtCompilacion_TextChanged);
             // 
             // gpbIdentificadores
             // 
@@ -225,9 +225,9 @@ namespace Interfaz {
             this.gpbIdentificadores.Controls.Add(this.dgvIdentificadores);
             this.gpbIdentificadores.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gpbIdentificadores.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbIdentificadores.Location = new System.Drawing.Point(0, 0);
+            this.gpbIdentificadores.Location = new System.Drawing.Point(3, 375);
             this.gpbIdentificadores.Name = "gpbIdentificadores";
-            this.gpbIdentificadores.Size = new System.Drawing.Size(430, 201);
+            this.gpbIdentificadores.Size = new System.Drawing.Size(705, 74);
             this.gpbIdentificadores.TabIndex = 7;
             this.gpbIdentificadores.TabStop = false;
             this.gpbIdentificadores.Text = "Tabla de identificadores";
@@ -277,7 +277,7 @@ namespace Interfaz {
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvIdentificadores.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvIdentificadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvIdentificadores.Size = new System.Drawing.Size(424, 173);
+            this.dgvIdentificadores.Size = new System.Drawing.Size(699, 46);
             this.dgvIdentificadores.TabIndex = 8;
             // 
             // Column1
@@ -316,9 +316,9 @@ namespace Interfaz {
             this.gpbErrores.Controls.Add(this.dgvErrores);
             this.gpbErrores.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gpbErrores.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbErrores.Location = new System.Drawing.Point(0, 0);
+            this.gpbErrores.Location = new System.Drawing.Point(3, 455);
             this.gpbErrores.Name = "gpbErrores";
-            this.gpbErrores.Size = new System.Drawing.Size(318, 188);
+            this.gpbErrores.Size = new System.Drawing.Size(705, 76);
             this.gpbErrores.TabIndex = 9;
             this.gpbErrores.TabStop = false;
             this.gpbErrores.Text = "Tabla de Errores";
@@ -368,7 +368,7 @@ namespace Interfaz {
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvErrores.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvErrores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvErrores.Size = new System.Drawing.Size(312, 160);
+            this.dgvErrores.Size = new System.Drawing.Size(699, 48);
             this.dgvErrores.TabIndex = 10;
             // 
             // TokenError
@@ -446,9 +446,9 @@ namespace Interfaz {
             this.gpbSintactico.Controls.Add(this.txtSintaxis);
             this.gpbSintactico.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gpbSintactico.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbSintactico.Location = new System.Drawing.Point(0, 0);
+            this.gpbSintactico.Location = new System.Drawing.Point(358, 3);
             this.gpbSintactico.Name = "gpbSintactico";
-            this.gpbSintactico.Size = new System.Drawing.Size(917, 179);
+            this.gpbSintactico.Size = new System.Drawing.Size(350, 180);
             this.gpbSintactico.TabIndex = 1002;
             this.gpbSintactico.TabStop = false;
             this.gpbSintactico.Text = "Sintáctico";
@@ -463,7 +463,7 @@ namespace Interfaz {
             this.txtSintaxis.Location = new System.Drawing.Point(3, 25);
             this.txtSintaxis.Name = "txtSintaxis";
             this.txtSintaxis.ReadOnly = true;
-            this.txtSintaxis.Size = new System.Drawing.Size(911, 151);
+            this.txtSintaxis.Size = new System.Drawing.Size(344, 152);
             this.txtSintaxis.TabIndex = 9;
             this.txtSintaxis.Text = "";
             this.txtSintaxis.WordWrap = false;
@@ -472,7 +472,6 @@ namespace Interfaz {
             // 
             this.btnSintaxis.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btnSintaxis.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSintaxis.Enabled = false;
             this.btnSintaxis.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSintaxis.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSintaxis.Location = new System.Drawing.Point(0, 54);
@@ -498,6 +497,20 @@ namespace Interfaz {
             this.pnBotones.Size = new System.Drawing.Size(132, 540);
             this.pnBotones.TabIndex = 1004;
             // 
+            // btnSemantica
+            // 
+            this.btnSemantica.BackColor = System.Drawing.Color.Violet;
+            this.btnSemantica.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSemantica.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSemantica.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSemantica.Location = new System.Drawing.Point(0, 108);
+            this.btnSemantica.Name = "btnSemantica";
+            this.btnSemantica.Size = new System.Drawing.Size(132, 54);
+            this.btnSemantica.TabIndex = 1004;
+            this.btnSemantica.Text = "✔️\r\nSemántica";
+            this.btnSemantica.UseVisualStyleBackColor = false;
+            this.btnSemantica.Click += new System.EventHandler(this.btnSemantica_Click);
+            // 
             // secundarioNDivisiones
             // 
             this.secundarioNDivisiones.ColumnCount = 2;
@@ -519,6 +532,34 @@ namespace Interfaz {
             this.secundarioNDivisiones.Size = new System.Drawing.Size(711, 534);
             this.secundarioNDivisiones.TabIndex = 1005;
             // 
+            // gpbSemantica
+            // 
+            this.secundarioNDivisiones.SetColumnSpan(this.gpbSemantica, 2);
+            this.gpbSemantica.Controls.Add(this.txtSemantica);
+            this.gpbSemantica.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gpbSemantica.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpbSemantica.Location = new System.Drawing.Point(3, 189);
+            this.gpbSemantica.Name = "gpbSemantica";
+            this.gpbSemantica.Size = new System.Drawing.Size(705, 180);
+            this.gpbSemantica.TabIndex = 1003;
+            this.gpbSemantica.TabStop = false;
+            this.gpbSemantica.Text = "Semántico";
+            // 
+            // txtSemantica
+            // 
+            this.txtSemantica.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtSemantica.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSemantica.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSemantica.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSemantica.ForeColor = System.Drawing.Color.Black;
+            this.txtSemantica.Location = new System.Drawing.Point(3, 25);
+            this.txtSemantica.Name = "txtSemantica";
+            this.txtSemantica.ReadOnly = true;
+            this.txtSemantica.Size = new System.Drawing.Size(699, 152);
+            this.txtSemantica.TabIndex = 9;
+            this.txtSemantica.Text = "";
+            this.txtSemantica.WordWrap = false;
+            // 
             // mainDosDivisiones
             // 
             this.mainDosDivisiones.ColumnCount = 2;
@@ -533,48 +574,6 @@ namespace Interfaz {
             this.mainDosDivisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainDosDivisiones.Size = new System.Drawing.Size(1103, 540);
             this.mainDosDivisiones.TabIndex = 1006;
-            // 
-            // btnSemantica
-            // 
-            this.btnSemantica.BackColor = System.Drawing.Color.Violet;
-            this.btnSemantica.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSemantica.Enabled = false;
-            this.btnSemantica.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSemantica.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSemantica.Location = new System.Drawing.Point(0, 108);
-            this.btnSemantica.Name = "btnSemantica";
-            this.btnSemantica.Size = new System.Drawing.Size(132, 54);
-            this.btnSemantica.TabIndex = 1004;
-            this.btnSemantica.Text = "✔️\r\nSemántica";
-            this.btnSemantica.UseVisualStyleBackColor = false;
-            // 
-            // gpbSemantica
-            // 
-            this.secundarioNDivisiones.SetColumnSpan(this.gpbSemantica, 2);
-            this.gpbSemantica.Controls.Add(this.richTextBox1);
-            this.gpbSemantica.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gpbSemantica.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbSemantica.Location = new System.Drawing.Point(0, 0);
-            this.gpbSemantica.Name = "gpbSemantica";
-            this.gpbSemantica.Size = new System.Drawing.Size(911, 151);
-            this.gpbSemantica.TabIndex = 1003;
-            this.gpbSemantica.TabStop = false;
-            this.gpbSemantica.Text = "Semántico";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.ForeColor = System.Drawing.Color.Black;
-            this.richTextBox1.Location = new System.Drawing.Point(3, 25);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(905, 123);
-            this.richTextBox1.TabIndex = 9;
-            this.richTextBox1.Text = "";
-            this.richTextBox1.WordWrap = false;
             // 
             // FormPrincipal
             // 
@@ -603,8 +602,8 @@ namespace Interfaz {
             this.gpbSintactico.ResumeLayout(false);
             this.pnBotones.ResumeLayout(false);
             this.secundarioNDivisiones.ResumeLayout(false);
-            this.mainDosDivisiones.ResumeLayout(false);
             this.gpbSemantica.ResumeLayout(false);
+            this.mainDosDivisiones.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -643,7 +642,7 @@ namespace Interfaz {
         private System.Windows.Forms.TableLayoutPanel mainDosDivisiones;
         private System.Windows.Forms.Button btnSemantica;
         private System.Windows.Forms.GroupBox gpbSemantica;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox txtSemantica;
     }
 }
 
