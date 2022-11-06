@@ -24,29 +24,29 @@ namespace Interfaz {
         /// el contenido de este método con el editor de código.
         /// </summary>
         private void InitializeComponent() {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gpbCodificacion = new System.Windows.Forms.GroupBox();
             this.lblInfo = new System.Windows.Forms.Label();
             this.txtNumeracionCodificacion = new System.Windows.Forms.RichTextBox();
             this.txtCodificacion = new System.Windows.Forms.RichTextBox();
             this.btnCompilar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gpbLexico = new System.Windows.Forms.GroupBox();
             this.txtNumeracionCompilacion = new System.Windows.Forms.RichTextBox();
             this.txtLexico = new System.Windows.Forms.RichTextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gpbIdentificadores = new System.Windows.Forms.GroupBox();
             this.dgvIdentificadores = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IDIdentificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoDato = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.gpbErrores = new System.Windows.Forms.GroupBox();
             this.dgvErrores = new System.Windows.Forms.DataGridView();
             this.TokenError = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,30 +55,41 @@ namespace Interfaz {
             this.btnGuardarArchivoToken = new System.Windows.Forms.Button();
             this.btnGuardarCodigo = new System.Windows.Forms.Button();
             this.btnCargarCodigo = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.gpbSintactico = new System.Windows.Forms.GroupBox();
             this.txtSintaxis = new System.Windows.Forms.RichTextBox();
             this.btnSintaxis = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.pnBotones = new System.Windows.Forms.Panel();
+            this.secundarioNDivisiones = new System.Windows.Forms.TableLayoutPanel();
+            this.mainDosDivisiones = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSemantica = new System.Windows.Forms.Button();
+            this.gpbSemantica = new System.Windows.Forms.GroupBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.gpbCodificacion.SuspendLayout();
+            this.gpbLexico.SuspendLayout();
+            this.gpbIdentificadores.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIdentificadores)).BeginInit();
-            this.groupBox4.SuspendLayout();
+            this.gpbErrores.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvErrores)).BeginInit();
-            this.groupBox5.SuspendLayout();
+            this.gpbSintactico.SuspendLayout();
+            this.pnBotones.SuspendLayout();
+            this.secundarioNDivisiones.SuspendLayout();
+            this.mainDosDivisiones.SuspendLayout();
+            this.gpbSemantica.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // gpbCodificacion
             // 
-            this.groupBox1.Controls.Add(this.lblInfo);
-            this.groupBox1.Controls.Add(this.txtNumeracionCodificacion);
-            this.groupBox1.Controls.Add(this.txtCodificacion);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(595, 410);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Codificación";
+            this.gpbCodificacion.Controls.Add(this.lblInfo);
+            this.gpbCodificacion.Controls.Add(this.txtCodificacion);
+            this.gpbCodificacion.Controls.Add(this.txtNumeracionCodificacion);
+            this.gpbCodificacion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gpbCodificacion.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpbCodificacion.Location = new System.Drawing.Point(3, 3);
+            this.gpbCodificacion.Name = "gpbCodificacion";
+            this.gpbCodificacion.Size = new System.Drawing.Size(380, 534);
+            this.gpbCodificacion.TabIndex = 0;
+            this.gpbCodificacion.TabStop = false;
+            this.gpbCodificacion.Text = "Codificación";
             // 
             // lblInfo
             // 
@@ -86,25 +97,24 @@ namespace Interfaz {
             this.lblInfo.AutoSize = true;
             this.lblInfo.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInfo.ForeColor = System.Drawing.Color.Teal;
-            this.lblInfo.Location = new System.Drawing.Point(531, 364);
+            this.lblInfo.Location = new System.Drawing.Point(316, 488);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(57, 40);
+            this.lblInfo.Size = new System.Drawing.Size(58, 40);
             this.lblInfo.TabIndex = 1001;
             this.lblInfo.Text = "🖋️";
             // 
             // txtNumeracionCodificacion
             // 
-            this.txtNumeracionCodificacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNumeracionCodificacion.BackColor = System.Drawing.Color.LightGray;
             this.txtNumeracionCodificacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNumeracionCodificacion.Dock = System.Windows.Forms.DockStyle.Left;
             this.txtNumeracionCodificacion.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNumeracionCodificacion.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtNumeracionCodificacion.Location = new System.Drawing.Point(6, 28);
+            this.txtNumeracionCodificacion.Location = new System.Drawing.Point(3, 25);
             this.txtNumeracionCodificacion.Name = "txtNumeracionCodificacion";
             this.txtNumeracionCodificacion.ReadOnly = true;
             this.txtNumeracionCodificacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.txtNumeracionCodificacion.Size = new System.Drawing.Size(50, 376);
+            this.txtNumeracionCodificacion.Size = new System.Drawing.Size(50, 506);
             this.txtNumeracionCodificacion.TabIndex = 1000;
             this.txtNumeracionCodificacion.TabStop = false;
             this.txtNumeracionCodificacion.Text = "";
@@ -113,17 +123,15 @@ namespace Interfaz {
             // 
             // txtCodificacion
             // 
-            this.txtCodificacion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCodificacion.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtCodificacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCodificacion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCodificacion.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodificacion.ForeColor = System.Drawing.Color.Black;
-            this.txtCodificacion.Location = new System.Drawing.Point(41, 28);
+            this.txtCodificacion.Location = new System.Drawing.Point(53, 25);
             this.txtCodificacion.Name = "txtCodificacion";
             this.txtCodificacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Horizontal;
-            this.txtCodificacion.Size = new System.Drawing.Size(548, 376);
+            this.txtCodificacion.Size = new System.Drawing.Size(324, 506);
             this.txtCodificacion.TabIndex = 1;
             this.txtCodificacion.TabStop = false;
             this.txtCodificacion.Text = "";
@@ -136,11 +144,12 @@ namespace Interfaz {
             // btnCompilar
             // 
             this.btnCompilar.BackColor = System.Drawing.Color.LightGreen;
+            this.btnCompilar.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnCompilar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCompilar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCompilar.Location = new System.Drawing.Point(613, 152);
+            this.btnCompilar.Location = new System.Drawing.Point(0, 0);
             this.btnCompilar.Name = "btnCompilar";
-            this.btnCompilar.Size = new System.Drawing.Size(106, 54);
+            this.btnCompilar.Size = new System.Drawing.Size(132, 54);
             this.btnCompilar.TabIndex = 2;
             this.btnCompilar.Text = "✔️\r\nLéxico";
             this.btnCompilar.UseVisualStyleBackColor = false;
@@ -149,42 +158,43 @@ namespace Interfaz {
             // btnLimpiar
             // 
             this.btnLimpiar.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnLimpiar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLimpiar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLimpiar.Location = new System.Drawing.Point(264, 428);
+            this.btnLimpiar.Location = new System.Drawing.Point(0, 486);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(106, 54);
+            this.btnLimpiar.Size = new System.Drawing.Size(132, 54);
             this.btnLimpiar.TabIndex = 3;
             this.btnLimpiar.Text = "🧹\r\nLimpiar";
             this.btnLimpiar.UseVisualStyleBackColor = false;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
-            // groupBox2
+            // gpbLexico
             // 
-            this.groupBox2.Controls.Add(this.txtNumeracionCompilacion);
-            this.groupBox2.Controls.Add(this.txtLexico);
-            this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(725, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(607, 217);
-            this.groupBox2.TabIndex = 10;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Lexico";
+            this.gpbLexico.Controls.Add(this.txtLexico);
+            this.gpbLexico.Controls.Add(this.txtNumeracionCompilacion);
+            this.gpbLexico.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gpbLexico.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpbLexico.Location = new System.Drawing.Point(0, 0);
+            this.gpbLexico.Name = "gpbLexico";
+            this.gpbLexico.Size = new System.Drawing.Size(474, 156);
+            this.gpbLexico.TabIndex = 10;
+            this.gpbLexico.TabStop = false;
+            this.gpbLexico.Text = "Léxico";
             // 
             // txtNumeracionCompilacion
             // 
-            this.txtNumeracionCompilacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNumeracionCompilacion.BackColor = System.Drawing.Color.LightGray;
             this.txtNumeracionCompilacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNumeracionCompilacion.Dock = System.Windows.Forms.DockStyle.Left;
             this.txtNumeracionCompilacion.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNumeracionCompilacion.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.txtNumeracionCompilacion.Location = new System.Drawing.Point(6, 28);
+            this.txtNumeracionCompilacion.Location = new System.Drawing.Point(3, 25);
             this.txtNumeracionCompilacion.Name = "txtNumeracionCompilacion";
             this.txtNumeracionCompilacion.ReadOnly = true;
             this.txtNumeracionCompilacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.txtNumeracionCompilacion.Size = new System.Drawing.Size(50, 183);
+            this.txtNumeracionCompilacion.Size = new System.Drawing.Size(50, 128);
             this.txtNumeracionCompilacion.TabIndex = 1001;
             this.txtNumeracionCompilacion.Text = "";
             this.txtNumeracionCompilacion.FontChanged += new System.EventHandler(this.txtNumeracionCompilacion_FontChanged);
@@ -192,17 +202,15 @@ namespace Interfaz {
             // 
             // txtLexico
             // 
-            this.txtLexico.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLexico.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtLexico.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtLexico.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtLexico.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLexico.ForeColor = System.Drawing.Color.Black;
-            this.txtLexico.Location = new System.Drawing.Point(41, 28);
+            this.txtLexico.Location = new System.Drawing.Point(53, 25);
             this.txtLexico.Name = "txtLexico";
             this.txtLexico.ReadOnly = true;
-            this.txtLexico.Size = new System.Drawing.Size(560, 183);
+            this.txtLexico.Size = new System.Drawing.Size(418, 128);
             this.txtLexico.TabIndex = 9;
             this.txtLexico.Text = "";
             this.txtLexico.WordWrap = false;
@@ -211,16 +219,18 @@ namespace Interfaz {
             this.txtLexico.FontChanged += new System.EventHandler(this.txtCompilacion_FontChanged);
             this.txtLexico.TextChanged += new System.EventHandler(this.txtCompilacion_TextChanged);
             // 
-            // groupBox3
+            // gpbIdentificadores
             // 
-            this.groupBox3.Controls.Add(this.dgvIdentificadores);
-            this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(2, 488);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(683, 188);
-            this.groupBox3.TabIndex = 7;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Tabla de identificadores";
+            this.secundarioNDivisiones.SetColumnSpan(this.gpbIdentificadores, 2);
+            this.gpbIdentificadores.Controls.Add(this.dgvIdentificadores);
+            this.gpbIdentificadores.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gpbIdentificadores.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpbIdentificadores.Location = new System.Drawing.Point(0, 0);
+            this.gpbIdentificadores.Name = "gpbIdentificadores";
+            this.gpbIdentificadores.Size = new System.Drawing.Size(430, 201);
+            this.gpbIdentificadores.TabIndex = 7;
+            this.gpbIdentificadores.TabStop = false;
+            this.gpbIdentificadores.Text = "Tabla de identificadores";
             // 
             // dgvIdentificadores
             // 
@@ -231,42 +241,43 @@ namespace Interfaz {
             this.dgvIdentificadores.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvIdentificadores.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dgvIdentificadores.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(151)))), ((int)(((byte)(184)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(151)))), ((int)(((byte)(184)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIdentificadores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(151)))), ((int)(((byte)(184)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(151)))), ((int)(((byte)(184)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIdentificadores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvIdentificadores.ColumnHeadersHeight = 40;
             this.dgvIdentificadores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.IDIdentificador,
             this.TipoDato,
             this.Valor});
+            this.dgvIdentificadores.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvIdentificadores.EnableHeadersVisualStyles = false;
             this.dgvIdentificadores.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgvIdentificadores.Location = new System.Drawing.Point(6, 28);
+            this.dgvIdentificadores.Location = new System.Drawing.Point(3, 25);
             this.dgvIdentificadores.Name = "dgvIdentificadores";
             this.dgvIdentificadores.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(100)))), ((int)(((byte)(122)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIdentificadores.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(100)))), ((int)(((byte)(122)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIdentificadores.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvIdentificadores.RowHeadersVisible = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvIdentificadores.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvIdentificadores.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvIdentificadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvIdentificadores.Size = new System.Drawing.Size(671, 154);
+            this.dgvIdentificadores.Size = new System.Drawing.Size(424, 173);
             this.dgvIdentificadores.TabIndex = 8;
             // 
             // Column1
@@ -299,16 +310,18 @@ namespace Interfaz {
             this.Valor.ReadOnly = true;
             this.Valor.Width = 299;
             // 
-            // groupBox4
+            // gpbErrores
             // 
-            this.groupBox4.Controls.Add(this.dgvErrores);
-            this.groupBox4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(691, 488);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(655, 188);
-            this.groupBox4.TabIndex = 9;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Tabla de Errores";
+            this.secundarioNDivisiones.SetColumnSpan(this.gpbErrores, 2);
+            this.gpbErrores.Controls.Add(this.dgvErrores);
+            this.gpbErrores.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gpbErrores.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpbErrores.Location = new System.Drawing.Point(0, 0);
+            this.gpbErrores.Name = "gpbErrores";
+            this.gpbErrores.Size = new System.Drawing.Size(318, 188);
+            this.gpbErrores.TabIndex = 9;
+            this.gpbErrores.TabStop = false;
+            this.gpbErrores.Text = "Tabla de Errores";
             // 
             // dgvErrores
             // 
@@ -319,42 +332,43 @@ namespace Interfaz {
             this.dgvErrores.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvErrores.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dgvErrores.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(66)))), ((int)(((byte)(60)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(66)))), ((int)(((byte)(60)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvErrores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(66)))), ((int)(((byte)(60)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(66)))), ((int)(((byte)(60)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvErrores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvErrores.ColumnHeadersHeight = 40;
             this.dgvErrores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TokenError,
             this.Linea,
             this.Descripcion,
             this.clmnPalabra});
+            this.dgvErrores.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvErrores.EnableHeadersVisualStyles = false;
             this.dgvErrores.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgvErrores.Location = new System.Drawing.Point(6, 28);
+            this.dgvErrores.Location = new System.Drawing.Point(3, 25);
             this.dgvErrores.Name = "dgvErrores";
             this.dgvErrores.ReadOnly = true;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(100)))), ((int)(((byte)(122)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvErrores.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(100)))), ((int)(((byte)(122)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvErrores.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvErrores.RowHeadersVisible = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvErrores.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvErrores.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvErrores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvErrores.Size = new System.Drawing.Size(639, 154);
+            this.dgvErrores.Size = new System.Drawing.Size(312, 160);
             this.dgvErrores.TabIndex = 10;
             // 
             // TokenError
@@ -387,11 +401,12 @@ namespace Interfaz {
             // btnGuardarArchivoToken
             // 
             this.btnGuardarArchivoToken.BackColor = System.Drawing.Color.LightGreen;
+            this.btnGuardarArchivoToken.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnGuardarArchivoToken.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGuardarArchivoToken.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarArchivoToken.Location = new System.Drawing.Point(1147, 433);
+            this.btnGuardarArchivoToken.Location = new System.Drawing.Point(0, 421);
             this.btnGuardarArchivoToken.Name = "btnGuardarArchivoToken";
-            this.btnGuardarArchivoToken.Size = new System.Drawing.Size(185, 54);
+            this.btnGuardarArchivoToken.Size = new System.Drawing.Size(132, 65);
             this.btnGuardarArchivoToken.TabIndex = 6;
             this.btnGuardarArchivoToken.Text = "⏬\r\nGuardar archivo de tokens";
             this.btnGuardarArchivoToken.UseVisualStyleBackColor = false;
@@ -400,11 +415,12 @@ namespace Interfaz {
             // btnGuardarCodigo
             // 
             this.btnGuardarCodigo.BackColor = System.Drawing.Color.LightGreen;
+            this.btnGuardarCodigo.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnGuardarCodigo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGuardarCodigo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarCodigo.Location = new System.Drawing.Point(12, 428);
+            this.btnGuardarCodigo.Location = new System.Drawing.Point(0, 313);
             this.btnGuardarCodigo.Name = "btnGuardarCodigo";
-            this.btnGuardarCodigo.Size = new System.Drawing.Size(120, 54);
+            this.btnGuardarCodigo.Size = new System.Drawing.Size(132, 54);
             this.btnGuardarCodigo.TabIndex = 4;
             this.btnGuardarCodigo.Text = "⏬\r\nGuardar código";
             this.btnGuardarCodigo.UseVisualStyleBackColor = false;
@@ -413,41 +429,41 @@ namespace Interfaz {
             // btnCargarCodigo
             // 
             this.btnCargarCodigo.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnCargarCodigo.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnCargarCodigo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCargarCodigo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCargarCodigo.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCargarCodigo.Location = new System.Drawing.Point(138, 428);
+            this.btnCargarCodigo.Location = new System.Drawing.Point(0, 367);
             this.btnCargarCodigo.Name = "btnCargarCodigo";
-            this.btnCargarCodigo.Size = new System.Drawing.Size(120, 54);
+            this.btnCargarCodigo.Size = new System.Drawing.Size(132, 54);
             this.btnCargarCodigo.TabIndex = 5;
             this.btnCargarCodigo.Text = "⏫\r\nCargar código";
             this.btnCargarCodigo.UseVisualStyleBackColor = false;
             this.btnCargarCodigo.Click += new System.EventHandler(this.btnCargarCodigo_Click);
             // 
-            // groupBox5
+            // gpbSintactico
             // 
-            this.groupBox5.Controls.Add(this.txtSintaxis);
-            this.groupBox5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(725, 235);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(607, 192);
-            this.groupBox5.TabIndex = 1002;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Sintaxis";
+            this.gpbSintactico.Controls.Add(this.txtSintaxis);
+            this.gpbSintactico.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gpbSintactico.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpbSintactico.Location = new System.Drawing.Point(0, 0);
+            this.gpbSintactico.Name = "gpbSintactico";
+            this.gpbSintactico.Size = new System.Drawing.Size(917, 179);
+            this.gpbSintactico.TabIndex = 1002;
+            this.gpbSintactico.TabStop = false;
+            this.gpbSintactico.Text = "Sintáctico";
             // 
             // txtSintaxis
             // 
-            this.txtSintaxis.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSintaxis.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtSintaxis.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSintaxis.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtSintaxis.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSintaxis.ForeColor = System.Drawing.Color.Black;
-            this.txtSintaxis.Location = new System.Drawing.Point(6, 28);
+            this.txtSintaxis.Location = new System.Drawing.Point(3, 25);
             this.txtSintaxis.Name = "txtSintaxis";
             this.txtSintaxis.ReadOnly = true;
-            this.txtSintaxis.Size = new System.Drawing.Size(595, 158);
+            this.txtSintaxis.Size = new System.Drawing.Size(911, 151);
             this.txtSintaxis.TabIndex = 9;
             this.txtSintaxis.Text = "";
             this.txtSintaxis.WordWrap = false;
@@ -455,16 +471,110 @@ namespace Interfaz {
             // btnSintaxis
             // 
             this.btnSintaxis.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnSintaxis.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSintaxis.Enabled = false;
             this.btnSintaxis.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSintaxis.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSintaxis.Location = new System.Drawing.Point(613, 266);
+            this.btnSintaxis.Location = new System.Drawing.Point(0, 54);
             this.btnSintaxis.Name = "btnSintaxis";
-            this.btnSintaxis.Size = new System.Drawing.Size(106, 54);
+            this.btnSintaxis.Size = new System.Drawing.Size(132, 54);
             this.btnSintaxis.TabIndex = 1003;
-            this.btnSintaxis.Text = "✔️\r\nSintaxis";
+            this.btnSintaxis.Text = "✔️\r\nSintáxis";
             this.btnSintaxis.UseVisualStyleBackColor = false;
             this.btnSintaxis.Click += new System.EventHandler(this.btnSintaxis_Click);
+            // 
+            // pnBotones
+            // 
+            this.pnBotones.Controls.Add(this.btnSemantica);
+            this.pnBotones.Controls.Add(this.btnSintaxis);
+            this.pnBotones.Controls.Add(this.btnCompilar);
+            this.pnBotones.Controls.Add(this.btnGuardarCodigo);
+            this.pnBotones.Controls.Add(this.btnCargarCodigo);
+            this.pnBotones.Controls.Add(this.btnGuardarArchivoToken);
+            this.pnBotones.Controls.Add(this.btnLimpiar);
+            this.pnBotones.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnBotones.Location = new System.Drawing.Point(0, 0);
+            this.pnBotones.Name = "pnBotones";
+            this.pnBotones.Size = new System.Drawing.Size(132, 540);
+            this.pnBotones.TabIndex = 1004;
+            // 
+            // secundarioNDivisiones
+            // 
+            this.secundarioNDivisiones.ColumnCount = 2;
+            this.secundarioNDivisiones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.secundarioNDivisiones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.secundarioNDivisiones.Controls.Add(this.gpbSemantica, 0, 1);
+            this.secundarioNDivisiones.Controls.Add(this.gpbIdentificadores, 0, 2);
+            this.secundarioNDivisiones.Controls.Add(this.gpbErrores, 0, 3);
+            this.secundarioNDivisiones.Controls.Add(this.gpbSintactico, 1, 0);
+            this.secundarioNDivisiones.Controls.Add(this.gpbLexico, 0, 0);
+            this.secundarioNDivisiones.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.secundarioNDivisiones.Location = new System.Drawing.Point(389, 3);
+            this.secundarioNDivisiones.Name = "secundarioNDivisiones";
+            this.secundarioNDivisiones.RowCount = 4;
+            this.secundarioNDivisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.secundarioNDivisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.secundarioNDivisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.secundarioNDivisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.secundarioNDivisiones.Size = new System.Drawing.Size(711, 534);
+            this.secundarioNDivisiones.TabIndex = 1005;
+            // 
+            // mainDosDivisiones
+            // 
+            this.mainDosDivisiones.ColumnCount = 2;
+            this.mainDosDivisiones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.mainDosDivisiones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
+            this.mainDosDivisiones.Controls.Add(this.secundarioNDivisiones, 1, 0);
+            this.mainDosDivisiones.Controls.Add(this.gpbCodificacion, 0, 0);
+            this.mainDosDivisiones.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainDosDivisiones.Location = new System.Drawing.Point(132, 0);
+            this.mainDosDivisiones.Name = "mainDosDivisiones";
+            this.mainDosDivisiones.RowCount = 1;
+            this.mainDosDivisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.mainDosDivisiones.Size = new System.Drawing.Size(1103, 540);
+            this.mainDosDivisiones.TabIndex = 1006;
+            // 
+            // btnSemantica
+            // 
+            this.btnSemantica.BackColor = System.Drawing.Color.Violet;
+            this.btnSemantica.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSemantica.Enabled = false;
+            this.btnSemantica.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSemantica.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSemantica.Location = new System.Drawing.Point(0, 108);
+            this.btnSemantica.Name = "btnSemantica";
+            this.btnSemantica.Size = new System.Drawing.Size(132, 54);
+            this.btnSemantica.TabIndex = 1004;
+            this.btnSemantica.Text = "✔️\r\nSemántica";
+            this.btnSemantica.UseVisualStyleBackColor = false;
+            // 
+            // gpbSemantica
+            // 
+            this.secundarioNDivisiones.SetColumnSpan(this.gpbSemantica, 2);
+            this.gpbSemantica.Controls.Add(this.richTextBox1);
+            this.gpbSemantica.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gpbSemantica.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpbSemantica.Location = new System.Drawing.Point(0, 0);
+            this.gpbSemantica.Name = "gpbSemantica";
+            this.gpbSemantica.Size = new System.Drawing.Size(911, 151);
+            this.gpbSemantica.TabIndex = 1003;
+            this.gpbSemantica.TabStop = false;
+            this.gpbSemantica.Text = "Semántico";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.ForeColor = System.Drawing.Color.Black;
+            this.richTextBox1.Location = new System.Drawing.Point(3, 25);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(905, 123);
+            this.richTextBox1.TabIndex = 9;
+            this.richTextBox1.Text = "";
+            this.richTextBox1.WordWrap = false;
             // 
             // FormPrincipal
             // 
@@ -472,47 +582,44 @@ namespace Interfaz {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1348, 687);
-            this.Controls.Add(this.btnSintaxis);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.btnCargarCodigo);
-            this.Controls.Add(this.btnGuardarCodigo);
-            this.Controls.Add(this.btnGuardarArchivoToken);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.btnCompilar);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(1235, 540);
+            this.Controls.Add(this.mainDosDivisiones);
+            this.Controls.Add(this.pnBotones);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(1000, 430);
             this.Name = "FormPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Compilador ALscript";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Resize += new System.EventHandler(this.Form1_Resize);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
+            this.gpbCodificacion.ResumeLayout(false);
+            this.gpbCodificacion.PerformLayout();
+            this.gpbLexico.ResumeLayout(false);
+            this.gpbIdentificadores.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIdentificadores)).EndInit();
-            this.groupBox4.ResumeLayout(false);
+            this.gpbErrores.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvErrores)).EndInit();
-            this.groupBox5.ResumeLayout(false);
+            this.gpbSintactico.ResumeLayout(false);
+            this.pnBotones.ResumeLayout(false);
+            this.secundarioNDivisiones.ResumeLayout(false);
+            this.mainDosDivisiones.ResumeLayout(false);
+            this.gpbSemantica.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gpbCodificacion;
         private System.Windows.Forms.RichTextBox txtCodificacion;
         private System.Windows.Forms.Button btnCompilar;
         private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gpbLexico;
         private System.Windows.Forms.RichTextBox txtLexico;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gpbIdentificadores;
         private System.Windows.Forms.DataGridView dgvIdentificadores;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox gpbErrores;
         private System.Windows.Forms.DataGridView dgvErrores;
         private System.Windows.Forms.RichTextBox txtNumeracionCodificacion;
         private System.Windows.Forms.Button btnGuardarArchivoToken;
@@ -528,9 +635,15 @@ namespace Interfaz {
         private System.Windows.Forms.DataGridViewTextBoxColumn Linea;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnPalabra;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox gpbSintactico;
         private System.Windows.Forms.RichTextBox txtSintaxis;
         private System.Windows.Forms.Button btnSintaxis;
+        private System.Windows.Forms.Panel pnBotones;
+        private System.Windows.Forms.TableLayoutPanel secundarioNDivisiones;
+        private System.Windows.Forms.TableLayoutPanel mainDosDivisiones;
+        private System.Windows.Forms.Button btnSemantica;
+        private System.Windows.Forms.GroupBox gpbSemantica;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 
