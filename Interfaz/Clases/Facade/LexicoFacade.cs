@@ -46,7 +46,6 @@ namespace Interfaz.Clases.Facade {
         }
 
         private string codificacionPosibles = "=+-*/{}()[]><|&!@$^%";
-        //private List<string> codificacionPosibles = new List<string>() { "=", "+", "-", "*", "/", "{", "}", "(", ")", "==", "<=", ">=", "<", ">", "{", "{", "{", "{", "{" };
         private string inicializarCodificacion(string codificacion) {
             int recorridos = codificacion.Length;
             for(int pos = 0; pos < recorridos; pos++) {
