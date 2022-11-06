@@ -3,6 +3,8 @@ const fs = require("fs");
 const gramaticasIf = {
   VAL_CONSTANTE: [
     "CONSTENT",
+    //"CONSTEX",
+    //"CONSTRE",
     "CE6 CONSTENT CE7",
     "CE6 CONSTEX CE7",
     "CE6 CONSTRE CE7",
@@ -366,14 +368,24 @@ const reduceCadena = (origen, puntero, fin, nuevo) => {
 };
 
 function recorridoCadenaTokens(tokensInput) {
-  let tokensInputToArray = tokensInput.split(" "), longitudTokens = tokensInputToArray.length;    
-  evaluacionSintaxis += "-->  " + tokensInput + "\n";
+  let tokensInputToArray = tokensInput.split(" "),
+    longitudTokens = tokensInputToArray.length;
+    if (tokensInput.substring(0,2) === "IN" || tokensInput.substring(0,1) === "PR")
+    {
+      evaluacionSintaxis += "-->  " + tokensInput + "\n";
+    }
 
-  for (let contLongitud = longitudTokens - 1; contLongitud >= 0; contLongitud--) {
+  for (
+    let contLongitud = longitudTokens - 1;
+    contLongitud >= 0;
+    contLongitud--
+  ) {
     for (const [k, v] of Object.entries(gramaticasIf)) {
       for (let puntero = 0; puntero < longitudTokens - contLongitud; puntero++) {
         const fin = contLongitud + puntero + 1;
-        if (v.find((e) => e === tokensInputToArray.slice(puntero, fin).join(" "))) {
+        if (
+          v.find((e) => e === tokensInputToArray.slice(puntero, fin).join(" "))
+        ) {
           tokensInput = reduceCadena(tokensInput, puntero, fin, k);
           return tokensInput === "S" ? tokensInput : recorridoCadenaTokens(tokensInput);
         }
@@ -391,7 +403,10 @@ fs.readFile("lexicoTokens.tmpalscript", "utf-8", (err, data) => {
     console.log(manipulableData);
     for (const linea of manipulableData) {
       if(linea === '') continue;
-      if (recorridoCadenaTokens(linea) === "S") evaluacionSintaxis += "-->  S\n\n";
+      if (recorridoCadenaTokens(linea) === "S")
+      {  
+        evaluacionSintaxis += /*"-->  S*/"\n";
+      }
       else evaluacionSintaxis += "-->  ERR\n\n";
     }
 
