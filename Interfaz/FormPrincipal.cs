@@ -148,7 +148,17 @@ namespace Interfaz {
         }
 
         private bool compilarSemantica() {
-            txtSemantica.Text = semanticaFacade.semanticaGo(txtLexico.Text);
+            ///PASO 1: Verificar apertura/cierre de llaves
+            ///....
+            if(semanticaFacade.determinarErrorLlaves(txtLexico)) {
+                txtSemantica.Text = "ERR --> Falta cerrar llaves..";
+                return true;
+            }
+
+            ///PASO 2: Verificar gramatica de semantica
+            ///....
+            txtSemantica = semanticaFacade.semanticaGo(txtSemantica, txtSintaxis);
+
             return false;
         }
 
