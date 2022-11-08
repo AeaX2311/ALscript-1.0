@@ -44,6 +44,68 @@ namespace Interfaz.Clases.Facade {
 
             return cCorchete != 0 || cLlave != 0 || cParentesis != 0;
         }
+        
+
+        public RichTextBox determinarErrorTipoDatos(RichTextBox txtLexico, RichTextBox txtSemantica, Dictionary<string, Identificador> identificadores) {
+            List<string> tiposDatos = new List<string>() { "CADENA", "ENTERO", "CONSTENT", "CONSTRE", "CONSTEX" };
+            List<string> lineas = new List<string>();
+
+            foreach(string linea in txtLexico.Lines) {
+                string lineaActual = "";
+                foreach(string palabra in linea.Split(' ')) {
+                    if(palabra.Equals("ASIG")) {
+                        lineaActual = ""; //Es una asignacion, no me tomes en cuenta el IDEN que ya fue agregado
+                    } else if(palabra.Contains("IDEN")) {
+                        //Buscar el tipo de dato del identificador y mandarlo
+                        
+                        lineaActual += identificadores[palabra].TipoDato + " "; 
+                    } else if(tiposDatos.Contains(palabra) || palabra.Contains("OPA") || palabra.Contains("OPL") || palabra.Contains("OPR"))
+                        lineaActual += palabra +" "; //Agrega la palabra
+                }
+
+                if(!lineaActual.Equals("")) lineas.Add(lineaActual);
+            }
+
+            File.WriteAllLines(@"..\..\Externos\sintaxisTokens.tmpalscript", lineas);
+            string go = @System.Configuration.ConfigurationManager.AppSettings["sintax"];
+            if(File.Exists(go + "semanticaResult.tmpalscript")) {
+                File.Delete(go + "semanticaResult.tmpalscript");
+            }
+
+            var semantica = new Process {
+                StartInfo = {
+                    FileName = "node",
+                    WorkingDirectory = go,
+                    Arguments = "AnalizadorSemantico.js",
+                    CreateNoWindow = true,
+                    WindowStyle = ProcessWindowStyle.Hidden
+                }
+            };
+            semantica.Start();
+            string[] resultadoAnalisisSemantica = null;
+            do {
+                try {
+                    resultadoAnalisisSemantica = File.ReadAllLines(@"..\..\Externos\semanticaResult.tmpalscript");
+                    txtSemantica.Lines = resultadoAnalisisSemantica;
+                } catch(Exception) { Console.WriteLine("[DEBUG] Buscando archivo..."); }
+            } while(resultadoAnalisisSemantica == null);
+
+            return txtSemantica;
+
+
+
+
+
+
+
+
+
+
+
+
+
+          //  return false;
+        }
 
         /// <summary>
         /// Genera un listado de las instrucciones obtenidas del analizador sintactico.
@@ -110,5 +172,17 @@ namespace Interfaz.Clases.Facade {
 
             return txtSemantica;
         }
+
+
+
+        //private string[] removerHashtags(RichTextBox txtLexico) {
+        //    var nuevasLineas = new List<string>();
+        //    foreach(string linea in txtLexico.Lines) {
+        //        var temp = Regex.Replace(linea, @"\bIDEN#[0-9]+", "IDEN");
+        //        nuevasLineas.Add(temp);
+        //    }
+
+        //    return nuevasLineas.ToArray();
+        //}
     }
 }

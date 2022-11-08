@@ -113,7 +113,7 @@ namespace Interfaz {
             this.txtCodificacion.Location = new System.Drawing.Point(53, 25);
             this.txtCodificacion.Name = "txtCodificacion";
             this.txtCodificacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Horizontal;
-            this.txtCodificacion.Size = new System.Drawing.Size(324, 506);
+            this.txtCodificacion.Size = new System.Drawing.Size(324, 499);
             this.txtCodificacion.TabIndex = 1;
             this.txtCodificacion.TabStop = false;
             this.txtCodificacion.Text = "";
@@ -134,7 +134,7 @@ namespace Interfaz {
             this.txtNumeracionCodificacion.Name = "txtNumeracionCodificacion";
             this.txtNumeracionCodificacion.ReadOnly = true;
             this.txtNumeracionCodificacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.txtNumeracionCodificacion.Size = new System.Drawing.Size(50, 506);
+            this.txtNumeracionCodificacion.Size = new System.Drawing.Size(50, 499);
             this.txtNumeracionCodificacion.TabIndex = 1000;
             this.txtNumeracionCodificacion.TabStop = false;
             this.txtNumeracionCodificacion.Text = "";
@@ -147,9 +147,9 @@ namespace Interfaz {
             this.btnCompilar.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnCompilar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCompilar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCompilar.Location = new System.Drawing.Point(0, 0);
+            this.btnCompilar.Location = new System.Drawing.Point(10, 10);
             this.btnCompilar.Name = "btnCompilar";
-            this.btnCompilar.Size = new System.Drawing.Size(132, 54);
+            this.btnCompilar.Size = new System.Drawing.Size(112, 54);
             this.btnCompilar.TabIndex = 2;
             this.btnCompilar.Text = "✔️\r\nLéxico";
             this.btnCompilar.UseVisualStyleBackColor = false;
@@ -162,9 +162,9 @@ namespace Interfaz {
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLimpiar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLimpiar.Location = new System.Drawing.Point(0, 486);
+            this.btnLimpiar.Location = new System.Drawing.Point(10, 476);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(132, 54);
+            this.btnLimpiar.Size = new System.Drawing.Size(112, 54);
             this.btnLimpiar.TabIndex = 3;
             this.btnLimpiar.Text = "🧹\r\nLimpiar";
             this.btnLimpiar.UseVisualStyleBackColor = false;
@@ -404,9 +404,9 @@ namespace Interfaz {
             this.btnGuardarArchivoToken.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnGuardarArchivoToken.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGuardarArchivoToken.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarArchivoToken.Location = new System.Drawing.Point(0, 421);
+            this.btnGuardarArchivoToken.Location = new System.Drawing.Point(10, 411);
             this.btnGuardarArchivoToken.Name = "btnGuardarArchivoToken";
-            this.btnGuardarArchivoToken.Size = new System.Drawing.Size(132, 65);
+            this.btnGuardarArchivoToken.Size = new System.Drawing.Size(112, 65);
             this.btnGuardarArchivoToken.TabIndex = 6;
             this.btnGuardarArchivoToken.Text = "⏬\r\nGuardar archivo de tokens";
             this.btnGuardarArchivoToken.UseVisualStyleBackColor = false;
@@ -418,9 +418,9 @@ namespace Interfaz {
             this.btnGuardarCodigo.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnGuardarCodigo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGuardarCodigo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarCodigo.Location = new System.Drawing.Point(0, 313);
+            this.btnGuardarCodigo.Location = new System.Drawing.Point(10, 303);
             this.btnGuardarCodigo.Name = "btnGuardarCodigo";
-            this.btnGuardarCodigo.Size = new System.Drawing.Size(132, 54);
+            this.btnGuardarCodigo.Size = new System.Drawing.Size(112, 54);
             this.btnGuardarCodigo.TabIndex = 4;
             this.btnGuardarCodigo.Text = "⏬\r\nGuardar código";
             this.btnGuardarCodigo.UseVisualStyleBackColor = false;
@@ -433,9 +433,9 @@ namespace Interfaz {
             this.btnCargarCodigo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCargarCodigo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCargarCodigo.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCargarCodigo.Location = new System.Drawing.Point(0, 367);
+            this.btnCargarCodigo.Location = new System.Drawing.Point(10, 357);
             this.btnCargarCodigo.Name = "btnCargarCodigo";
-            this.btnCargarCodigo.Size = new System.Drawing.Size(132, 54);
+            this.btnCargarCodigo.Size = new System.Drawing.Size(112, 54);
             this.btnCargarCodigo.TabIndex = 5;
             this.btnCargarCodigo.Text = "⏫\r\nCargar código";
             this.btnCargarCodigo.UseVisualStyleBackColor = false;
@@ -474,9 +474,9 @@ namespace Interfaz {
             this.btnSintaxis.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSintaxis.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSintaxis.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSintaxis.Location = new System.Drawing.Point(0, 54);
+            this.btnSintaxis.Location = new System.Drawing.Point(10, 64);
             this.btnSintaxis.Name = "btnSintaxis";
-            this.btnSintaxis.Size = new System.Drawing.Size(132, 54);
+            this.btnSintaxis.Size = new System.Drawing.Size(112, 54);
             this.btnSintaxis.TabIndex = 1003;
             this.btnSintaxis.Text = "✔️\r\nSintáxis";
             this.btnSintaxis.UseVisualStyleBackColor = false;
@@ -494,6 +494,7 @@ namespace Interfaz {
             this.pnBotones.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnBotones.Location = new System.Drawing.Point(0, 0);
             this.pnBotones.Name = "pnBotones";
+            this.pnBotones.Padding = new System.Windows.Forms.Padding(10);
             this.pnBotones.Size = new System.Drawing.Size(132, 540);
             this.pnBotones.TabIndex = 1004;
             // 
@@ -503,9 +504,9 @@ namespace Interfaz {
             this.btnSemantica.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSemantica.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSemantica.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSemantica.Location = new System.Drawing.Point(0, 108);
+            this.btnSemantica.Location = new System.Drawing.Point(10, 118);
             this.btnSemantica.Name = "btnSemantica";
-            this.btnSemantica.Size = new System.Drawing.Size(132, 54);
+            this.btnSemantica.Size = new System.Drawing.Size(112, 54);
             this.btnSemantica.TabIndex = 1004;
             this.btnSemantica.Text = "✔️\r\nSemántica";
             this.btnSemantica.UseVisualStyleBackColor = false;

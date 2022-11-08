@@ -27,8 +27,47 @@ const gramaticasIf = {
     "IN_CASO IN_CASO"
   ],
 
+
+
   S: [
     "PRINI CON PRFIN",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    "CONSTENT OPA1 CONSTENT"
   ],
 };
 

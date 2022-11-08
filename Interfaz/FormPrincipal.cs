@@ -17,6 +17,7 @@ namespace Interfaz {
         SintaxisFacade sintaxisFacade = null;
         SemanticaFacade semanticaFacade = null;
         SaveFileDialog saveFileDialog = new SaveFileDialog();
+        Dictionary<string, Identificador> identificadores;
 
         readonly OpenFileDialog openFileDialog = new OpenFileDialog() {
             AddExtension = true,
@@ -29,6 +30,7 @@ namespace Interfaz {
             inicializarRTXBX();
             sintaxisFacade = new SintaxisFacade();
             semanticaFacade = new SemanticaFacade();
+            identificadores = new Dictionary<string, Identificador>();
         }
 
         public FormPrincipal(string file) : this() {
@@ -136,7 +138,13 @@ namespace Interfaz {
             }
 
             if (resultado.Identificadores.Count > 0) {
-                cargarIdentificadores(resultado.Identificadores);
+                cargarIdentificadores();
+
+                identificadores = new Dictionary<string, Identificador>();
+                foreach(Identificador i in resultado.Identificadores) {
+                    identificadores.Add("IDEN#" + i.Secuencial, i);
+                }
+                
             }
 
             return tieneErrores;
@@ -151,15 +159,23 @@ namespace Interfaz {
             ///PASO 1: Verificar apertura/cierre de llaves
             ///....
             if(semanticaFacade.determinarErrorLlaves(txtLexico)) {
-                txtSemantica.Text = "ERR --> Falta cerrar llaves..";
+                txtSemantica.Text = "ERR --> Es necesario revisar la apertura/cierre de llaves";
                 return true;
             }
 
-            ///PASO 2: Verificar gramatica de semantica
+            ///PASO 2: Verificar tipos de datos
+            ///....
+            txtSemantica = semanticaFacade.determinarErrorTipoDatos(txtLexico, txtSemantica, identificadores);
+            //if(semanticaFacade.determinarErrorTipoDatos(txtLexico)) {
+            //    txtSemantica.Text = "ERR --> Verificar tipos de datos..";
+            //    return true;
+            //}
+
+            ///PASO 3: Verificar gramatica de semantica
             ///....
             txtSemantica = semanticaFacade.semanticaGo(txtSemantica, txtSintaxis);
 
-            return false;
+            return txtSemantica.Text.Contains("ERR");
         }
 
         /// <summary>
@@ -192,10 +208,11 @@ namespace Interfaz {
         /// Llena DGV de identificadores
         /// </summary>
         /// <param name="identificadores">Listado de identificadores</param>
-        private void cargarIdentificadores(List<Identificador> identificadores) {
+        private void cargarIdentificadores() {
             dgvIdentificadores.Rows.Clear();
 
-            foreach (Identificador i in identificadores) {
+            foreach(KeyValuePair<string, Identificador> id in identificadores) {
+                Identificador i = id.Value;
                 dgvIdentificadores.Rows.Add("IDEN_" + i.Secuencial, i.Nombre, lexicoFacade.determinarTipoDato(i.TipoDato), i.Valor);
             }
         }

@@ -1,4 +1,5 @@
 ﻿using Interfaz.Connection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -50,14 +51,18 @@ namespace Interfaz.Clases.Facade {
             int recorridos = codificacion.Length;
             for(int pos = 0; pos < recorridos; pos++) {
                 if(codificacionPosibles.Contains(codificacion[pos])) {
-                    if(!codificacion[pos - 1].Equals(' ')) {
-                        codificacion = agregarEspacio(pos, codificacion);
-                        recorridos++; pos++;
-                    } if(!codificacion[pos + 1].Equals(' ')) {
-                        codificacion = agregarEspacio(pos + 1, codificacion);
-                        recorridos++;
-                        pos++;
-                    }
+                    try {
+                        if(!codificacion[pos - 1].Equals(' ')) {
+                            codificacion = agregarEspacio(pos, codificacion);
+                            recorridos++;
+                            pos++;
+                        }
+                        if(!codificacion[pos + 1].Equals(' ')) {
+                            codificacion = agregarEspacio(pos + 1, codificacion);
+                            recorridos++;
+                            pos++;
+                        }
+                    } catch { }
                 }
             }
 
