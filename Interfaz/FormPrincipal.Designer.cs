@@ -59,12 +59,12 @@ namespace Interfaz {
             this.txtSintaxis = new System.Windows.Forms.RichTextBox();
             this.btnSintaxis = new System.Windows.Forms.Button();
             this.pnBotones = new System.Windows.Forms.Panel();
+            this.btnRunAll = new System.Windows.Forms.Button();
             this.btnSemantica = new System.Windows.Forms.Button();
             this.secundarioNDivisiones = new System.Windows.Forms.TableLayoutPanel();
             this.gpbSemantica = new System.Windows.Forms.GroupBox();
             this.txtSemantica = new System.Windows.Forms.RichTextBox();
             this.mainDosDivisiones = new System.Windows.Forms.TableLayoutPanel();
-            this.btnRunAll = new System.Windows.Forms.Button();
             this.gpbCodificacion.SuspendLayout();
             this.gpbLexico.SuspendLayout();
             this.gpbIdentificadores.SuspendLayout();
@@ -106,6 +106,7 @@ namespace Interfaz {
             // 
             // txtCodificacion
             // 
+            this.txtCodificacion.AcceptsTab = true;
             this.txtCodificacion.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtCodificacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCodificacion.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -499,6 +500,16 @@ namespace Interfaz {
             this.pnBotones.Size = new System.Drawing.Size(132, 614);
             this.pnBotones.TabIndex = 1004;
             // 
+            // btnRunAll
+            // 
+            this.btnRunAll.Location = new System.Drawing.Point(27, 242);
+            this.btnRunAll.Name = "btnRunAll";
+            this.btnRunAll.Size = new System.Drawing.Size(75, 23);
+            this.btnRunAll.TabIndex = 1005;
+            this.btnRunAll.Text = "Todo";
+            this.btnRunAll.UseVisualStyleBackColor = true;
+            this.btnRunAll.Click += new System.EventHandler(this.btnRunAll_Click);
+            // 
             // btnSemantica
             // 
             this.btnSemantica.BackColor = System.Drawing.Color.Violet;
@@ -576,16 +587,6 @@ namespace Interfaz {
             this.mainDosDivisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainDosDivisiones.Size = new System.Drawing.Size(1112, 614);
             this.mainDosDivisiones.TabIndex = 1006;
-            // 
-            // btnRunAll
-            // 
-            this.btnRunAll.Location = new System.Drawing.Point(27, 242);
-            this.btnRunAll.Name = "btnRunAll";
-            this.btnRunAll.Size = new System.Drawing.Size(75, 23);
-            this.btnRunAll.TabIndex = 1005;
-            this.btnRunAll.Text = "Todo";
-            this.btnRunAll.UseVisualStyleBackColor = true;
-            this.btnRunAll.Click += new System.EventHandler(this.btnRunAll_Click);
             // 
             // FormPrincipal
             // 
