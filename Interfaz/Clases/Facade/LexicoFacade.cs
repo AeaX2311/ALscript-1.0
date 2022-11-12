@@ -31,10 +31,10 @@ namespace Interfaz.Clases.Facade {
         private string auxNombreIdentificador;
         private List<string> palabrasARemarcarError;
         private bool agregarPuntoYComa;
+        private bool identificadorDeclarado = false;
         #endregion
 
         public LexicoFacade() {
-        
             compilacion = "";
             numeroDeLinea = 1;
             errores = new List<Error>();
@@ -113,11 +113,18 @@ namespace Interfaz.Clases.Facade {
                     errores.Last().Palabra = codificacion.Substring(0, contadorLetras);
                     palabrasARemarcarError.Add(codificacion.Substring(0, contadorLetras));
                 }
-                    
+
+                    ////Marcar que el identificador ya ha sido asignado.
+                if(identificadorDeclarado) { 
+                    identificadorDeclarado = false;
+                    identificadores[auxNombreIdentificador].Asignada = true;
+                }
+
                     ////Asigna valor y tipo de dato a identificador, en caso de que se cumplan las condiciones
                 if(buscoValorParaIdentificador && auxTipoDatoIdentificador != null) {
                     identificadores[auxNombreIdentificador].TipoDato = auxTipoDatoIdentificador;
-                    identificadores[auxNombreIdentificador].Valor = codificacion.Substring(0, contadorLetras); 
+                    identificadores[auxNombreIdentificador].Valor = codificacion.Substring(0, contadorLetras);
+
 
                     buscoAsignacion = buscoValorParaIdentificador = false;
                 }
@@ -218,6 +225,9 @@ namespace Interfaz.Clases.Facade {
 
             if(token.Equals("IDEN")) {
                 agregueIdentificador = buscoAsignacion  = true; //Esta bandera activa la funcion de seteo de nombre al final del recorrido
+                try { ////Si al momento de encontrar un identificador, antes se encuentra "declarar variable", entonces marcalo como declarado.
+                    identificadorDeclarado = compilacion.Substring(compilacion.Length - 10).Equals("PRI6 PRV1 ");
+                } catch { identificadorDeclarado = false; }
             } else if(resultado.Equals("ERROR")) {
                 if(generaError)  return false;
 
@@ -232,7 +242,7 @@ namespace Interfaz.Clases.Facade {
             } else if (token.Equals("ASIG") && buscoAsignacion) {
                 buscoValorParaIdentificador = true;
             } else if(buscoValorParaIdentificador) {
-                auxTipoDatoIdentificador = token;
+                if(!token.Equals("CE6")) auxTipoDatoIdentificador = token;
             }
 
             compilacion += token; //Guarda el token
@@ -349,6 +359,12 @@ namespace Interfaz.Clases.Facade {
                     break;
                 case "CONSTEX":
                     tipoDato = "Exponencial";
+                    break;
+                case "PRB1":
+                    tipoDato = "Boleano";
+                    break;
+                case "PRB2":
+                    tipoDato = "Boleano";
                     break;
                 default:
                     tipoDato = "N/A";

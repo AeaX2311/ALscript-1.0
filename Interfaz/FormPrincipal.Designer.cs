@@ -64,6 +64,7 @@ namespace Interfaz {
             this.gpbSemantica = new System.Windows.Forms.GroupBox();
             this.txtSemantica = new System.Windows.Forms.RichTextBox();
             this.mainDosDivisiones = new System.Windows.Forms.TableLayoutPanel();
+            this.btnRunAll = new System.Windows.Forms.Button();
             this.gpbCodificacion.SuspendLayout();
             this.gpbLexico.SuspendLayout();
             this.gpbIdentificadores.SuspendLayout();
@@ -86,7 +87,7 @@ namespace Interfaz {
             this.gpbCodificacion.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpbCodificacion.Location = new System.Drawing.Point(3, 3);
             this.gpbCodificacion.Name = "gpbCodificacion";
-            this.gpbCodificacion.Size = new System.Drawing.Size(380, 534);
+            this.gpbCodificacion.Size = new System.Drawing.Size(383, 608);
             this.gpbCodificacion.TabIndex = 0;
             this.gpbCodificacion.TabStop = false;
             this.gpbCodificacion.Text = "Codificación";
@@ -97,7 +98,7 @@ namespace Interfaz {
             this.lblInfo.AutoSize = true;
             this.lblInfo.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInfo.ForeColor = System.Drawing.Color.Teal;
-            this.lblInfo.Location = new System.Drawing.Point(316, 488);
+            this.lblInfo.Location = new System.Drawing.Point(319, 562);
             this.lblInfo.Name = "lblInfo";
             this.lblInfo.Size = new System.Drawing.Size(58, 40);
             this.lblInfo.TabIndex = 1001;
@@ -112,8 +113,7 @@ namespace Interfaz {
             this.txtCodificacion.ForeColor = System.Drawing.Color.Black;
             this.txtCodificacion.Location = new System.Drawing.Point(53, 25);
             this.txtCodificacion.Name = "txtCodificacion";
-            this.txtCodificacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Horizontal;
-            this.txtCodificacion.Size = new System.Drawing.Size(324, 499);
+            this.txtCodificacion.Size = new System.Drawing.Size(327, 580);
             this.txtCodificacion.TabIndex = 1;
             this.txtCodificacion.TabStop = false;
             this.txtCodificacion.Text = "";
@@ -134,7 +134,7 @@ namespace Interfaz {
             this.txtNumeracionCodificacion.Name = "txtNumeracionCodificacion";
             this.txtNumeracionCodificacion.ReadOnly = true;
             this.txtNumeracionCodificacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.txtNumeracionCodificacion.Size = new System.Drawing.Size(50, 499);
+            this.txtNumeracionCodificacion.Size = new System.Drawing.Size(50, 580);
             this.txtNumeracionCodificacion.TabIndex = 1000;
             this.txtNumeracionCodificacion.TabStop = false;
             this.txtNumeracionCodificacion.Text = "";
@@ -162,7 +162,7 @@ namespace Interfaz {
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLimpiar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLimpiar.Location = new System.Drawing.Point(10, 476);
+            this.btnLimpiar.Location = new System.Drawing.Point(10, 550);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(112, 54);
             this.btnLimpiar.TabIndex = 3;
@@ -178,7 +178,7 @@ namespace Interfaz {
             this.gpbLexico.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpbLexico.Location = new System.Drawing.Point(3, 3);
             this.gpbLexico.Name = "gpbLexico";
-            this.gpbLexico.Size = new System.Drawing.Size(349, 180);
+            this.gpbLexico.Size = new System.Drawing.Size(352, 206);
             this.gpbLexico.TabIndex = 10;
             this.gpbLexico.TabStop = false;
             this.gpbLexico.Text = "Léxico";
@@ -193,7 +193,7 @@ namespace Interfaz {
             this.txtLexico.Location = new System.Drawing.Point(53, 25);
             this.txtLexico.Name = "txtLexico";
             this.txtLexico.ReadOnly = true;
-            this.txtLexico.Size = new System.Drawing.Size(293, 152);
+            this.txtLexico.Size = new System.Drawing.Size(296, 178);
             this.txtLexico.TabIndex = 9;
             this.txtLexico.Text = "";
             this.txtLexico.WordWrap = false;
@@ -213,7 +213,7 @@ namespace Interfaz {
             this.txtNumeracionCompilacion.Name = "txtNumeracionCompilacion";
             this.txtNumeracionCompilacion.ReadOnly = true;
             this.txtNumeracionCompilacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.txtNumeracionCompilacion.Size = new System.Drawing.Size(50, 152);
+            this.txtNumeracionCompilacion.Size = new System.Drawing.Size(50, 178);
             this.txtNumeracionCompilacion.TabIndex = 1001;
             this.txtNumeracionCompilacion.Text = "";
             this.txtNumeracionCompilacion.FontChanged += new System.EventHandler(this.txtNumeracionCompilacion_FontChanged);
@@ -225,9 +225,9 @@ namespace Interfaz {
             this.gpbIdentificadores.Controls.Add(this.dgvIdentificadores);
             this.gpbIdentificadores.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gpbIdentificadores.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbIdentificadores.Location = new System.Drawing.Point(3, 375);
+            this.gpbIdentificadores.Location = new System.Drawing.Point(3, 427);
             this.gpbIdentificadores.Name = "gpbIdentificadores";
-            this.gpbIdentificadores.Size = new System.Drawing.Size(705, 74);
+            this.gpbIdentificadores.Size = new System.Drawing.Size(711, 85);
             this.gpbIdentificadores.TabIndex = 7;
             this.gpbIdentificadores.TabStop = false;
             this.gpbIdentificadores.Text = "Tabla de identificadores";
@@ -277,7 +277,7 @@ namespace Interfaz {
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvIdentificadores.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvIdentificadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvIdentificadores.Size = new System.Drawing.Size(699, 46);
+            this.dgvIdentificadores.Size = new System.Drawing.Size(705, 57);
             this.dgvIdentificadores.TabIndex = 8;
             // 
             // Column1
@@ -316,9 +316,9 @@ namespace Interfaz {
             this.gpbErrores.Controls.Add(this.dgvErrores);
             this.gpbErrores.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gpbErrores.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbErrores.Location = new System.Drawing.Point(3, 455);
+            this.gpbErrores.Location = new System.Drawing.Point(3, 518);
             this.gpbErrores.Name = "gpbErrores";
-            this.gpbErrores.Size = new System.Drawing.Size(705, 76);
+            this.gpbErrores.Size = new System.Drawing.Size(711, 87);
             this.gpbErrores.TabIndex = 9;
             this.gpbErrores.TabStop = false;
             this.gpbErrores.Text = "Tabla de Errores";
@@ -368,7 +368,7 @@ namespace Interfaz {
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvErrores.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvErrores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvErrores.Size = new System.Drawing.Size(699, 48);
+            this.dgvErrores.Size = new System.Drawing.Size(705, 59);
             this.dgvErrores.TabIndex = 10;
             // 
             // TokenError
@@ -404,7 +404,7 @@ namespace Interfaz {
             this.btnGuardarArchivoToken.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnGuardarArchivoToken.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGuardarArchivoToken.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarArchivoToken.Location = new System.Drawing.Point(10, 411);
+            this.btnGuardarArchivoToken.Location = new System.Drawing.Point(10, 485);
             this.btnGuardarArchivoToken.Name = "btnGuardarArchivoToken";
             this.btnGuardarArchivoToken.Size = new System.Drawing.Size(112, 65);
             this.btnGuardarArchivoToken.TabIndex = 6;
@@ -418,7 +418,7 @@ namespace Interfaz {
             this.btnGuardarCodigo.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnGuardarCodigo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGuardarCodigo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarCodigo.Location = new System.Drawing.Point(10, 303);
+            this.btnGuardarCodigo.Location = new System.Drawing.Point(10, 377);
             this.btnGuardarCodigo.Name = "btnGuardarCodigo";
             this.btnGuardarCodigo.Size = new System.Drawing.Size(112, 54);
             this.btnGuardarCodigo.TabIndex = 4;
@@ -433,7 +433,7 @@ namespace Interfaz {
             this.btnCargarCodigo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCargarCodigo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCargarCodigo.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCargarCodigo.Location = new System.Drawing.Point(10, 357);
+            this.btnCargarCodigo.Location = new System.Drawing.Point(10, 431);
             this.btnCargarCodigo.Name = "btnCargarCodigo";
             this.btnCargarCodigo.Size = new System.Drawing.Size(112, 54);
             this.btnCargarCodigo.TabIndex = 5;
@@ -446,9 +446,9 @@ namespace Interfaz {
             this.gpbSintactico.Controls.Add(this.txtSintaxis);
             this.gpbSintactico.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gpbSintactico.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbSintactico.Location = new System.Drawing.Point(358, 3);
+            this.gpbSintactico.Location = new System.Drawing.Point(361, 3);
             this.gpbSintactico.Name = "gpbSintactico";
-            this.gpbSintactico.Size = new System.Drawing.Size(350, 180);
+            this.gpbSintactico.Size = new System.Drawing.Size(353, 206);
             this.gpbSintactico.TabIndex = 1002;
             this.gpbSintactico.TabStop = false;
             this.gpbSintactico.Text = "Sintáctico";
@@ -463,7 +463,7 @@ namespace Interfaz {
             this.txtSintaxis.Location = new System.Drawing.Point(3, 25);
             this.txtSintaxis.Name = "txtSintaxis";
             this.txtSintaxis.ReadOnly = true;
-            this.txtSintaxis.Size = new System.Drawing.Size(344, 152);
+            this.txtSintaxis.Size = new System.Drawing.Size(347, 178);
             this.txtSintaxis.TabIndex = 9;
             this.txtSintaxis.Text = "";
             this.txtSintaxis.WordWrap = false;
@@ -484,6 +484,7 @@ namespace Interfaz {
             // 
             // pnBotones
             // 
+            this.pnBotones.Controls.Add(this.btnRunAll);
             this.pnBotones.Controls.Add(this.btnSemantica);
             this.pnBotones.Controls.Add(this.btnSintaxis);
             this.pnBotones.Controls.Add(this.btnCompilar);
@@ -495,7 +496,7 @@ namespace Interfaz {
             this.pnBotones.Location = new System.Drawing.Point(0, 0);
             this.pnBotones.Name = "pnBotones";
             this.pnBotones.Padding = new System.Windows.Forms.Padding(10);
-            this.pnBotones.Size = new System.Drawing.Size(132, 540);
+            this.pnBotones.Size = new System.Drawing.Size(132, 614);
             this.pnBotones.TabIndex = 1004;
             // 
             // btnSemantica
@@ -523,14 +524,14 @@ namespace Interfaz {
             this.secundarioNDivisiones.Controls.Add(this.gpbSintactico, 1, 0);
             this.secundarioNDivisiones.Controls.Add(this.gpbLexico, 0, 0);
             this.secundarioNDivisiones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.secundarioNDivisiones.Location = new System.Drawing.Point(389, 3);
+            this.secundarioNDivisiones.Location = new System.Drawing.Point(392, 3);
             this.secundarioNDivisiones.Name = "secundarioNDivisiones";
             this.secundarioNDivisiones.RowCount = 4;
             this.secundarioNDivisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.secundarioNDivisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.secundarioNDivisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.secundarioNDivisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.secundarioNDivisiones.Size = new System.Drawing.Size(711, 534);
+            this.secundarioNDivisiones.Size = new System.Drawing.Size(717, 608);
             this.secundarioNDivisiones.TabIndex = 1005;
             // 
             // gpbSemantica
@@ -539,9 +540,9 @@ namespace Interfaz {
             this.gpbSemantica.Controls.Add(this.txtSemantica);
             this.gpbSemantica.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gpbSemantica.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbSemantica.Location = new System.Drawing.Point(3, 189);
+            this.gpbSemantica.Location = new System.Drawing.Point(3, 215);
             this.gpbSemantica.Name = "gpbSemantica";
-            this.gpbSemantica.Size = new System.Drawing.Size(705, 180);
+            this.gpbSemantica.Size = new System.Drawing.Size(711, 206);
             this.gpbSemantica.TabIndex = 1003;
             this.gpbSemantica.TabStop = false;
             this.gpbSemantica.Text = "Semántico";
@@ -556,7 +557,7 @@ namespace Interfaz {
             this.txtSemantica.Location = new System.Drawing.Point(3, 25);
             this.txtSemantica.Name = "txtSemantica";
             this.txtSemantica.ReadOnly = true;
-            this.txtSemantica.Size = new System.Drawing.Size(699, 152);
+            this.txtSemantica.Size = new System.Drawing.Size(705, 178);
             this.txtSemantica.TabIndex = 9;
             this.txtSemantica.Text = "";
             this.txtSemantica.WordWrap = false;
@@ -573,8 +574,18 @@ namespace Interfaz {
             this.mainDosDivisiones.Name = "mainDosDivisiones";
             this.mainDosDivisiones.RowCount = 1;
             this.mainDosDivisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.mainDosDivisiones.Size = new System.Drawing.Size(1103, 540);
+            this.mainDosDivisiones.Size = new System.Drawing.Size(1112, 614);
             this.mainDosDivisiones.TabIndex = 1006;
+            // 
+            // btnRunAll
+            // 
+            this.btnRunAll.Location = new System.Drawing.Point(27, 242);
+            this.btnRunAll.Name = "btnRunAll";
+            this.btnRunAll.Size = new System.Drawing.Size(75, 23);
+            this.btnRunAll.TabIndex = 1005;
+            this.btnRunAll.Text = "Todo";
+            this.btnRunAll.UseVisualStyleBackColor = true;
+            this.btnRunAll.Click += new System.EventHandler(this.btnRunAll_Click);
             // 
             // FormPrincipal
             // 
@@ -582,7 +593,7 @@ namespace Interfaz {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1235, 540);
+            this.ClientSize = new System.Drawing.Size(1244, 614);
             this.Controls.Add(this.mainDosDivisiones);
             this.Controls.Add(this.pnBotones);
             this.DoubleBuffered = true;
@@ -644,6 +655,7 @@ namespace Interfaz {
         private System.Windows.Forms.Button btnSemantica;
         private System.Windows.Forms.GroupBox gpbSemantica;
         private System.Windows.Forms.RichTextBox txtSemantica;
+        private System.Windows.Forms.Button btnRunAll;
     }
 }
 

@@ -42,11 +42,12 @@ namespace Interfaz {
 
         #region Acciones Click
         private void btnLimpiar_Click(object sender, EventArgs e) {
-            txtCodificacion.Text = txtLexico.Text = txtSintaxis.Text = "";
+            txtCodificacion.Text = "";
+            limpiarTodo();
             lblInfo.Text = "🖋";
             txtCodificacion.ReadOnly = false;
             dgvIdentificadores.Rows.Clear();
-            dgvErrores.Rows.Clear();
+            dgvErrores.Rows.Clear();            
             //btnSintaxis.Enabled = !btnSintaxis.Enabled;
         }
 
@@ -138,13 +139,10 @@ namespace Interfaz {
             }
 
             if (resultado.Identificadores.Count > 0) {
-                cargarIdentificadores();
-
                 identificadores = new Dictionary<string, Identificador>();
-                foreach(Identificador i in resultado.Identificadores) {
-                    identificadores.Add("IDEN#" + i.Secuencial, i);
-                }
-                
+                foreach(Identificador i in resultado.Identificadores) identificadores.Add("IDEN#" + i.Secuencial, i);
+
+                cargarIdentificadores();                
             }
 
             return tieneErrores;
@@ -165,10 +163,12 @@ namespace Interfaz {
 
             ///PASO 2: Verificar tipos de datos
             ///....
-            txtSemantica = semanticaFacade.determinarErrorTipoDatos(txtLexico, txtSemantica, identificadores);
-            //if(semanticaFacade.determinarErrorTipoDatos(txtLexico)) {
-            //    txtSemantica.Text = "ERR --> Verificar tipos de datos..";
+            //txtSemantica = semanticaFacade.determinarErrorTipoDatos(txtLexico, txtSemantica, identificadores);
+            //if(txtSemantica.Text.Contains("ERR")) {
+            //    if(!txtSemantica.Text.Contains("declarada")) txtSemantica.Text += "ERR --> Verificar tipos de datos..";
             //    return true;
+            //} else {
+            //    txtSemantica.Text += "\n\n<---------------------------------------------->\n";
             //}
 
             ///PASO 3: Verificar gramatica de semantica
@@ -220,6 +220,7 @@ namespace Interfaz {
         private void limpiarTodo() {
             txtLexico.Text = "";
             txtSintaxis.Text = "";
+            txtSemantica.Text = "";
         }
 
 
@@ -421,5 +422,11 @@ namespace Interfaz {
             txtNumeracionCompilacion.DeselectAll();
         }
         #endregion
+
+        private void btnRunAll_Click(object sender, EventArgs e) {
+            btnCompilar.PerformClick();
+            btnSintaxis.PerformClick();            
+            btnSemantica.PerformClick();
+        }
     }
 }

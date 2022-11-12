@@ -56,16 +56,27 @@ namespace Interfaz.Clases.Facade {
                     if(palabra.Equals("ASIG")) {
                         lineaActual = ""; //Es una asignacion, no me tomes en cuenta el IDEN que ya fue agregado
                     } else if(palabra.Contains("IDEN")) {
-                        //Buscar el tipo de dato del identificador y mandarlo
+                        //Buscar el tipo de dato del identificador y mandarlo                        
+                        string tipoDato = identificadores[palabra].TipoDato;
                         
-                        lineaActual += identificadores[palabra].TipoDato + " "; 
+                        if(tipoDato != null) {
+                            lineaActual += tipoDato + " ";
+                        } else {
+                            txtSemantica.Text = $"ERR --> Variable [{identificadores[palabra].Nombre}] no ha sido asignada aun.\n";
+                            return txtSemantica;
+                        }
+                        if(!identificadores[palabra].Asignada) {                            
+                            txtSemantica.Text = $"ERR --> Variable [{identificadores[palabra].Nombre}] no ha sido declarada aun.\n";
+                            return txtSemantica;                           
+                        }
+                        
                     } else if(tiposDatos.Contains(palabra) || palabra.Contains("OPA") || palabra.Contains("OPL") || palabra.Contains("OPR"))
                         lineaActual += palabra +" "; //Agrega la palabra
                 }
 
                 if(!lineaActual.Equals("")) lineas.Add(lineaActual);
             }
-
+            
             File.WriteAllLines(@"..\..\Externos\sintaxisTokens.tmpalscript", lineas);
             string go = @System.Configuration.ConfigurationManager.AppSettings["sintax"];
             if(File.Exists(go + "semanticaResult.tmpalscript")) {
@@ -91,20 +102,6 @@ namespace Interfaz.Clases.Facade {
             } while(resultadoAnalisisSemantica == null);
 
             return txtSemantica;
-
-
-
-
-
-
-
-
-
-
-
-
-
-          //  return false;
         }
 
         /// <summary>
@@ -113,9 +110,7 @@ namespace Interfaz.Clases.Facade {
         /// <param name="txtSintaxis">Analisis sintactico</param>
         /// <returns>Instrucciones separadas por espacio en string</returns>
         private string[] obtenerInstrucciones(RichTextBox txtSintaxis) {
-            ////////EN LO QUE AGREGO A LA MATRIZ
             var instrucciones = "PRINI ";
-
             foreach(string linea in txtSintaxis.Lines) {
                 if(linea.Split(' ').Length == 3) {
                     foreach(string palabra in linea.Split(' ')) {
@@ -124,11 +119,7 @@ namespace Interfaz.Clases.Facade {
                     }
 
                 }
-            }
-
-
-            ////////////EN LO QUE AGREGO A LA MATRIZ
-            instrucciones += "PRFIN";
+            } instrucciones += "PRFIN";
 
             string[] x = { instrucciones };
             return x;
@@ -142,15 +133,11 @@ namespace Interfaz.Clases.Facade {
         /// <returns></returns>
         public RichTextBox semanticaGo(RichTextBox txtSemantica, RichTextBox txtSintaxis) {
             string[] lines = obtenerInstrucciones(txtSintaxis);
-            for(int i = 0; i < lines.Length; i++) {
-                lines[i] = lines[i].TrimEnd();
-            }
+            for(int i = 0; i < lines.Length; i++) lines[i] = lines[i].TrimEnd();
 
             File.WriteAllLines(@"..\..\Externos\sintaxisTokens.tmpalscript", lines);
             string go = @System.Configuration.ConfigurationManager.AppSettings["sintax"];
-            if(File.Exists(go + "semanticaResult.tmpalscript")) {
-                File.Delete(go + "semanticaResult.tmpalscript");
-            }
+            if(File.Exists(go + "semanticaResult.tmpalscript")) File.Delete(go + "semanticaResult.tmpalscript");
 
             var semantica = new Process {
                 StartInfo = {
@@ -160,29 +147,21 @@ namespace Interfaz.Clases.Facade {
                     CreateNoWindow = true,
                     WindowStyle = ProcessWindowStyle.Hidden
                 }
-            };
-            semantica.Start();
+            }; semantica.Start();
+
+            
             string[] resultadoAnalisisSemantica = null;
             do {
                 try {
                     resultadoAnalisisSemantica = File.ReadAllLines(@"..\..\Externos\semanticaResult.tmpalscript");
-                    txtSemantica.Lines = resultadoAnalisisSemantica;
+                    var d = new string[resultadoAnalisisSemantica.Length + txtSemantica.Lines.Length];
+                    txtSemantica.Lines.CopyTo(d, 0);
+                    resultadoAnalisisSemantica.CopyTo(d, txtSemantica.Lines.Length);
+                    txtSemantica.Lines = d;
                 } catch(Exception) { Console.WriteLine("[DEBUG] Buscando archivo..."); }
             } while(resultadoAnalisisSemantica == null);
 
             return txtSemantica;
         }
-
-
-
-        //private string[] removerHashtags(RichTextBox txtLexico) {
-        //    var nuevasLineas = new List<string>();
-        //    foreach(string linea in txtLexico.Lines) {
-        //        var temp = Regex.Replace(linea, @"\bIDEN#[0-9]+", "IDEN");
-        //        nuevasLineas.Add(temp);
-        //    }
-
-        //    return nuevasLineas.ToArray();
-        //}
     }
 }

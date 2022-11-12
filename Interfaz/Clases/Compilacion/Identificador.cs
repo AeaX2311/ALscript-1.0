@@ -15,9 +15,7 @@ namespace Interfaz.Clases {
             set {
                 string nombreLimpio = "";
                 
-                foreach(char c in value) {
-                    if(c != '\n' && c != ' ' && c != '\t') nombreLimpio += c;
-                }
+                foreach(char c in value) if(c != '\n' && c != ' ' && c != '\t') nombreLimpio += c;
 
                 nombre = nombreLimpio; 
             }
@@ -43,6 +41,14 @@ namespace Interfaz.Clases {
             get { return secuencial; }
             set { secuencial = value; }
         }
+
+        private bool asignada;
+
+        public bool Asignada {
+            get { return asignada; }
+            set { asignada = value; }
+        }
+
 
         public override bool Equals(object obj) {
             return obj is Identificador identificador &&

@@ -3,6 +3,8 @@ const fs = require("fs");
 const gramaticasIf = {
   VAL_CONSTANTE: [
     "CONSTENT",
+    "CONSTRE",
+    "CONSTEX",
     "CE6 CONSTENT CE7",
     "CE6 CONSTEX CE7",
     "CE6 CONSTRE CE7",
@@ -369,6 +371,8 @@ function recorridoCadenaTokens(tokensInput) {
   let tokensInputToArray = tokensInput.split(" "), longitudTokens = tokensInputToArray.length;    
   evaluacionSintaxis += "-->  " + tokensInput + "\n";
 
+
+  ////QUE sea la longitud de tokens de la gramatica, peeero empieza buscANdo para 1 y luego de n a 2
   for (let contLongitud = longitudTokens - 1; contLongitud >= 0; contLongitud--) {
     for (const [k, v] of Object.entries(gramaticasIf)) {
       for (let puntero = 0; puntero < longitudTokens - contLongitud; puntero++) {
@@ -388,7 +392,7 @@ fs.readFile("lexicoTokens.tmpalscript", "utf-8", (err, data) => {
   if (!err) {
     const repairedData = data.replace(/[\r]+/g, '').trimEnd();
     const manipulableData = repairedData.split("\n");
-    console.log(manipulableData);
+    //console.log(manipulableData);
     for (const linea of manipulableData) {
       if(linea === '') continue;
       if (recorridoCadenaTokens(linea) === "S") evaluacionSintaxis += "-->  S\n\n";
