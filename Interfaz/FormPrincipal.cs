@@ -161,17 +161,29 @@ namespace Interfaz {
                 return true;
             }
 
-            ///PASO 2: Verificar tipos de datos
+            ///PASO 2: Verificar declaraciones repetidas
             ///....
-            //txtSemantica = semanticaFacade.determinarErrorTipoDatos(txtLexico, txtSemantica, identificadores);
-            //if(txtSemantica.Text.Contains("ERR")) {
-            //    if(!txtSemantica.Text.Contains("declarada")) txtSemantica.Text += "ERR --> Verificar tipos de datos..";
-            //    return true;
-            //} else {
-            //    txtSemantica.Text += "\n\n<---------------------------------------------->\n";
-            //}
+            string declaraciones = semanticaFacade.determinarErrorDeclaracionesRepetidas(txtLexico);
+            if(declaraciones != null) {
+                string identificador = "";
+                foreach(KeyValuePair<string, Identificador> id in identificadores) {
+                    Identificador i = id.Value; if(declaraciones.Equals(i.Secuencial.ToString())) identificador = i.Nombre;
+                }
+                txtSemantica.Text = $"ERR --> Variable [{identificador}] ya fue declarada anteriormente.\n";
+                return true;
+            }
 
-            ///PASO 3: Verificar gramatica de semantica
+            ///PASO 3: Verificar tipos de datos
+            ///....
+            txtSemantica = semanticaFacade.determinarErrorTipoDatos(txtLexico, txtSemantica, identificadores);
+            if(txtSemantica.Text.Contains("ERR")) {
+                if(!txtSemantica.Text.Contains("declarada")) txtSemantica.Text += "ERR --> Verificar tipos de datos..";
+                return true;
+            } else {
+                txtSemantica.Text += "\n\n<---------------------------------------------->\n";
+            }
+
+            ///PASO 4: Verificar gramatica de semantica
             ///....
             txtSemantica = semanticaFacade.semanticaGo(txtSemantica, txtSintaxis);
 
@@ -213,7 +225,7 @@ namespace Interfaz {
 
             foreach(KeyValuePair<string, Identificador> id in identificadores) {
                 Identificador i = id.Value;
-                dgvIdentificadores.Rows.Add("IDEN_" + i.Secuencial, i.Nombre, lexicoFacade.determinarTipoDato(i.TipoDato), i.Valor);
+                dgvIdentificadores.Rows.Add("IDEN#" + i.Secuencial, i.Nombre, lexicoFacade.determinarTipoDato(i.TipoDato), i.Valor);
             }
         }
 
@@ -221,6 +233,8 @@ namespace Interfaz {
             txtLexico.Text = "";
             txtSintaxis.Text = "";
             txtSemantica.Text = "";
+            dgvErrores.Rows.Clear();
+            dgvIdentificadores.Rows.Clear();
         }
 
 

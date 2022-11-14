@@ -44,10 +44,29 @@ namespace Interfaz.Clases.Facade {
 
             return cCorchete != 0 || cLlave != 0 || cParentesis != 0;
         }
-        
+
+        public string determinarErrorDeclaracionesRepetidas(RichTextBox txtLexico) {
+            List<string> variablesDeclaradas = new List<string>();
+
+            foreach(string linea in txtLexico.Lines) {
+                if(linea.Contains("PRI6 PRV1 IDEN")) {
+                    string identificadorActual = linea.Substring(15).Split(' ')[0];
+
+                    Console.WriteLine(identificadorActual);
+                    if(variablesDeclaradas.Contains(identificadorActual)) { //Error de variable doblemente declarada
+                        return identificadorActual;
+                    } else { //Guardar temporalmente las variables que ya han sido validadas
+                        variablesDeclaradas.Add(identificadorActual);
+                    }
+                }
+            }
+
+            return null;
+        }
+
 
         public RichTextBox determinarErrorTipoDatos(RichTextBox txtLexico, RichTextBox txtSemantica, Dictionary<string, Identificador> identificadores) {
-            List<string> tiposDatos = new List<string>() { "CADENA", "ENTERO", "CONSTENT", "CONSTRE", "CONSTEX" };
+            List<string> tiposDatos = new List<string>() { "CADENA", "ENTERO", "CONSTENT", "CONSTRE", "CONSTEX", "PRB1", "PRB2" };
             List<string> lineas = new List<string>();
 
             foreach(string linea in txtLexico.Lines) {
@@ -61,15 +80,14 @@ namespace Interfaz.Clases.Facade {
                         
                         if(tipoDato != null) {
                             lineaActual += tipoDato + " ";
-                        } else {
+                        } else { //Error de variable no asignada
                             txtSemantica.Text = $"ERR --> Variable [{identificadores[palabra].Nombre}] no ha sido asignada aun.\n";
                             return txtSemantica;
                         }
-                        if(!identificadores[palabra].Asignada) {                            
+                        if(!identificadores[palabra].Asignada) { //Error de variable no declarada                   
                             txtSemantica.Text = $"ERR --> Variable [{identificadores[palabra].Nombre}] no ha sido declarada aun.\n";
                             return txtSemantica;                           
-                        }
-                        
+                        }                        
                     } else if(tiposDatos.Contains(palabra) || palabra.Contains("OPA") || palabra.Contains("OPL") || palabra.Contains("OPR"))
                         lineaActual += palabra +" "; //Agrega la palabra
                 }
