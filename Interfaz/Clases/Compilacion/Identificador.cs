@@ -15,9 +15,7 @@ namespace Interfaz.Clases {
             set {
                 string nombreLimpio = "";
                 
-                foreach(char c in value) {
-                    if(c != '\n' && c != ' ' && c != '\t') nombreLimpio += c;
-                }
+                foreach(char c in value) if(c != '\n' && c != ' ' && c != '\t') nombreLimpio += c;
 
                 nombre = nombreLimpio; 
             }
@@ -44,6 +42,14 @@ namespace Interfaz.Clases {
             set { secuencial = value; }
         }
 
+        private bool asignada;
+
+        public bool Asignada {
+            get { return asignada; }
+            set { asignada = value; }
+        }
+
+
         public override bool Equals(object obj) {
             return obj is Identificador identificador &&
                    Nombre == identificador.Nombre;
@@ -51,6 +57,10 @@ namespace Interfaz.Clases {
 
         public override int GetHashCode() {
             return 289764928 + EqualityComparer<string>.Default.GetHashCode(Nombre);
+        }
+
+        public string getToken() {
+            return "IDEN#" + secuencial;
         }
     }
 }

@@ -15,7 +15,10 @@ namespace Interfaz {
     public partial class FormPrincipal : Form {
         LexicoFacade lexicoFacade;
         SintaxisFacade sintaxisFacade = null;
+        SemanticaFacade semanticaFacade = null;
         SaveFileDialog saveFileDialog = new SaveFileDialog();
+        Dictionary<string, Identificador> identificadores;
+        bool codigoConErrores = false;
 
         readonly OpenFileDialog openFileDialog = new OpenFileDialog() {
             AddExtension = true,
@@ -27,6 +30,8 @@ namespace Interfaz {
             InitializeComponent();
             inicializarRTXBX();
             sintaxisFacade = new SintaxisFacade();
+            semanticaFacade = new SemanticaFacade();
+            identificadores = new Dictionary<string, Identificador>();
         }
 
         public FormPrincipal(string file) : this() {
@@ -38,12 +43,12 @@ namespace Interfaz {
 
         #region Acciones Click
         private void btnLimpiar_Click(object sender, EventArgs e) {
-            txtCodificacion.Text = txtLexico.Text = txtSintaxis.Text = "";
+            txtCodificacion.Text = "";
+            limpiarTodo();
             lblInfo.Text = "🖋";
             txtCodificacion.ReadOnly = false;
             dgvIdentificadores.Rows.Clear();
-            dgvErrores.Rows.Clear();
-            btnSintaxis.Enabled = !btnSintaxis.Enabled;
+            dgvErrores.Rows.Clear();            
         }
 
         private void btnCompilar_Click(object sender, EventArgs e) {
@@ -51,15 +56,15 @@ namespace Interfaz {
                 MessageBox.Show("Favor de generar un codigo para poderlo compilar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            /*txtCodificacion.ReadOnly = true;*/ lblInfo.Text = "✔️";
+            lblInfo.Text = "✔️";
 
             limpiarTodo();
             lexicoFacade = new LexicoFacade();
+            
             bool tieneErrores = compilarLexico();
-            if (tieneErrores)
-                MessageBox.Show("Programa compilado con algunos errores, favor de verificar tabla de errores.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else
-                MessageBox.Show("Programa compilado correctamente.", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            codigoConErrores = tieneErrores;
+            if (tieneErrores) MessageBox.Show("Programa compilado con algunos errores, favor de verificar tabla de errores.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else MessageBox.Show("Programa compilado correctamente.", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             btnGuardarArchivoToken.Enabled = !tieneErrores;
             btnSintaxis.Enabled = true; 
@@ -67,11 +72,16 @@ namespace Interfaz {
 
         private void btnSintaxis_Click(object sender, EventArgs e) {
             bool tieneErrores = compilarSintaxis();
-            if (tieneErrores) {
-                MessageBox.Show("Existen errores de sintaxis. Favor de revisar el codigo.", "Errores de sintaxis", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } else {
-                MessageBox.Show("¡Programa correcto!", "Operacion exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            codigoConErrores = tieneErrores;
+            if (tieneErrores)  MessageBox.Show("Existen errores de sintaxis. Favor de revisar el codigo.", "Errores de sintaxis", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else  MessageBox.Show("¡Programa correcto!", "Operacion exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnSemantica_Click(object sender, EventArgs e) {
+            bool tieneErrores = compilarSemantica();
+            codigoConErrores = tieneErrores;
+            if(tieneErrores) MessageBox.Show("Existen errores de semantica. Favor de revisar el codigo.", "Errores de semantica", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else MessageBox.Show("¡Programa correcto!", "Operacion exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnGuardarArchivoToken_Click(object sender, EventArgs e) {
@@ -132,15 +142,63 @@ namespace Interfaz {
             }
 
             if (resultado.Identificadores.Count > 0) {
-                cargarIdentificadores(resultado.Identificadores);
+                identificadores = new Dictionary<string, Identificador>();
+                foreach(Identificador i in resultado.Identificadores) identificadores.Add("IDEN#" + i.Secuencial, i);
+
+                cargarIdentificadores();                
             }
 
             return tieneErrores;
         }
 
         private bool compilarSintaxis() {
+            if(codigoConErrores) return true;
             txtSintaxis = sintaxisFacade.sintaxisGo(txtSintaxis, txtLexico);
             return txtSintaxis.Text.Contains("ERR");
+        }
+
+        private bool compilarSemantica() {
+            if(codigoConErrores) return true;
+
+            ///PASO 1: Verificar apertura/cierre de llaves
+            ///....
+            if(semanticaFacade.determinarErrorLlaves(txtLexico)) {
+                txtSemantica.Text = "ERR --> Es necesario revisar la apertura/cierre de llaves";
+                return true;
+            }
+
+            ///PASO 2: Verificar declaraciones repetidas
+            ///....
+            string declaraciones = semanticaFacade.determinarErrorDeclaracionesRepetidas(txtLexico);
+            if(declaraciones != null) {
+                string identificador = "";
+                foreach(KeyValuePair<string, Identificador> id in identificadores) {
+                    Identificador i = id.Value; if(declaraciones.Equals(i.Secuencial.ToString())) identificador = i.Nombre;
+                }
+                txtSemantica.Text = $"ERR --> Variable [{identificador}] ya fue declarada anteriormente.\n";
+                return true;
+            }
+
+            ///PASO 3: Actualizar tipos de datos
+            ///....
+            identificadores = semanticaFacade.actualizarTiposDeDatos(txtLexico, txtSintaxis, identificadores);
+            cargarIdentificadores();
+
+            ///PASO 4: Verificar tipos de datos
+            ///....
+            txtSemantica = semanticaFacade.determinarErrorTipoDatos(txtLexico, txtSemantica, identificadores);
+            if(txtSemantica.Text.Contains("ERR")) {
+                if(!txtSemantica.Text.Contains("declarada")) txtSemantica.Text += "ERR --> Verificar tipos de datos..";
+                return true;
+            } else {
+                txtSemantica.Text += "\n\n<---------------------------------------------->\n";
+            }
+
+            ///PASO 5: Verificar gramatica de semantica
+            ///....
+            txtSemantica = semanticaFacade.semanticaGo(txtSemantica, txtSintaxis);
+
+            return txtSemantica.Text.Contains("ERR");
         }
 
         /// <summary>
@@ -173,17 +231,21 @@ namespace Interfaz {
         /// Llena DGV de identificadores
         /// </summary>
         /// <param name="identificadores">Listado de identificadores</param>
-        private void cargarIdentificadores(List<Identificador> identificadores) {
+        private void cargarIdentificadores() {
             dgvIdentificadores.Rows.Clear();
 
-            foreach (Identificador i in identificadores) {
-                dgvIdentificadores.Rows.Add("IDEN_" + i.Secuencial, i.Nombre, lexicoFacade.determinarTipoDato(i.TipoDato), i.Valor);
+            foreach(KeyValuePair<string, Identificador> id in identificadores) {
+                Identificador i = id.Value;
+                dgvIdentificadores.Rows.Add(i.getToken(), i.Nombre, lexicoFacade.determinarTipoDato(i.TipoDato), i.Valor);
             }
         }
 
         private void limpiarTodo() {
             txtLexico.Text = "";
             txtSintaxis.Text = "";
+            txtSemantica.Text = "";
+            dgvErrores.Rows.Clear();
+            dgvIdentificadores.Rows.Clear();
         }
 
 
@@ -385,5 +447,11 @@ namespace Interfaz {
             txtNumeracionCompilacion.DeselectAll();
         }
         #endregion
+
+        private void btnRunAll_Click(object sender, EventArgs e) {
+            btnCompilar.PerformClick();
+            btnSintaxis.PerformClick();            
+            btnSemantica.PerformClick();
+        }
     }
 }
