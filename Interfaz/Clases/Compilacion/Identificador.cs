@@ -58,5 +58,9 @@ namespace Interfaz.Clases {
         public override int GetHashCode() {
             return 289764928 + EqualityComparer<string>.Default.GetHashCode(Nombre);
         }
+
+        public string getToken() {
+            return "IDEN#" + secuencial;
+        }
     }
 }

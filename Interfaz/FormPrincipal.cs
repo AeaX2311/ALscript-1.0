@@ -18,6 +18,7 @@ namespace Interfaz {
         SemanticaFacade semanticaFacade = null;
         SaveFileDialog saveFileDialog = new SaveFileDialog();
         Dictionary<string, Identificador> identificadores;
+        bool codigoConErrores = false;
 
         readonly OpenFileDialog openFileDialog = new OpenFileDialog() {
             AddExtension = true,
@@ -48,7 +49,6 @@ namespace Interfaz {
             txtCodificacion.ReadOnly = false;
             dgvIdentificadores.Rows.Clear();
             dgvErrores.Rows.Clear();            
-            //btnSintaxis.Enabled = !btnSintaxis.Enabled;
         }
 
         private void btnCompilar_Click(object sender, EventArgs e) {
@@ -62,6 +62,7 @@ namespace Interfaz {
             lexicoFacade = new LexicoFacade();
             
             bool tieneErrores = compilarLexico();
+            codigoConErrores = tieneErrores;
             if (tieneErrores) MessageBox.Show("Programa compilado con algunos errores, favor de verificar tabla de errores.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else MessageBox.Show("Programa compilado correctamente.", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -71,12 +72,14 @@ namespace Interfaz {
 
         private void btnSintaxis_Click(object sender, EventArgs e) {
             bool tieneErrores = compilarSintaxis();
+            codigoConErrores = tieneErrores;
             if (tieneErrores)  MessageBox.Show("Existen errores de sintaxis. Favor de revisar el codigo.", "Errores de sintaxis", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else  MessageBox.Show("¡Programa correcto!", "Operacion exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnSemantica_Click(object sender, EventArgs e) {
             bool tieneErrores = compilarSemantica();
+            codigoConErrores = tieneErrores;
             if(tieneErrores) MessageBox.Show("Existen errores de semantica. Favor de revisar el codigo.", "Errores de semantica", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else MessageBox.Show("¡Programa correcto!", "Operacion exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -149,11 +152,14 @@ namespace Interfaz {
         }
 
         private bool compilarSintaxis() {
+            if(codigoConErrores) return true;
             txtSintaxis = sintaxisFacade.sintaxisGo(txtSintaxis, txtLexico);
             return txtSintaxis.Text.Contains("ERR");
         }
 
         private bool compilarSemantica() {
+            if(codigoConErrores) return true;
+
             ///PASO 1: Verificar apertura/cierre de llaves
             ///....
             if(semanticaFacade.determinarErrorLlaves(txtLexico)) {
@@ -173,7 +179,12 @@ namespace Interfaz {
                 return true;
             }
 
-            ///PASO 3: Verificar tipos de datos
+            ///PASO 3: Actualizar tipos de datos
+            ///....
+            identificadores = semanticaFacade.actualizarTiposDeDatos(txtLexico, txtSintaxis, identificadores);
+            cargarIdentificadores();
+
+            ///PASO 4: Verificar tipos de datos
             ///....
             txtSemantica = semanticaFacade.determinarErrorTipoDatos(txtLexico, txtSemantica, identificadores);
             if(txtSemantica.Text.Contains("ERR")) {
@@ -183,7 +194,7 @@ namespace Interfaz {
                 txtSemantica.Text += "\n\n<---------------------------------------------->\n";
             }
 
-            ///PASO 4: Verificar gramatica de semantica
+            ///PASO 5: Verificar gramatica de semantica
             ///....
             txtSemantica = semanticaFacade.semanticaGo(txtSemantica, txtSintaxis);
 
@@ -225,7 +236,7 @@ namespace Interfaz {
 
             foreach(KeyValuePair<string, Identificador> id in identificadores) {
                 Identificador i = id.Value;
-                dgvIdentificadores.Rows.Add("IDEN#" + i.Secuencial, i.Nombre, lexicoFacade.determinarTipoDato(i.TipoDato), i.Valor);
+                dgvIdentificadores.Rows.Add(i.getToken(), i.Nombre, lexicoFacade.determinarTipoDato(i.TipoDato), i.Valor);
             }
         }
 

@@ -42,8 +42,16 @@ namespace Interfaz {
             this.txtNumeracionCompilacion = new System.Windows.Forms.RichTextBox();
             this.gpbIdentificadores = new System.Windows.Forms.GroupBox();
             this.dgvIdentificadores = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDIdentificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoDato = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gpbErrores = new System.Windows.Forms.GroupBox();
             this.dgvErrores = new System.Windows.Forms.DataGridView();
+            this.TokenError = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnPalabra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnGuardarArchivoToken = new System.Windows.Forms.Button();
             this.btnGuardarCodigo = new System.Windows.Forms.Button();
             this.btnCargarCodigo = new System.Windows.Forms.Button();
@@ -57,14 +65,6 @@ namespace Interfaz {
             this.gpbSemantica = new System.Windows.Forms.GroupBox();
             this.txtSemantica = new System.Windows.Forms.RichTextBox();
             this.mainDosDivisiones = new System.Windows.Forms.TableLayoutPanel();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IDIdentificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoDato = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TokenError = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnPalabra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gpbCodificacion.SuspendLayout();
             this.gpbLexico.SuspendLayout();
             this.gpbIdentificadores.SuspendLayout();
@@ -281,6 +281,34 @@ namespace Interfaz {
             this.dgvIdentificadores.Size = new System.Drawing.Size(333, 70);
             this.dgvIdentificadores.TabIndex = 8;
             // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.HeaderText = "Token";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // IDIdentificador
+            // 
+            this.IDIdentificador.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.IDIdentificador.HeaderText = "Nombre Identificador";
+            this.IDIdentificador.Name = "IDIdentificador";
+            this.IDIdentificador.ReadOnly = true;
+            // 
+            // TipoDato
+            // 
+            this.TipoDato.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TipoDato.HeaderText = "Tipo de dato";
+            this.TipoDato.Name = "TipoDato";
+            this.TipoDato.ReadOnly = true;
+            // 
+            // Valor
+            // 
+            this.Valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Valor.HeaderText = "Valor";
+            this.Valor.Name = "Valor";
+            this.Valor.ReadOnly = true;
+            // 
             // gpbErrores
             // 
             this.gpbErrores.Controls.Add(this.dgvErrores);
@@ -340,6 +368,37 @@ namespace Interfaz {
             this.dgvErrores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvErrores.Size = new System.Drawing.Size(334, 70);
             this.dgvErrores.TabIndex = 10;
+            // 
+            // TokenError
+            // 
+            this.TokenError.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TokenError.FillWeight = 68.35763F;
+            this.TokenError.HeaderText = "Token";
+            this.TokenError.Name = "TokenError";
+            this.TokenError.ReadOnly = true;
+            // 
+            // Linea
+            // 
+            this.Linea.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Linea.FillWeight = 60.9137F;
+            this.Linea.HeaderText = "Linea";
+            this.Linea.Name = "Linea";
+            this.Linea.ReadOnly = true;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Descripcion.FillWeight = 170.7287F;
+            this.Descripcion.HeaderText = "Descripcion";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            // 
+            // clmnPalabra
+            // 
+            this.clmnPalabra.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.clmnPalabra.HeaderText = "Palabra";
+            this.clmnPalabra.Name = "clmnPalabra";
+            this.clmnPalabra.ReadOnly = true;
             // 
             // btnGuardarArchivoToken
             // 
@@ -445,13 +504,16 @@ namespace Interfaz {
             // 
             // btnRunAll
             // 
+            this.btnRunAll.BackColor = System.Drawing.Color.DarkKhaki;
             this.btnRunAll.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnRunAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRunAll.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRunAll.Location = new System.Drawing.Point(346, 10);
             this.btnRunAll.Name = "btnRunAll";
-            this.btnRunAll.Size = new System.Drawing.Size(75, 48);
+            this.btnRunAll.Size = new System.Drawing.Size(118, 48);
             this.btnRunAll.TabIndex = 1005;
-            this.btnRunAll.Text = "Todo";
-            this.btnRunAll.UseVisualStyleBackColor = true;
+            this.btnRunAll.Text = "✔️ Ejecutar todo";
+            this.btnRunAll.UseVisualStyleBackColor = false;
             this.btnRunAll.Click += new System.EventHandler(this.btnRunAll_Click);
             // 
             // btnSemantica
@@ -531,65 +593,6 @@ namespace Interfaz {
             this.mainDosDivisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainDosDivisiones.Size = new System.Drawing.Size(1071, 698);
             this.mainDosDivisiones.TabIndex = 1006;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.HeaderText = "Token";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // IDIdentificador
-            // 
-            this.IDIdentificador.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.IDIdentificador.HeaderText = "Nombre Identificador";
-            this.IDIdentificador.Name = "IDIdentificador";
-            this.IDIdentificador.ReadOnly = true;
-            // 
-            // TipoDato
-            // 
-            this.TipoDato.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TipoDato.HeaderText = "Tipo de dato";
-            this.TipoDato.Name = "TipoDato";
-            this.TipoDato.ReadOnly = true;
-            // 
-            // Valor
-            // 
-            this.Valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Valor.HeaderText = "Valor";
-            this.Valor.Name = "Valor";
-            this.Valor.ReadOnly = true;
-            // 
-            // TokenError
-            // 
-            this.TokenError.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TokenError.FillWeight = 68.35763F;
-            this.TokenError.HeaderText = "Token";
-            this.TokenError.Name = "TokenError";
-            this.TokenError.ReadOnly = true;
-            // 
-            // Linea
-            // 
-            this.Linea.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Linea.FillWeight = 60.9137F;
-            this.Linea.HeaderText = "Linea";
-            this.Linea.Name = "Linea";
-            this.Linea.ReadOnly = true;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Descripcion.FillWeight = 170.7287F;
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            // 
-            // clmnPalabra
-            // 
-            this.clmnPalabra.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.clmnPalabra.HeaderText = "Palabra";
-            this.clmnPalabra.Name = "clmnPalabra";
-            this.clmnPalabra.ReadOnly = true;
             // 
             // FormPrincipal
             // 

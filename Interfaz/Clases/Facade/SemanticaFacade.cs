@@ -45,6 +45,11 @@ namespace Interfaz.Clases.Facade {
             return cCorchete != 0 || cLlave != 0 || cParentesis != 0;
         }
 
+        /// <summary>
+        /// Determina si existe algun identificador que haya sido declarado mas de una vez
+        /// </summary>
+        /// <param name="txtLexico">Archivo de tokens</param>
+        /// <returns>El secuencial del identificador que este repetido, nulo si no encontro alguno repetido</returns>
         public string determinarErrorDeclaracionesRepetidas(RichTextBox txtLexico) {
             List<string> variablesDeclaradas = new List<string>();
 
@@ -52,7 +57,6 @@ namespace Interfaz.Clases.Facade {
                 if(linea.Contains("PRI6 PRV1 IDEN")) {
                     string identificadorActual = linea.Substring(15).Split(' ')[0];
 
-                    Console.WriteLine(identificadorActual);
                     if(variablesDeclaradas.Contains(identificadorActual)) { //Error de variable doblemente declarada
                         return identificadorActual;
                     } else { //Guardar temporalmente las variables que ya han sido validadas
@@ -64,7 +68,46 @@ namespace Interfaz.Clases.Facade {
             return null;
         }
 
+        public Dictionary<string, Identificador> actualizarTiposDeDatos(RichTextBox txtLexico, RichTextBox txtSintaxis, Dictionary<string, Identificador> identificadores) {
+            Dictionary<int, string> identificadoresModificados = new Dictionary<int, string>();
+            int numeroLinea = 0;
 
+            //Buscar si algun identificador tiene un tipo de dato compuesto, no asignado en el lexico
+            foreach(string linea in txtSintaxis.Lines) {
+                if(linea.Equals("-->  PRI6 PRV1 IDEN ASIG OP_ARITMETICA CE13")) {
+                    identificadoresModificados.Add(numeroLinea, "CONSTRE");
+                } else if(linea.Equals("-->  PRI6 PRV1 IDEN ASIG OP_CONDICION CE13")) {
+                    identificadoresModificados.Add(numeroLinea, "PRB1");
+                } else if(linea.Contains("-->  S")) {
+                    numeroLinea++;
+                }
+            }
+
+            ///////ME FALTA PARA CUANDO SE LE CAMBIA EL VALOR MEDIANTE UNA ASIGNACION DESPUES DE LA DECLARACION!!!!!!
+
+            //En base al numero de linea, buscar el token del identificador
+            foreach(KeyValuePair<int, string> v in identificadoresModificados) {
+                foreach(string palabra in txtLexico.Lines[v.Key].Split(' ')) {
+                    if(palabra.Contains("IDEN")) { //Modificar en base al token, el tipo de dato del identificador
+                        identificadores[palabra].TipoDato = v.Value;
+                        identificadores[palabra].Valor = "No procesable";
+                        break;
+                    }
+                }
+            }
+
+            
+
+            return identificadores;
+        }
+
+        /// <summary>
+        /// Determina si existen errores de conexion entre los tipos de datos utilizados
+        /// </summary>
+        /// <param name="txtLexico"></param>
+        /// <param name="txtSemantica"></param>
+        /// <param name="identificadores">Listado de identificadores</param>
+        /// <returns>El txtSemantica modificado</returns>
         public RichTextBox determinarErrorTipoDatos(RichTextBox txtLexico, RichTextBox txtSemantica, Dictionary<string, Identificador> identificadores) {
             List<string> tiposDatos = new List<string>() { "CADENA", "ENTERO", "CONSTENT", "CONSTRE", "CONSTEX", "PRB1", "PRB2" };
             List<string> lineas = new List<string>();
@@ -77,7 +120,7 @@ namespace Interfaz.Clases.Facade {
                     } else if(palabra.Contains("IDEN")) {
                         //Buscar el tipo de dato del identificador y mandarlo                        
                         string tipoDato = identificadores[palabra].TipoDato;
-                        
+
                         if(tipoDato != null) {
                             lineaActual += tipoDato + " ";
                         } else { //Error de variable no asignada
@@ -144,11 +187,11 @@ namespace Interfaz.Clases.Facade {
         }
 
         /// <summary>
-        /// 
+        /// Determina si la semantica esta bien estructurada (Basado en metodo JELU)
         /// </summary>
         /// <param name="txtSemantica"></param>
         /// <param name="txtLexico"></param>
-        /// <returns></returns>
+        /// <returns>El txtSemantica modificado</returns>
         public RichTextBox semanticaGo(RichTextBox txtSemantica, RichTextBox txtSintaxis) {
             string[] lines = obtenerInstrucciones(txtSintaxis);
             for(int i = 0; i < lines.Length; i++) lines[i] = lines[i].TrimEnd();
