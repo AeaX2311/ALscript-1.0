@@ -57,6 +57,13 @@ namespace Interfaz.Clases.Facade {
                 if(linea.Contains("PRI6 PRV1 IDEN")) {
                     string identificadorActual = linea.Substring(15).Split(' ')[0];
 
+
+                    /////////////NO SIEMPRE ES 15!! Revisar ej. ciclo
+
+
+
+
+
                     if(variablesDeclaradas.Contains(identificadorActual)) { //Error de variable doblemente declarada
                         return identificadorActual;
                     } else { //Guardar temporalmente las variables que ya han sido validadas
@@ -74,9 +81,9 @@ namespace Interfaz.Clases.Facade {
 
             //Buscar si algun identificador tiene un tipo de dato compuesto, no asignado en el lexico
             foreach(string linea in txtSintaxis.Lines) {
-                if(linea.Equals("-->  PRI6 PRV1 IDEN ASIG OP_ARITMETICA CE13")) {
+                if(linea.Contains("-->  PRI6 PRV1 IDEN ASIG OP_ARITMETICA CE13") || linea.Contains("-->  IDEN ASIG OP_ARITMETICA CE13")) {
                     identificadoresModificados.Add(numeroLinea, "CONSTRE");
-                } else if(linea.Equals("-->  PRI6 PRV1 IDEN ASIG OP_CONDICION CE13")) {
+                } else if(linea.Contains("-->  PRI6 PRV1 IDEN ASIG OP_CONDICION CE13") || linea.Contains("-->  IDEN ASIG OP_CONDICION CE13")) {
                     identificadoresModificados.Add(numeroLinea, "PRB1");
                 } else if(linea.Contains("-->  S")) {
                     numeroLinea++;
@@ -86,8 +93,14 @@ namespace Interfaz.Clases.Facade {
             ///////ME FALTA PARA CUANDO SE LE CAMBIA EL VALOR MEDIANTE UNA ASIGNACION DESPUES DE LA DECLARACION!!!!!!
 
             //En base al numero de linea, buscar el token del identificador
+            List<string> a = new List<string>();
+            foreach(string palabra in txtLexico.Lines) {
+                if(!string.IsNullOrEmpty(palabra))
+                    a.Add(palabra);
+            }
+
             foreach(KeyValuePair<int, string> v in identificadoresModificados) {
-                foreach(string palabra in txtLexico.Lines[v.Key].Split(' ')) {
+                foreach(string palabra in a[v.Key].Split(' ')) {
                     if(palabra.Contains("IDEN")) { //Modificar en base al token, el tipo de dato del identificador
                         identificadores[palabra].TipoDato = v.Value;
                         identificadores[palabra].Valor = "No procesable";
@@ -109,7 +122,7 @@ namespace Interfaz.Clases.Facade {
         /// <param name="identificadores">Listado de identificadores</param>
         /// <returns>El txtSemantica modificado</returns>
         public RichTextBox determinarErrorTipoDatos(RichTextBox txtLexico, RichTextBox txtSemantica, Dictionary<string, Identificador> identificadores) {
-            List<string> tiposDatos = new List<string>() { "CADENA", "ENTERO", "CONSTENT", "CONSTRE", "CONSTEX", "PRB1", "PRB2" };
+            List<string> tiposDatos = new List<string>() { "CADENA", "ENTERO", "CONSTENT", "CONSTRE", "CONSTEX", "PRB1", "PRB2", "PRI2" };
             List<string> lineas = new List<string>();
 
             foreach(string linea in txtLexico.Lines) {

@@ -65,6 +65,7 @@ namespace Interfaz {
             this.gpbSemantica = new System.Windows.Forms.GroupBox();
             this.txtSemantica = new System.Windows.Forms.RichTextBox();
             this.mainDosDivisiones = new System.Windows.Forms.TableLayoutPanel();
+            this.btnTripletas = new System.Windows.Forms.Button();
             this.gpbCodificacion.SuspendLayout();
             this.gpbLexico.SuspendLayout();
             this.gpbIdentificadores.SuspendLayout();
@@ -487,6 +488,7 @@ namespace Interfaz {
             // 
             // pnBotones
             // 
+            this.pnBotones.Controls.Add(this.btnTripletas);
             this.pnBotones.Controls.Add(this.btnRunAll);
             this.pnBotones.Controls.Add(this.btnSemantica);
             this.pnBotones.Controls.Add(this.btnSintaxis);
@@ -594,6 +596,16 @@ namespace Interfaz {
             this.mainDosDivisiones.Size = new System.Drawing.Size(1071, 698);
             this.mainDosDivisiones.TabIndex = 1006;
             // 
+            // btnTripletas
+            // 
+            this.btnTripletas.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnTripletas.Location = new System.Drawing.Point(464, 10);
+            this.btnTripletas.Name = "btnTripletas";
+            this.btnTripletas.Size = new System.Drawing.Size(75, 48);
+            this.btnTripletas.TabIndex = 1006;
+            this.btnTripletas.Text = "Codigo intermedio";
+            this.btnTripletas.UseVisualStyleBackColor = true;
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -663,6 +675,7 @@ namespace Interfaz {
         private System.Windows.Forms.DataGridViewTextBoxColumn Linea;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnPalabra;
+        private System.Windows.Forms.Button btnTripletas;
     }
 }
 
