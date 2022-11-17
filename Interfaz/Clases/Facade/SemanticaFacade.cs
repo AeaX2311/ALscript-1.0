@@ -3,7 +3,6 @@ using System.IO;
 using System.Diagnostics;
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 namespace Interfaz.Clases.Facade {
     class SemanticaFacade {
@@ -55,17 +54,16 @@ namespace Interfaz.Clases.Facade {
 
             foreach(string linea in txtLexico.Lines) {
                 if(linea.Contains("PRI6 PRV1 IDEN")) {
-                    string identificadorActual = linea.Substring(15).Split(' ')[0];
-
-
-                    /////////////NO SIEMPRE ES 15!! Revisar ej. ciclo
-
-
-
-
+                    string identificadorActual = "";
+                    foreach(string palabra in linea.Split(' ')) {
+                        if(palabra.Contains("IDEN")) {
+                            identificadorActual = palabra;
+                            break;
+                        }
+                    }
 
                     if(variablesDeclaradas.Contains(identificadorActual)) { //Error de variable doblemente declarada
-                        return identificadorActual;
+                        return identificadorActual.Substring(5);
                     } else { //Guardar temporalmente las variables que ya han sido validadas
                         variablesDeclaradas.Add(identificadorActual);
                     }
@@ -89,8 +87,6 @@ namespace Interfaz.Clases.Facade {
                     numeroLinea++;
                 }
             }
-
-            ///////ME FALTA PARA CUANDO SE LE CAMBIA EL VALOR MEDIANTE UNA ASIGNACION DESPUES DE LA DECLARACION!!!!!!
 
             //En base al numero de linea, buscar el token del identificador
             List<string> a = new List<string>();
