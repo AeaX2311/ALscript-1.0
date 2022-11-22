@@ -262,6 +262,7 @@ namespace Interfaz {
             txtLexico.Text = "";
             txtSintaxis.Text = "";
             txtSemantica.Text = "";
+            txtTripletas.Text = "";
             dgvErrores.Rows.Clear();
             dgvIdentificadores.Rows.Clear();
         }
