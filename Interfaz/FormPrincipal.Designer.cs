@@ -68,6 +68,7 @@ namespace Interfaz {
             this.gpbSemantica = new System.Windows.Forms.GroupBox();
             this.txtSemantica = new System.Windows.Forms.RichTextBox();
             this.mainDosDivisiones = new System.Windows.Forms.TableLayoutPanel();
+            this.btnEnsamblador = new System.Windows.Forms.Button();
             this.gpbCodificacion.SuspendLayout();
             this.gpbLexico.SuspendLayout();
             this.gpbIdentificadores.SuspendLayout();
@@ -104,7 +105,7 @@ namespace Interfaz {
             this.lblInfo.ForeColor = System.Drawing.Color.Teal;
             this.lblInfo.Location = new System.Drawing.Point(344, 646);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(58, 40);
+            this.lblInfo.Size = new System.Drawing.Size(57, 40);
             this.lblInfo.TabIndex = 1001;
             this.lblInfo.Text = "🖋️";
             // 
@@ -491,6 +492,7 @@ namespace Interfaz {
             // 
             // pnBotones
             // 
+            this.pnBotones.Controls.Add(this.btnEnsamblador);
             this.pnBotones.Controls.Add(this.btnRunAll);
             this.pnBotones.Controls.Add(this.btnTripletas);
             this.pnBotones.Controls.Add(this.btnSemantica);
@@ -641,6 +643,20 @@ namespace Interfaz {
             this.mainDosDivisiones.Size = new System.Drawing.Size(1184, 698);
             this.mainDosDivisiones.TabIndex = 1006;
             // 
+            // btnEnsamblador
+            // 
+            this.btnEnsamblador.BackColor = System.Drawing.Color.Khaki;
+            this.btnEnsamblador.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnEnsamblador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEnsamblador.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnsamblador.Location = new System.Drawing.Point(576, 10);
+            this.btnEnsamblador.Name = "btnEnsamblador";
+            this.btnEnsamblador.Size = new System.Drawing.Size(112, 48);
+            this.btnEnsamblador.TabIndex = 1007;
+            this.btnEnsamblador.Text = "✔️ Assembly (MASM)";
+            this.btnEnsamblador.UseVisualStyleBackColor = false;
+            this.btnEnsamblador.Click += new System.EventHandler(this.btnEnsamblador_Click);
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -714,6 +730,7 @@ namespace Interfaz {
         private System.Windows.Forms.Button btnTripletas;
         private System.Windows.Forms.GroupBox gpbTripletas;
         private System.Windows.Forms.RichTextBox txtTripletas;
+        private System.Windows.Forms.Button btnEnsamblador;
     }
 }
 
