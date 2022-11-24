@@ -9,36 +9,44 @@ using System.Windows.Forms;
 namespace Interfaz.Clases.Facade {
     class TripletasFacade {
 
-        string fgfg = "";
+        List<string> operacionesConJerarquia;
+        string instruccionEnEnsamblador;
         List<string> auxOperacionesRealizadas;
 
-        public RichTextBox tripletasGo(RichTextBox txtCodificacion, RichTextBox txtLexico, RichTextBox txtTripletas) {
+        public string tripletasGo(RichTextBox txtCodificacion, RichTextBox txtLexico) {
             //Encontrar las lineas que vas a evaluar
             List<string> instrucciones = buscarValoresInstrucciones(buscarInstruccionesAEvaluar(txtLexico), txtCodificacion);
+            instruccionEnEnsamblador = ""; operacionesConJerarquia = new List<string>();
+            string auxOperaciones = ""; string auxOperacion;
 
-            //Se deben de ordenar jerarquicamente todas las operaciones que se van a realizar
-            
+            //Se deben de ordenar jerarquicamente todas las operaciones que se van a realizar            
+            //Separar las operaciones de 3 en 3
             for(int x = 0; x < instrucciones.Count(); x++) {
+                auxOperacion = "";
                 auxOperacionesRealizadas = new List<string>();
                 auxOperacionesRealizadas.Add(aplicarJerarquiaInstruccion(instrucciones[x]) + " = " + generarTokenOperacion(true));
 
-                foreach(string a in auxOperacionesRealizadas) {
-                    fgfg += "\n" + a;
-                }
-                fgfg += "\n";
-
+                foreach(string operacion in auxOperacionesRealizadas) auxOperacion += "\n" + operacion; 
+                
+                operacionesConJerarquia.Add(auxOperacion);
+                auxOperaciones += auxOperacion + "\n";
             }
-
-            //Separar las operaciones de 3 en 3
-
+                
             //Pasarlas a lenguaje ensamblador
+            generarCodigoEnsamblador();
 
+            string resultado;
+            //Agregar la informacion generada al txt
+            resultado = "--------------------------------\n";
+            resultado += "JERARQUIA OPERACIONES APLICADA";
+            resultado += "\n--------------------------------";
+            resultado += auxOperaciones;
+            resultado += "\n--------------------------------\n";
+            resultado += "ENSAMBLADOR";
+            resultado += "\n--------------------------------\n";
+            resultado += instruccionEnEnsamblador;
 
-            txtTripletas.Lines = instrucciones.ToArray();
-            txtTripletas.Text += "\n----\n";
-            txtTripletas.Text += fgfg;
-
-            return txtTripletas;
+            return resultado;
         }
 
 
@@ -55,9 +63,6 @@ namespace Interfaz.Clases.Facade {
         private string aplicarJerarquiaInstruccion(string instruccion) {
             List<string> elementos = instruccion.Split(' ').Where(s => !string.IsNullOrWhiteSpace(s)).ToList();
             int longitud = elementos.Count;
-
-            //if(longitud == 3 && elementos.Contains("=")) //Se trata del final de todas las operaciones
-            //    return "ERR";
 
             //Si encuentras un parentesis, guardaras en un arreglo todas las operaciones que se ejecutaran en ese parentesis
             //Repetir para todos los parentesis que existan, hasta que todos los parentesis hayan sido evaluados
@@ -103,7 +108,17 @@ namespace Interfaz.Clases.Facade {
                     if(elemento.Equals("*") || elemento.Equals("/")) {
                         //Guardamos la operacion que se realiza
                         string operacionPK = generarTokenOperacion(false);
-                        auxOperacionesRealizadas.Add(operacionPK + " = " + elementos[pos - 1] + elemento + elementos[pos + 1]);
+                        auxOperacionesRealizadas.Add(operacionPK + " = " + elementos[pos - 1] + " " + elemento + " " + elementos[pos + 1]);
+
+
+
+                        if(elemento.Equals("*")) {
+                            //instruccionEnEnsamblador += "\t" + operacionPK + " = " + elementos[pos - 1] + " " + elemento + " " + elementos[pos + 1];
+                        }
+
+
+
+
 
                         //Se reemplaza la operacion por una operacion con su PK
                         elementos[pos - 1] = operacionPK;
@@ -122,7 +137,16 @@ namespace Interfaz.Clases.Facade {
                     if(elemento.Equals("+") || elemento.Equals("-")) {
                         //Guardamos la operacion que se realiza
                         string operacionPK = generarTokenOperacion(false);
-                        auxOperacionesRealizadas.Add(operacionPK + " = " + elementos[pos - 1] + elemento + elementos[pos + 1]);
+                        auxOperacionesRealizadas.Add(operacionPK + " = " + elementos[pos - 1] + " " + elemento + " " + elementos[pos + 1]);
+
+
+
+
+                        if(elemento.Equals("+")) {
+                            //instruccionEnEnsamblador+="MOV "
+                        }
+
+
 
                         //Se reemplaza la operacion por una operacion con su PK
                         elementos[pos - 1] = operacionPK;
@@ -190,6 +214,17 @@ namespace Interfaz.Clases.Facade {
         /// <returns>...</returns>
         private string generarTokenOperacion(bool isFinal) {
             return $"OP{auxOperacionesRealizadas.Count + (isFinal ? 0 : 1)}";
+        }
+
+        private void generarCodigoEnsamblador() {
+            foreach(string operacion in operacionesConJerarquia) {
+                string operacionBuena = operacion.Substring(1);
+
+                foreach(string instruccion in operacionBuena.Split('\n')) { 
+                    Console.WriteLine(instruccion);
+                }
+                Console.WriteLine("-------------------");
+            }
         }
     }
 }

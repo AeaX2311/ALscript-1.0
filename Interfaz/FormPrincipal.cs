@@ -216,7 +216,7 @@ namespace Interfaz {
         }
 
         private void generarCodigoIntermedio() {
-            txtTripletas = tripletasFacade.tripletasGo(txtCodificacion, txtLexico, txtTripletas);
+            txtTripletas.Text = tripletasFacade.tripletasGo(txtCodificacion, txtLexico);
         }
 
         /// <summary>
