@@ -13,9 +13,11 @@ namespace Interfaz {
     /// mayo 2022.
     /// </summary>
     public partial class FormPrincipal : Form {
-        LexicoFacade lexicoFacade;
+        LexicoFacade lexicoFacade = null;
         SintaxisFacade sintaxisFacade = null;
         SemanticaFacade semanticaFacade = null;
+        TripletasFacade tripletasFacade = null;
+
         SaveFileDialog saveFileDialog = new SaveFileDialog();
         Dictionary<string, Identificador> identificadores;
         bool codigoConErrores = false;
@@ -31,6 +33,7 @@ namespace Interfaz {
             inicializarRTXBX();
             sintaxisFacade = new SintaxisFacade();
             semanticaFacade = new SemanticaFacade();
+            tripletasFacade = new TripletasFacade();
             identificadores = new Dictionary<string, Identificador>();
         }
 
@@ -82,6 +85,17 @@ namespace Interfaz {
             codigoConErrores = tieneErrores;
             if(tieneErrores) MessageBox.Show("Existen errores de semantica. Favor de revisar el codigo.", "Errores de semantica", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else MessageBox.Show("¡Programa correcto!", "Operacion exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnTripletas_Click(object sender, EventArgs e) {
+            generarCodigoIntermedio();
+        }
+
+        private void btnRunAll_Click(object sender, EventArgs e) {
+            btnCompilar.PerformClick();
+            btnSintaxis.PerformClick();
+            btnSemantica.PerformClick();
+            btnTripletas.PerformClick();
         }
 
         private void btnGuardarArchivoToken_Click(object sender, EventArgs e) {
@@ -197,8 +211,12 @@ namespace Interfaz {
             ///PASO 5: Verificar gramatica de semantica
             ///....
             txtSemantica = semanticaFacade.semanticaGo(txtSemantica, txtSintaxis);
-
+            
             return txtSemantica.Text.Contains("ERR");
+        }
+
+        private void generarCodigoIntermedio() {
+            txtTripletas.Text = tripletasFacade.tripletasGo(txtCodificacion, txtLexico);
         }
 
         /// <summary>
@@ -244,6 +262,7 @@ namespace Interfaz {
             txtLexico.Text = "";
             txtSintaxis.Text = "";
             txtSemantica.Text = "";
+            txtTripletas.Text = "";
             dgvErrores.Rows.Clear();
             dgvIdentificadores.Rows.Clear();
         }
@@ -445,13 +464,7 @@ namespace Interfaz {
         private void txtNumeracionCompilacion_MouseDown(object sender, MouseEventArgs e) {
             txtLexico.Select();
             txtNumeracionCompilacion.DeselectAll();
-        }
+        }   
         #endregion
-
-        private void btnRunAll_Click(object sender, EventArgs e) {
-            btnCompilar.PerformClick();
-            btnSintaxis.PerformClick();            
-            btnSemantica.PerformClick();
-        }
     }
 }

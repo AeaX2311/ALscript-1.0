@@ -59,6 +59,7 @@
     <Compile Include="Clases\Facade\SemanticaFacade.cs" />
     <Compile Include="Clases\Facade\SintaxisFacade.cs" />
     <Compile Include="Clases\Compilacion\Identificador.cs" />
+    <Compile Include="Clases\Facade\TripletasFacade.cs" />
     <Compile Include="Clases\IO\ALScriptIOException.cs" />
     <Compile Include="Clases\IO\OutputArchivo.cs" />
     <Compile Include="Clases\Main.cs" />
