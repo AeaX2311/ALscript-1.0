@@ -17,52 +17,35 @@ namespace Interfaz.Clases.Facade {
             //hacer es, guardar un archivo con extension .C,
             //y hacer que se ejecute directamente en el ordenador
 
-            //Paso 1. Creamos el archivo con extension .C
-            string path = @"C:\Users\alanc.DESKTOP-35RSJH4\Desktop\codigo.c";
-            if(!File.Exists(path)) {
-                // Create a file to write to.
-                using(StreamWriter sw = File.CreateText(path)) {
-                    sw.WriteLine(codigoConvertidoEnC);
-                }
-            }
+            //Paso 1. Generar un archivo con extension .C en la carpeta donde nos encontramos actualmente
+            var rutaActual = Directory.GetCurrentDirectory();
+            var rutaArchivoC = rutaActual + "\\codigoC.c";
+            File.WriteAllText(rutaArchivoC, codigoConvertidoEnC);
+
+            //Paso 2. Compilar el archivo .C
+            var procesoCompilacion = new Process();
+            procesoCompilacion.StartInfo.FileName = "gcc";
+            procesoCompilacion.StartInfo.Arguments = "-o codigoC.exe codigoC.c";
+            procesoCompilacion.StartInfo.UseShellExecute = false;
+            procesoCompilacion.StartInfo.RedirectStandardOutput = true;
+            procesoCompilacion.Start();
+            procesoCompilacion.WaitForExit();
+
+            //Paso 3. Ejecutar el archivo .exe
+            var procesoEjecucion = new Process();
+            procesoEjecucion.StartInfo.FileName = "codigoC.exe";
+            procesoEjecucion.StartInfo.UseShellExecute = false;
+            procesoEjecucion.StartInfo.RedirectStandardOutput = true;
+            procesoEjecucion.Start();
+            procesoEjecucion.WaitForExit();
+
+            //Paso 4. Mostrar el resultado en pantalla
+            var resultado = procesoEjecucion.StandardOutput.ReadToEnd();
+            MessageBox.Show(resultado);
+            
+            
 
 
-            //Paso 2. Ejecutar en la consola el comando para compilar el codigo
-            //y generar el ejecutable
-            string comando = "gcc -o C:\\Users\\alanc.DESKTOP-35RSJH4\\Desktop\\codigo.exe C:\\alanc.DESKTOP-35RSJH4\\Usuario\\Desktop\\codigo.c";
-            var proceso = new Process();
-            proceso.StartInfo.FileName = "cmd.exe";
-            proceso.StartInfo.Arguments = "/C " + comando;
-            proceso.StartInfo.UseShellExecute = false;
-            proceso.StartInfo.RedirectStandardOutput = true;
-            proceso.StartInfo.RedirectStandardError = true;
-            proceso.StartInfo.CreateNoWindow = true;
-            proceso.Start();
-            /*  proceso.WaitForExit();
-              string salida = proceso.StandardOutput.ReadToEnd();
-              string error = proceso.StandardError.ReadToEnd();
-              proceso.Close();
-
-              //Paso 3. Ejecutar el ejecutable
-              string comando2 = "C:\\Users\\alanc.DESKTOP-35RSJH4\\Desktop\\codigo.exe";
-              var proceso2 = new Process();
-              proceso2.StartInfo.FileName = "cmd.exe";
-              proceso2.StartInfo.Arguments = "/C " + comando2;
-              proceso2.StartInfo.UseShellExecute = false;
-              proceso2.StartInfo.RedirectStandardOutput = true;
-              proceso2.StartInfo.RedirectStandardError = true;
-              proceso2.StartInfo.CreateNoWindow = true;
-              proceso2.Start();
-
-              //Paso 4. Mostrar el resultado en el txtCompilacion
-              string salida2 = proceso2.StandardOutput.ReadToEnd();
-              string error2 = proceso2.StandardError.ReadToEnd();
-              proceso2.Close();
-              txtTripletas.Text = salida2;
-
-              //Paso 5. Eliminar el archivo .C y el ejecutable
-              File.Delete(path);
-              File.Delete(@"C:\Users\alanc.DESKTOP-35RSJH4\Desktop\codigo.exe");*/
         }
 
         /// <summary>
