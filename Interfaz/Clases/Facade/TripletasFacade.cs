@@ -11,11 +11,11 @@ namespace Interfaz.Clases.Facade {
 
         List<string> operacionesConJerarquia;
         string instruccionEnEnsamblador;
-        List<string> auxOperacionesRealizadas;
+        List<string> auxOperacionesRealizadas;       
 
-        public string tripletasGo(RichTextBox txtCodificacion, RichTextBox txtLexico) {
+        public string tripletasGo(List<string> instrucciones, RichTextBox txtCodificacion, RichTextBox txtLexico) {
             //Encontrar las lineas que vas a evaluar
-            List<string> instrucciones = buscarValoresInstrucciones(buscarInstruccionesAEvaluar(txtLexico), txtCodificacion);
+            //List<string> instrucciones = ;
             instruccionEnEnsamblador = ""; operacionesConJerarquia = new List<string>();
             string auxOperaciones = ""; string auxOperacion;
 
@@ -168,7 +168,7 @@ namespace Interfaz.Clases.Facade {
             return elementos[0];
         }
 
-        private List<string> buscarValoresInstrucciones(List<int> numerosLineas, RichTextBox txtCodificacion) {
+        public List<string> buscarValoresInstrucciones(List<int> numerosLineas, RichTextBox txtCodificacion) {
             List<string> lineas = new List<string>();
 
             //Busca lineas de asignacion
@@ -190,7 +190,7 @@ namespace Interfaz.Clases.Facade {
             return lineas;
         }
 
-        private List<int> buscarInstruccionesAEvaluar(RichTextBox txtLexico) {
+        public List<int> buscarInstruccionesAEvaluar(RichTextBox txtLexico) {
             List<int> numeroLineas = new List<int>();
 
             //Busca lineas de asignacion

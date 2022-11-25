@@ -55,6 +55,7 @@
     <Compile Include="Clases\Compilacion\Error.cs" />
     <Compile Include="Clases\Compilacion\Gramatica.cs" />
     <Compile Include="Clases\Connection\MatrizConnection.cs" />
+    <Compile Include="Clases\Facade\EnsambladorFacade.cs" />
     <Compile Include="Clases\Facade\LexicoFacade.cs" />
     <Compile Include="Clases\Facade\SemanticaFacade.cs" />
     <Compile Include="Clases\Facade\SintaxisFacade.cs" />
