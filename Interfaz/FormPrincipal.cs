@@ -481,6 +481,12 @@ namespace Interfaz {
             txtLexico.Select();
             txtNumeracionCompilacion.DeselectAll();
         }
-        #endregion        
+        #endregion
+
+        private void button1_Click(object sender, EventArgs e) {
+            CodigoEnsamblador codigoEnsamblador = new CodigoEnsamblador();
+            codigoEnsamblador.Show();
+            
+        }
     }
 }

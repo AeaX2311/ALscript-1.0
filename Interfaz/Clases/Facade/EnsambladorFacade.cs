@@ -22,27 +22,27 @@ namespace Interfaz.Clases.Facade {
             var rutaArchivoC = rutaActual + "\\codigoC.c";
             File.WriteAllText(rutaArchivoC, codigoConvertidoEnC);
 
-            //Paso 2. Compilar el archivo .C
-            var procesoCompilacion = new Process();
-            procesoCompilacion.StartInfo.FileName = "gcc";
-            procesoCompilacion.StartInfo.Arguments = "-o codigoC.exe codigoC.c";
-            procesoCompilacion.StartInfo.UseShellExecute = false;
-            procesoCompilacion.StartInfo.RedirectStandardOutput = true;
-            procesoCompilacion.Start();
-            procesoCompilacion.WaitForExit();
+            //Paso 2. Generar un archivo con el codigo ensamblador utilizando la sintaxis MASM
+            var rutaArchivoEnsamblador = rutaActual + "\\codigoEnsamblador.asm";
+            var comando = "gcc -S codigoC.c -o output.asm -masm=intel";
 
-            //Paso 3. Ejecutar el archivo .exe
-            var procesoEjecucion = new Process();
-            procesoEjecucion.StartInfo.FileName = "codigoC.exe";
-            procesoEjecucion.StartInfo.UseShellExecute = false;
-            procesoEjecucion.StartInfo.RedirectStandardOutput = true;
-            procesoEjecucion.Start();
-            procesoEjecucion.WaitForExit();
+            var proceso = new Process();
+            proceso.StartInfo.FileName = "cmd.exe";
+            proceso.StartInfo.Arguments = "/C " + comando;
+            proceso.StartInfo.WorkingDirectory = rutaActual;
+            proceso.StartInfo.UseShellExecute = false;
+            proceso.StartInfo.RedirectStandardOutput = true;
+            proceso.StartInfo.RedirectStandardError = true;
+            proceso.StartInfo.CreateNoWindow = true;
+            proceso.Start();
+            proceso.WaitForExit();
 
-            //Paso 4. Mostrar el resultado en pantalla
-            var resultado = procesoEjecucion.StandardOutput.ReadToEnd();
-            MessageBox.Show(resultado);
-            
+
+            //Paso 3. Leer el archivo de codigo ensamblador y colocarlo en la forma CodigoEnsamblador
+            rutaArchivoEnsamblador =  rutaArchivoEnsamblador.Replace("codigoEnsamblador", "output");
+            var codigoEnsamblador = File.ReadAllText(rutaArchivoEnsamblador);
+            var codigoEnsambladorForma = new CodigoEnsamblador(codigoEnsamblador);
+            codigoEnsambladorForma.Show();
             
 
 
@@ -62,12 +62,17 @@ namespace Interfaz.Clases.Facade {
                 if(linea.Contains("=")) {
                     lineas += $"\nint {linea};";
                 }
+                if (linea.Contains("leer")) {
+                    var segundaPalabra = linea.Split(' ')[1];
+                    lineas += $"\nscanf(\"%i\", &{segundaPalabra});";
+                }
+                if (linea.Contains("imprimir")) {
+                    var segundaPalabra = linea.Split(' ')[1];
+                    lineas += $"\nprintf(\"%i\", {segundaPalabra});";
+                }
             }
 
             lineas += "\nreturn 0; }";
-
-
-
             return lineas;
         }
     }

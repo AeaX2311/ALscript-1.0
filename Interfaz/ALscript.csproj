@@ -64,6 +64,12 @@
     <Compile Include="Clases\IO\ALScriptIOException.cs" />
     <Compile Include="Clases\IO\OutputArchivo.cs" />
     <Compile Include="Clases\Main.cs" />
+    <Compile Include="CodigoEnsamblador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodigoEnsamblador.Designer.cs">
+      <DependentUpon>CodigoEnsamblador.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CodigoEnsamblador.resx">
+      <DependentUpon>CodigoEnsamblador.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>

@@ -59,8 +59,8 @@ namespace Interfaz {
             this.txtSintaxis = new System.Windows.Forms.RichTextBox();
             this.btnSintaxis = new System.Windows.Forms.Button();
             this.pnBotones = new System.Windows.Forms.Panel();
-            this.btnEnsamblador = new System.Windows.Forms.Button();
             this.btnRunAll = new System.Windows.Forms.Button();
+            this.btnEnsamblador = new System.Windows.Forms.Button();
             this.btnTripletas = new System.Windows.Forms.Button();
             this.btnSemantica = new System.Windows.Forms.Button();
             this.secundarioNDivisiones = new System.Windows.Forms.TableLayoutPanel();
@@ -69,6 +69,7 @@ namespace Interfaz {
             this.gpbSemantica = new System.Windows.Forms.GroupBox();
             this.txtSemantica = new System.Windows.Forms.RichTextBox();
             this.mainDosDivisiones = new System.Windows.Forms.TableLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
             this.gpbCodificacion.SuspendLayout();
             this.gpbLexico.SuspendLayout();
             this.gpbIdentificadores.SuspendLayout();
@@ -105,7 +106,7 @@ namespace Interfaz {
             this.lblInfo.ForeColor = System.Drawing.Color.Teal;
             this.lblInfo.Location = new System.Drawing.Point(361, 646);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(58, 40);
+            this.lblInfo.Size = new System.Drawing.Size(57, 40);
             this.lblInfo.TabIndex = 1001;
             this.lblInfo.Text = "🖋️";
             // 
@@ -492,6 +493,7 @@ namespace Interfaz {
             // 
             // pnBotones
             // 
+            this.pnBotones.Controls.Add(this.button1);
             this.pnBotones.Controls.Add(this.btnRunAll);
             this.pnBotones.Controls.Add(this.btnEnsamblador);
             this.pnBotones.Controls.Add(this.btnTripletas);
@@ -509,20 +511,6 @@ namespace Interfaz {
             this.pnBotones.Size = new System.Drawing.Size(1234, 63);
             this.pnBotones.TabIndex = 1004;
             // 
-            // btnEnsamblador
-            // 
-            this.btnEnsamblador.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.btnEnsamblador.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnEnsamblador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnEnsamblador.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnsamblador.Location = new System.Drawing.Point(458, 10);
-            this.btnEnsamblador.Name = "btnEnsamblador";
-            this.btnEnsamblador.Size = new System.Drawing.Size(112, 48);
-            this.btnEnsamblador.TabIndex = 1007;
-            this.btnEnsamblador.Text = "✔️ Assembly (MASM)";
-            this.btnEnsamblador.UseVisualStyleBackColor = false;
-            this.btnEnsamblador.Click += new System.EventHandler(this.btnEnsamblador_Click);
-            // 
             // btnRunAll
             // 
             this.btnRunAll.BackColor = System.Drawing.Color.DarkKhaki;
@@ -536,6 +524,20 @@ namespace Interfaz {
             this.btnRunAll.Text = "✔️ Ejecutar todo";
             this.btnRunAll.UseVisualStyleBackColor = false;
             this.btnRunAll.Click += new System.EventHandler(this.btnRunAll_Click);
+            // 
+            // btnEnsamblador
+            // 
+            this.btnEnsamblador.BackColor = System.Drawing.Color.PaleVioletRed;
+            this.btnEnsamblador.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnEnsamblador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEnsamblador.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnsamblador.Location = new System.Drawing.Point(458, 10);
+            this.btnEnsamblador.Name = "btnEnsamblador";
+            this.btnEnsamblador.Size = new System.Drawing.Size(112, 48);
+            this.btnEnsamblador.TabIndex = 1007;
+            this.btnEnsamblador.Text = "✔️ Assembly (MASM)";
+            this.btnEnsamblador.UseVisualStyleBackColor = false;
+            this.btnEnsamblador.Click += new System.EventHandler(this.btnEnsamblador_Click);
             // 
             // btnTripletas
             // 
@@ -571,6 +573,7 @@ namespace Interfaz {
             this.secundarioNDivisiones.ColumnCount = 2;
             this.secundarioNDivisiones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.secundarioNDivisiones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.secundarioNDivisiones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 267F));
             this.secundarioNDivisiones.Controls.Add(this.gpbTripletas, 1, 1);
             this.secundarioNDivisiones.Controls.Add(this.gpbSemantica, 0, 1);
             this.secundarioNDivisiones.Controls.Add(this.gpbIdentificadores, 0, 2);
@@ -657,6 +660,20 @@ namespace Interfaz {
             this.mainDosDivisiones.Size = new System.Drawing.Size(1234, 698);
             this.mainDosDivisiones.TabIndex = 1006;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DarkKhaki;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(688, 10);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(118, 48);
+            this.button1.TabIndex = 1008;
+            this.button1.Text = "✔️ Cherry";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -731,6 +748,7 @@ namespace Interfaz {
         private System.Windows.Forms.GroupBox gpbTripletas;
         private System.Windows.Forms.RichTextBox txtTripletas;
         private System.Windows.Forms.Button btnEnsamblador;
+        private System.Windows.Forms.Button button1;
     }
 }
 
