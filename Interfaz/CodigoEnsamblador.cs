@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Interfaz {
@@ -42,6 +35,7 @@ namespace Interfaz {
             proceso.StartInfo.CreateNoWindow = true;
             proceso.Start();
             proceso.WaitForExit();
+            proceso.Close();
 
             //Paso 3. Ejecutar el archivo codigo.exe
             var procesoEjecutar = new Process();
@@ -51,19 +45,23 @@ namespace Interfaz {
             procesoEjecutar.StartInfo.UseShellExecute = false;
             procesoEjecutar.StartInfo.RedirectStandardOutput = true;
             procesoEjecutar.StartInfo.RedirectStandardError = true;
-            procesoEjecutar.StartInfo.CreateNoWindow = true;
+            procesoEjecutar.StartInfo.CreateNoWindow = false;
             procesoEjecutar.Start();
 
             //Paso 4. Mostrar el resultado en la consola
             var resultado = procesoEjecutar.StandardOutput.ReadToEnd();
             var error = procesoEjecutar.StandardError.ReadToEnd();
+            txtResultados.Text = "";
             if (error != "") {
                 MessageBox.Show(error);
             } else {
-                txtResultados.Text = resultado;
+                foreach(string linea in resultado.Split('@')) {
+                    txtResultados.Text += linea + "\n";
+                }
             }
-            
+            procesoEjecutar.WaitForExit();
 
+            procesoEjecutar.Close();
         }
     }
 }

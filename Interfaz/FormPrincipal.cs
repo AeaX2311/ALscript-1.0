@@ -3,7 +3,6 @@ using Interfaz.Clases.Facade;
 using Interfaz.Clases.IO;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -228,11 +227,13 @@ namespace Interfaz {
         }
 
         private void generarCodigoIntermedio() {
+            if(codigoConErrores) return;
             instruccionesTripletasEnsamblador = tripletasFacade.buscarValoresInstrucciones(tripletasFacade.buscarInstruccionesAEvaluar(txtLexico), txtCodificacion);
-            txtTripletas.Text = tripletasFacade.tripletasGo(instruccionesTripletasEnsamblador, txtCodificacion, txtLexico);
+            txtTripletas.Text = tripletasFacade.tripletasGo(instruccionesTripletasEnsamblador);
         }
 
         private void ejecutarEnsamblador() {
+            if(codigoConErrores) return;
             ensambladorFacade.ensambladorGo(instruccionesTripletasEnsamblador);
         }
 
@@ -484,9 +485,9 @@ namespace Interfaz {
         #endregion
 
         private void button1_Click(object sender, EventArgs e) {
+            if(codigoConErrores) return;
             CodigoEnsamblador codigoEnsamblador = new CodigoEnsamblador();
-            codigoEnsamblador.Show();
-            
+            codigoEnsamblador.Show();            
         }
     }
 }

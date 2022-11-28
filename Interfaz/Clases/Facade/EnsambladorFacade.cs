@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Interfaz.Clases.Facade {
     class EnsambladorFacade {
@@ -36,6 +32,7 @@ namespace Interfaz.Clases.Facade {
             proceso.StartInfo.CreateNoWindow = true;
             proceso.Start();
             proceso.WaitForExit();
+            //proceso.Close();
 
 
             //Paso 3. Leer el archivo de codigo ensamblador y colocarlo en la forma CodigoEnsamblador
@@ -43,9 +40,6 @@ namespace Interfaz.Clases.Facade {
             var codigoEnsamblador = File.ReadAllText(rutaArchivoEnsamblador);
             var codigoEnsambladorForma = new CodigoEnsamblador(codigoEnsamblador);
             codigoEnsambladorForma.Show();
-            
-
-
         }
 
         /// <summary>
@@ -54,25 +48,26 @@ namespace Interfaz.Clases.Facade {
         /// <param name="codigo">Las instrucciones que va a convertir</param>
         /// <returns>La ruta del archivo creado</returns>
         private string convertirVariablesACodigoC(List<string> codigo) {
-            string lineas = "";
-
-            lineas += "#include <stdio.h>\nint main() {\n";
-            
+            string lineas = "#include <stdio.h>\nint main() {\n";
             foreach(string linea in codigo) {
                 if(linea.Contains("=")) {
-                    lineas += $"\nint {linea};";
-                }
-                if (linea.Contains("leer")) {
+                    if(linea.Contains("declarar"))
+                        lineas += $"\nint {linea.Replace("declarar", "")};";
+                    else
+                        lineas += $"\n{linea};";
+                } if (linea.Contains("leer")) {
                     var segundaPalabra = linea.Split(' ')[1];
                     lineas += $"\nscanf(\"%i\", &{segundaPalabra});";
-                }
-                if (linea.Contains("imprimir")) {
+                } if (linea.Contains("imprimir")) {
                     var segundaPalabra = linea.Split(' ')[1];
-                    lineas += $"\nprintf(\"%i\", {segundaPalabra});";
+                    if(segundaPalabra.Contains('\"')) {
+                        lineas += $"\nprintf({linea.Replace("imprimir ", "")});";
+                    } else {
+                        lineas += $"\nprintf(\"%i@\", {segundaPalabra});";
+                    }
                 }
-            }
+            } lineas += $"\nprintf(\"@Compilacion finalizada..\"); \nreturn 0; }}";
 
-            lineas += "\nreturn 0; }";
             return lineas;
         }
     }

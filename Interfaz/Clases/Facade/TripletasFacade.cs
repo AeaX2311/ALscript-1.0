@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Interfaz.Clases.Facade {
     class TripletasFacade {
 
         List<string> operacionesConJerarquia;
-        string instruccionEnEnsamblador;
         List<string> auxOperacionesRealizadas;       
 
-        public string tripletasGo(List<string> instrucciones, RichTextBox txtCodificacion, RichTextBox txtLexico) {
+        public string tripletasGo(List<string> instrucciones) {
             //Encontrar las lineas que vas a evaluar
-            //List<string> instrucciones = ;
-            instruccionEnEnsamblador = ""; operacionesConJerarquia = new List<string>();
+            operacionesConJerarquia = new List<string>();
             string auxOperaciones = ""; string auxOperacion;
 
             //Se deben de ordenar jerarquicamente todas las operaciones que se van a realizar            
@@ -25,41 +20,21 @@ namespace Interfaz.Clases.Facade {
                 auxOperacion = "";
                 auxOperacionesRealizadas = new List<string>();
                 auxOperacionesRealizadas.Add(aplicarJerarquiaInstruccion(instrucciones[x]) + " = " + generarTokenOperacion(true));
-
-                foreach(string operacion in auxOperacionesRealizadas) auxOperacion += "\n" + operacion; 
                 
+                foreach(string operacion in auxOperacionesRealizadas) auxOperacion += "\n" + operacion; 
+               
                 operacionesConJerarquia.Add(auxOperacion);
                 auxOperaciones += auxOperacion + "\n";
             }
-                
-            //Pasarlas a lenguaje ensamblador
-            generarCodigoEnsamblador();
 
-            string resultado;
-            //Agregar la informacion generada al txt
-            resultado = "--------------------------------\n";
-            resultado += "JERARQUIA OPERACIONES APLICADA";
-            resultado += "\n--------------------------------";
-            resultado += auxOperaciones;
-            resultado += "\n--------------------------------\n";
-            resultado += "ENSAMBLADOR";
-            resultado += "\n--------------------------------\n";
-            resultado += instruccionEnEnsamblador;
-
-            return resultado;
+            return "--------------------------------\nJERARQUIA OPERACIONES APLICADA\n--------------------------------" + auxOperaciones + "\n--------------------------------\n";
         }
 
-
-        /*                  
-            val1 = 15
-            val2 = 77 + 22 * 5 - 33 / 5 + 3 - 2 + 3
-            val3 = 3 + val1
-               0 1 2 3 4 5 6 7 8 99 1 1 2 3 4 5 6 7 8
-            val6 = 4 + 7 * 5 - ( 33 + 3 * 3 ) / 3 + 3
-            val4 = 2 * val2
-            val5 = 1 / val4                 
-         */
-
+        /// <summary>
+        /// Genera operaciones a manera jerarquica. Solo aritmeticamente.
+        /// </summary>
+        /// <param name="instruccion">...</param>
+        /// <returns>...</returns>
         private string aplicarJerarquiaInstruccion(string instruccion) {
             List<string> elementos = instruccion.Split(' ').Where(s => !string.IsNullOrWhiteSpace(s)).ToList();
             int longitud = elementos.Count;
@@ -99,9 +74,6 @@ namespace Interfaz.Clases.Facade {
             //Cuando ya hayan desaparecido todos los parentesis, aplicar jerarquia de operadores
             //Buscar * y /, si la encuentras, aplica esa operacion (guardala en el arreglo)
             if(elementos.Contains("*") || elementos.Contains("/")) {
-
-
-
                 for(int pos = 0; pos < elementos.Count; pos++) {
                     string elemento = elementos[pos];
 
@@ -109,16 +81,6 @@ namespace Interfaz.Clases.Facade {
                         //Guardamos la operacion que se realiza
                         string operacionPK = generarTokenOperacion(false);
                         auxOperacionesRealizadas.Add(operacionPK + " = " + elementos[pos - 1] + " " + elemento + " " + elementos[pos + 1]);
-
-
-
-                        if(elemento.Equals("*")) {
-                            //instruccionEnEnsamblador += "\t" + operacionPK + " = " + elementos[pos - 1] + " " + elemento + " " + elementos[pos + 1];
-                        }
-
-
-
-
 
                         //Se reemplaza la operacion por una operacion con su PK
                         elementos[pos - 1] = operacionPK;
@@ -139,15 +101,6 @@ namespace Interfaz.Clases.Facade {
                         string operacionPK = generarTokenOperacion(false);
                         auxOperacionesRealizadas.Add(operacionPK + " = " + elementos[pos - 1] + " " + elemento + " " + elementos[pos + 1]);
 
-
-
-
-                        if(elemento.Equals("+")) {
-                            //instruccionEnEnsamblador+="MOV "
-                        }
-
-
-
                         //Se reemplaza la operacion por una operacion con su PK
                         elementos[pos - 1] = operacionPK;
 
@@ -158,16 +111,15 @@ namespace Interfaz.Clases.Facade {
                 }
             }
 
-            //Ya no deberia haber nada mas que una asignacion
-
-            //fgfg += "----------->";
-            //foreach(string e in elementos) {
-            //    fgfg += e;
-            //}
-            //fgfg += "---------->";
             return elementos[0];
         }
 
+        /// <summary>
+        /// En base a un listado de lineas, obtiene y procesa los datos que se encuentren en esa linea para mandarlos al codigo a ejecutar en ensamblador.
+        /// </summary>
+        /// <param name="numerosLineas">...</param>
+        /// <param name="txtCodificacion">...</param>
+        /// <returns>...</returns>
         public List<string> buscarValoresInstrucciones(List<int> numerosLineas, RichTextBox txtCodificacion) {
             List<string> lineas = new List<string>();
 
@@ -176,20 +128,29 @@ namespace Interfaz.Clases.Facade {
                 bool auxCondicion = false;
                 try { auxCondicion = numerosLineas[numeroLinea] == numeroLinea; } catch { }
 
-                if(auxCondicion) { //La linea contiene una asignacion
+                if(auxCondicion) { //La linea contiene una instruccion que se va a guardar
                     string linea = txtCodificacion.Lines[numeroLinea];                    
                     
                     //Para poder buscar entre operaciones "pegadas"
                     linea = linea.Replace("+", " + ").Replace("/", " / ").Replace("*", " * ").Replace("-", " - ").Replace("(", " ( ").Replace(")", " ) ").Replace("=", " = ").Replace(";", "").Replace("  ", " ");
 
                     //Guardar cada una de las asignaciones
-                    lineas.Add(linea.Replace("declarar variable ", ""));                    
+                    lineas.Add(linea.Replace("declarar variable ", "declarar"));
+                    
                 }
             }
 
             return lineas;
         }
 
+        /// <summary>
+        /// Genera un listado de numeros de lineas que deben ser agregadas para procesarse en ensamblador:
+        /// 1-Asignaciones/Declararciones
+        /// 2-Imprimir
+        /// 3-Leer
+        /// </summary>
+        /// <param name="txtLexico">...</param>
+        /// <returns>...</returns>
         public List<int> buscarInstruccionesAEvaluar(RichTextBox txtLexico) {
             List<int> numeroLineas = new List<int>();
 
@@ -197,8 +158,8 @@ namespace Interfaz.Clases.Facade {
             for(int numeroLinea = 0; numeroLinea < txtLexico.Lines.Length; numeroLinea++) {
                 string linea = txtLexico.Lines[numeroLinea];
                 linea = Regex.Replace(linea, @"\bIDEN#[0-9]+", "IDEN");
-                
-                if(linea.Contains("IDEN ASIG")) { //Si se esta realizando una asignacion
+
+                if(linea.Contains("IDEN ASIG") || linea.Contains("PRI5") || linea.Contains("PRI4")) { //Si se esta realizando una asignacion, lectura o impresion
                     numeroLineas.Add(numeroLinea);
                 } else {
                     numeroLineas.Add(-1);
@@ -214,17 +175,6 @@ namespace Interfaz.Clases.Facade {
         /// <returns>...</returns>
         private string generarTokenOperacion(bool isFinal) {
             return $"OP{auxOperacionesRealizadas.Count + (isFinal ? 0 : 1)}";
-        }
-
-        private void generarCodigoEnsamblador() {
-            foreach(string operacion in operacionesConJerarquia) {
-                string operacionBuena = operacion.Substring(1);
-
-                foreach(string instruccion in operacionBuena.Split('\n')) { 
-                    Console.WriteLine(instruccion);
-                }
-                Console.WriteLine("-------------------");
-            }
         }
     }
 }
