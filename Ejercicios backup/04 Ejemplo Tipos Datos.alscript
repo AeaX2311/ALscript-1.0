@@ -1,0 +1,10 @@
+## Ejemplo tipos datos ##
+
+declarar variable x = !(3>5) && (cierto || falso) && (4 ==4);
+declarar variable y = cierto || x;
+
+si y {	 
+	ciclo(declarar variable z = 5; z<15; z=1+z){
+		imprimir "o";	
+	};
+};

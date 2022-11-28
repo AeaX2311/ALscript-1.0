@@ -1,0 +1,14 @@
+## Ejemplo tipos datos ##
+
+declarar variable val1 = 15;
+declarar variable val2 = 77 + 22*5-33/5+3-2+3;
+declarar variable val3 = 3 + val1;
+declarar variable val4;
+declarar variable val5;
+declarar variable val6=4+7*5-(33+3*3)/3+3;
+
+val4 = 2 * val2;
+val5 = 1/val4;
+
+imprimir val5;
+

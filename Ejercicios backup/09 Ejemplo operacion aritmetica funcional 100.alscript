@@ -1,0 +1,4 @@
+##Operacion aritmetica larga 1##
+
+declarar variable x=3+4*4/(34+3*5-4)*4-4/44+34-3;
+imprimir x;

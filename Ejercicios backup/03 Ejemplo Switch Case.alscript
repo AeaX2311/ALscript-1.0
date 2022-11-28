@@ -1,0 +1,59 @@
+declarar variable nDia;
+declarar variable nMes;
+declarar variable dda;
+
+imprimir "Introduzca el numero del dia y numero del mes";
+leer nDia;
+leer nMes;
+
+si (nDia >= 1 && nDia <= 31 && nMes >= 1 && nMes <= 12 )
+{
+    segun nMes 
+    {
+        caso 1 >
+            dda = nDia;
+            romper;
+        caso 2 >
+            dda = nDia + 31;
+            romper; 
+        caso 3 > 
+            dda = nDia + 59;
+            romper;
+        caso 4 >
+            dda = nDia + 90;
+            romper;
+        caso 5 >
+            dda = nDia + 120;
+            romper;
+        caso 6 >
+            dda = nDia + 151;
+            romper;
+        caso 7 >
+            dda = nDia + 181;
+            romper;
+        caso 8 >
+            dda = nDia + 212;
+            romper;
+        caso 9 >
+            dda = nDia + 243;
+            romper;
+        caso 10 >
+            dda = nDia + 273;
+            romper;
+        caso 11 >
+            dda = nDia + 304;
+            romper;
+        caso 12 >
+            dda = nDia + 334;
+    };
+    
+    imprimir "El ";
+    imprimir nDia;
+    imprimir "del";
+    imprimir nMes;
+    imprimir "es el dia";
+    imprimir dda;
+    imprimir "del anio";
+} siNo {
+    imprimir "Datos proporcionados no validos";
+};

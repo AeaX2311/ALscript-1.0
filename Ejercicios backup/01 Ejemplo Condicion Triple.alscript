@@ -1,0 +1,11 @@
+## Condicion TRIPLE ##
+declarar variable bandera = cierto;
+
+si(5==5 || cierto){
+	si 4<5 && !(falso || cierto) {
+		si bandera {
+			imprimir "Cierto";
+			bandera = !bandera;
+		};
+	};
+};

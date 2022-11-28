@@ -1,0 +1,22 @@
+declarar variable pedimentos = 100;
+declarar variable numeroFolio;
+si pedimentos > 50{
+	leer numeroFolio;
+	si numeroFolio=="29FS" {
+		imprimir "Okay, el numero de folio es correcto";
+	}siNo si numeroFolio=="28SK"{
+		imprimir "Demonios";
+	}siNo si numeroFolio=="28SK"{
+		imprimir "Demonios";
+	}siNo si numeroFolio=="28SK"{
+		imprimir "Demonios";
+	}siNo si numeroFolio=="28SK"{
+		imprimir "Demonios";
+	}siNo si numeroFolio=="28SK"{
+		imprimir "Demonios";
+	}siNo {
+		imprimir "Demonios";
+	};
+};
+
+imprimir pedimentos;

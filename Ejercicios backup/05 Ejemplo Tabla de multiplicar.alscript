@@ -1,0 +1,19 @@
+## Programa que imprime una tabla de multiplicar ## 
+ 
+declarar variable iterador = 1;
+declarar variable lectura=0;
+
+leer lectura;
+imprimir "Tabla de multiplicar.";
+
+ciclo (; iterador<=10; iterador=1+iterador) {
+    declarar variable resultado = 1*lectura*iterador;
+
+    imprimir lectura;
+    imprimir "X";
+    imprimir iterador;
+
+
+
+    imprimir resultado;
+};

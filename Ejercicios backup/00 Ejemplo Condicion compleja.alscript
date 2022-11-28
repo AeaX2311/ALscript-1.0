@@ -1,0 +1,11 @@
+## Condicion compleja ##
+declarar variable oB1 = ( 23 + 3 - ( 3 * 3 ) / ( 5 ^ 3 + 3 ) ) >= 500;
+declarar variable oB2 = cierto;
+
+si (54<3 || 23>=22 && cierto && ("CAD"=="222")) || oB2 {
+    imprimir "Hola" + "1";
+} siNo si falso {
+    imprimir "Hola2";
+} siNo {
+    imprimir 45;
+};

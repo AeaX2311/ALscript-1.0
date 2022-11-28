@@ -1,0 +1,16 @@
+##Ciclo mientras##
+
+declarar variable i = 1;
+declarar variable nota = 1;
+declarar variable sumatorio = 0;
+declarar variable media;
+
+mientras i <= 35 {
+    leer nota;
+    sumatorio = 1 * (sumatorio + nota);
+};
+
+media = 1*sumatorio / 35;
+
+imprimir "La media es";
+imprimir media;

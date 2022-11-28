@@ -1,0 +1,12 @@
+##Ciclos anidados##
+
+declarar variable y;
+declarar variable z=0;
+
+ciclo(declarar variable x=0; x<50 || x==0 || falso; x=2*x) {
+	ciclo(y=0; y<=10; y=2*y-3+(5/3)*4-5/3) {
+		ciclo(; x<5; z=1+z) {
+			imprimir "Hola";
+		};
+	};
+};
