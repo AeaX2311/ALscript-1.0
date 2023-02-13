@@ -21,7 +21,6 @@
 #### Desarrollado por
 - Alan Castro
 - Alan Peña
-- Aldo Rodriguez
 - Angel Salazar
 - Humberto Diaz
 
